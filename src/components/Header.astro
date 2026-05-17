@@ -1,0 +1,91 @@
+---
+/**
+ * Site header — logo left, nav center, CTA right.
+ * Fixed/sticky over the page. Transparent on the green hero,
+ * solid near-black once scrolled (handled with a small inline script).
+ */
+const nav = [
+  { label: 'Услуги',  href: '/services'  },
+  { label: 'Подход',  href: '/approach'  },
+  { label: 'Кейсы',   href: '/cases'     },
+  { label: 'Контакт', href: '/contact'   },
+];
+---
+
+<header class="hdr" id="site-header">
+  <a class="hdr-logo" href="/" aria-label="SNC Media — на главную">
+    <span class="hdr-mark">S</span>
+    <span class="hdr-word">SNC<span class="hdr-word-sub">Media</span></span>
+  </a>
+
+  <nav class="hdr-nav">
+    {nav.map((item) => (
+      <a class="hdr-nav-link tlink" href={item.href}>{item.label}</a>
+    ))}
+  </nav>
+
+  <a class="hdr-cta" href="/contact">Получить аудит</a>
+</header>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--pad-x);
+    background: var(--green);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.2s;
+  }
+  .hdr.scrolled { background: var(--nearblack); border-bottom-color: var(--dim); }
+
+  .hdr-logo { display: flex; align-items: center; gap: 10px; }
+  .hdr-mark {
+    width: 26px; height: 26px;
+    border: 2px solid var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; line-height: 1;
+  }
+  .hdr-word {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.15em;
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .hdr-word-sub {
+    font-size: 8px; font-weight: 400; letter-spacing: 0.32em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.55);
+  }
+
+  .hdr-nav { display: flex; gap: 28px; }
+  .hdr-nav-link {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.7);
+  }
+  .hdr-nav-link:hover { color: var(--white); }
+
+  .hdr-cta {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border: 1px solid var(--white);
+    transition: background 0.15s, color 0.15s;
+  }
+  .hdr-cta:hover { background: var(--white); color: var(--green); }
+
+  @media (max-width: 760px) {
+    .hdr-nav { display: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>

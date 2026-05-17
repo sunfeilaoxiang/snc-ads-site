@@ -1,0 +1,426 @@
+---
+/**
+ * Home page — SNC Media.
+ * Content source: ../../pages/01-home.md (the canonical copy reference).
+ * Facts reconciled with ../../snc-media-ops/00_SNC_Media_Operations_Bible.md.
+ */
+import Base from '../layouts/Base.astro';
+
+const stats = [
+  { num: '2',     label: 'сооснователя' },
+  { num: '4',     label: 'года в перформансе' },
+  { num: '€2M+',  label: 'прокрученного бюджета' }, // TODO: verify real figure with Nikita
+  { num: '100%',  label: 'письменная отчётность' },
+];
+
+const services = [
+  {
+    name: 'Meta Ads — ecommerce',
+    body: 'Запуск, тестирование креативов, оптимизация. Pixel/CAPI, каталоги, Advantage+ Shopping, ретаргет. Еженедельный письменный апдейт.',
+  },
+  {
+    name: 'Meta Ads — lead-gen',
+    body: 'Кампании на заявки для сервисных бизнесов. Цель — стоимость и качество лида, не клики. Прозрачная воронка от показа до заявки.',
+  },
+  {
+    name: 'Креатив (опционально)',
+    body: 'Бриф креативов под платформу. Координация с фрилансерами. Продакшн оплачивается клиентом отдельно, не входит в ретейнер.',
+  },
+];
+
+const steps = [
+  { n: '01', t: 'Аудит',                  d: '30 минут. Смотрим аккаунт, трекинг, креативы. По итогу — письменный отчёт и честный ответ: подходим друг другу или нет.' },
+  { n: '02', t: 'Онбординг',              d: 'Доступы, бриф через шаблон, согласование бюджета и KPI. Запуск — в течение 14 дней.' },
+  { n: '03', t: 'Ежедневная оптимизация', d: 'Тесты креативов, оптимизация бюджетов, масштабирование победителей. Без созвонов.' },
+  { n: '04', t: 'Отчётность',             d: 'Дашборд в реальном времени. Письменный апдейт по пятницам. Стратегический созвон раз в месяц — по желанию клиента.' },
+];
+
+const fitYes = [
+  'Ecommerce-бренд с годовым оборотом от €300k',
+  'Бюджет на рекламу от €1k/мес, комфортный коридор — €3–10k/мес',
+  'Готовы работать письменно, по шаблонам',
+  'Хотят прозрачную отчётность с цифрами, не презентации',
+  'Понимают, что результаты — функция качества продукта, креатива и бюджета, а не только агентства',
+];
+
+const fitNo = [
+  'Ищут гарантии ROAS или количества лидов',
+  'Бюджет на рекламу меньше €1k/мес',
+  'Нужен ежедневный созвон и доступ в WhatsApp 24/7',
+  'Хотят, чтобы агентство «придумало стратегию» вместо понимания собственного бизнеса',
+  'Местный сервисный бизнес без онлайн-продаж (мы — про ecommerce)',
+];
+
+const founders = [
+  {
+    name: 'Никита',
+    role: 'Meta / Delivery',
+    body: '4 года ведения Meta Ads для ecommerce-брендов в EU. Отвечает за рекламную стратегию, исполнение, QA. До SNC — senior performance marketer в агентстве.',
+  },
+  {
+    name: 'Гима',
+    role: 'CCO / финансовая дисциплина',
+    body: '5+ лет фрактального CFO для SMB и стартапов. Отвечает за коммерческую сторону, клиентские отношения, ценообразование, юнит-экономику.',
+  },
+];
+---
+
+<Base
+  title="SNC Media — Performance-маркетинг для ecommerce-брендов"
+  description="Senior-level Meta-реклама для ecommerce-фаундеров. Без лишних созвонов и агентского театра. Прозрачная письменная отчётность."
+  ogTitle="SNC Media — Performance, без театра."
+  ogDescription="Meta ads для ecommerce. Senior-исполнение, прозрачная отчётность, асинхронный формат работы."
+>
+  <!-- ══ 01 · HERO ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-top">
+      <span class="hero-label">SNC Media &middot; Performance</span>
+      <span class="hero-eyebrow">Riga / EU &middot; с 2026</span>
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-h1">Performance-<br />маркетинг<br />для ecommerce.<br />Без театра.</h1>
+      <p class="hero-sub">
+        Meta-реклама для брендов, которые выросли из самостоятельного запуска,
+        но не готовы платить агентствам по €5k/мес за дашборды и созвоны.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-on-green" href="/contact">Получить аудит</a>
+        <a class="hero-link tlink" href="/approach">Как мы работаем &rarr;</a>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <span>Senior-исполнение &middot; без агентского балласта</span>
+      <span class="hero-bottom-right">Meta Ads &middot; ecommerce &amp; lead-gen</span>
+    </div>
+  </section>
+
+  <!-- ══ 02 · NUMBERS ═══════════════════════════════════ -->
+  <section class="stats">
+    {stats.map((s) => (
+      <div class="stat">
+        <div class="stat-num">{s.num}</div>
+        <div class="stat-label">{s.label}</div>
+      </div>
+    ))}
+  </section>
+
+  <!-- ══ 03 · POSITIONING ═══════════════════════════════ -->
+  <section class="section pos">
+    <div class="sec-label on-dark">01 — Позиция</div>
+    <h2 class="pos-statement">Senior-исполнение<br />без агентского балласта.</h2>
+    <p class="pos-body">
+      Большинство SMB-брендов платят агентствам не за работу, а за инфраструктуру:
+      аккаунт-менеджмент, созвоны, презентации, «стратегические сессии». Мы убрали
+      всё, что не двигает цифру. Остался senior-уровень исполнения, прозрачные
+      дашборды и письменный формат коммуникации. Это позволяет нам стоить меньше
+      при том же качестве работы.
+    </p>
+  </section>
+
+  <!-- ══ 04 · WHAT WE DO ════════════════════════════════ -->
+  <section class="section services">
+    <div class="sec-label">02 — Что мы делаем</div>
+    <div class="services-grid">
+      {services.map((s) => (
+        <div class="service">
+          <h3 class="service-name">{s.name}</h3>
+          <p class="service-body">{s.body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="services-note">
+      Google Ads, TikTok, SEO, Amazon, инфлюенсеры — пока не делаем.
+      Один канал, который знаем глубоко.
+    </p>
+    <a class="services-cta tlink" href="/services">Подробнее об услугах &rarr;</a>
+  </section>
+
+  <!-- ══ 05 · HOW WE WORK ═══════════════════════════════ -->
+  <section class="section how">
+    <div class="sec-label">03 — Как мы работаем</div>
+    <div class="how-grid">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="step-n">{s.n}</div>
+          <h3 class="step-t">{s.t}</h3>
+          <p class="step-d">{s.d}</p>
+        </div>
+      ))}
+    </div>
+    <a class="how-cta tlink" href="/approach">Подробнее о подходе &rarr;</a>
+  </section>
+
+  <!-- ══ 06 · FIT ═══════════════════════════════════════ -->
+  <section class="section fit">
+    <div class="fit-col">
+      <div class="fit-head fit-head-yes">Подходим</div>
+      {fitYes.map((row) => (
+        <div class="fit-row"><span class="fit-mark fit-mark-yes">&rarr;</span><span>{row}</span></div>
+      ))}
+    </div>
+    <div class="fit-col">
+      <div class="fit-head fit-head-no">Не подходим</div>
+      {fitNo.map((row) => (
+        <div class="fit-row fit-row-no"><span class="fit-mark fit-mark-no">&times;</span><span>{row}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══ 07 · CASES ═════════════════════════════════════ -->
+  <section class="section cases">
+    <div class="sec-label on-dark">04 — Кейсы</div>
+    <p class="cases-statement">
+      Кейсы — в работе. Анонимизированные результаты появятся здесь по мере
+      выхода клиентов из NDA.
+    </p>
+    <p class="cases-sub">Можем поделиться кейсами лично на аудите — присылайте запрос.</p>
+    <a class="cases-cta tlink" href="/contact">Запросить кейсы &rarr;</a>
+  </section>
+
+  <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
+  <section class="section founders">
+    <div class="sec-label">05 — Кто мы</div>
+    <div class="founders-grid">
+      {founders.map((f) => (
+        <div class="founder">
+          <div class="founder-mark">S</div>
+          <div class="founder-head">
+            <span class="founder-name">{f.name}</span>
+            <span class="founder-role">{f.role}</span>
+          </div>
+          <p class="founder-body">{f.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══ 09 · CLOSING CTA ═══════════════════════════════ -->
+  <section class="section closing">
+    <h2 class="closing-statement">Разбор вашего<br />рекламного аккаунта.</h2>
+    <p class="closing-body">
+      Оставьте заявку — зададим несколько вопросов, чтобы понять, подходим ли
+      друг другу. Если да — разберём текущий аккаунт и покажем, что оставляет
+      деньги на столе. Если нет — честно скажем сразу.
+    </p>
+    <a class="btn btn-on-green" href="/contact">Получить аудит</a>
+  </section>
+</Base>
+
+<style>
+  /* ── 01 HERO ──────────────────────────────── */
+  .hero {
+    background: var(--green);
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px var(--pad-x) 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -70px; right: -70px;
+    width: 420px; height: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative; z-index: 1;
+  }
+  .hero-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+  }
+  .hero-eyebrow {
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .hero-center { position: relative; z-index: 1; padding: 48px 0; }
+  .hero-h1 {
+    font-size: clamp(40px, 8.5vw, 116px);
+    font-weight: 600; letter-spacing: 0.02em; line-height: 0.98;
+  }
+  .hero-sub {
+    margin-top: 32px; max-width: 560px;
+    font-size: clamp(13px, 1.4vw, 16px); font-weight: 400;
+    line-height: 1.75; color: rgba(255, 255, 255, 0.7);
+  }
+  .hero-cta {
+    margin-top: 40px; display: flex; align-items: center;
+    gap: 28px; flex-wrap: wrap;
+  }
+  .hero-link { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+  .hero-link:hover { color: var(--white); }
+  .hero-bottom {
+    display: flex; justify-content: space-between;
+    padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative; z-index: 1;
+    font-size: 9px; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* ── 02 STATS ─────────────────────────────── */
+  .stats {
+    background: var(--nearblack);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--dim);
+  }
+  .stat { padding: 40px var(--pad-x); border-right: 1px solid var(--dim); }
+  .stat:last-child { border-right: 0; }
+  .stat-num { font-size: 48px; font-weight: 600; color: var(--green); line-height: 1; }
+  .stat-label {
+    margin-top: 12px; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ── 03 POSITIONING ───────────────────────── */
+  .pos { background: var(--nearblack); border-top: 1px solid var(--dim); }
+  .pos-statement {
+    margin-top: 28px;
+    font-size: clamp(28px, 4vw, 44px); font-weight: 600;
+    line-height: 1.15; letter-spacing: 0.01em;
+  }
+  .pos-body {
+    margin-top: 24px; max-width: 640px;
+    font-size: 13px; line-height: 1.85; color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* ── 04 SERVICES ──────────────────────────── */
+  .services { background: var(--offwhite); color: var(--nearblack); }
+  .services-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--dim-light);
+    border: 1px solid var(--dim-light);
+  }
+  .service { background: var(--offwhite); padding: 28px 24px; }
+  .service-name { font-size: 14px; font-weight: 600; color: var(--green); }
+  .service-body {
+    margin-top: 12px; font-size: 12px; line-height: 1.7; color: #555;
+  }
+  .services-note {
+    margin-top: 20px; font-size: 10px; font-style: italic; color: var(--graphite);
+  }
+  .services-cta {
+    display: inline-block; margin-top: 18px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+  }
+
+  /* ── 05 HOW ───────────────────────────────── */
+  .how { background: var(--white); color: var(--nearblack); }
+  .how-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+  }
+  .step { border-top: 2px solid var(--green); padding-top: 16px; }
+  .step-n { font-size: 11px; font-weight: 600; color: var(--bronze); letter-spacing: 0.1em; }
+  .step-t { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--green); }
+  .step-d { margin-top: 10px; font-size: 12px; line-height: 1.7; color: #555; }
+  .how-cta {
+    display: inline-block; margin-top: 24px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+  }
+
+  /* ── 06 FIT ───────────────────────────────── */
+  .fit {
+    background: var(--forest);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .fit-col { padding: 8px 36px; }
+  .fit-col:first-child { border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  .fit-head {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .fit-head-yes { color: var(--sage); }
+  .fit-head-no  { color: var(--bronze); }
+  .fit-row {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13px; line-height: 1.7; margin-bottom: 14px;
+  }
+  .fit-row-no { color: rgba(255, 255, 255, 0.6); }
+  .fit-mark { flex-shrink: 0; }
+  .fit-mark-yes { color: var(--sage); }
+  .fit-mark-no  { color: var(--bronze); }
+
+  /* ── 07 CASES ─────────────────────────────── */
+  .cases { background: var(--nearblack); }
+  .cases-statement {
+    margin-top: 28px; max-width: 640px;
+    font-size: clamp(20px, 3vw, 28px); font-weight: 600; line-height: 1.3;
+  }
+  .cases-sub {
+    margin-top: 16px; font-size: 11px; color: rgba(255, 255, 255, 0.5);
+    max-width: 480px; line-height: 1.7;
+  }
+  .cases-cta {
+    display: inline-block; margin-top: 18px;
+    font-size: 11px; font-weight: 600; color: var(--sage);
+  }
+
+  /* ── 08 FOUNDERS ──────────────────────────── */
+  .founders { background: var(--white); color: var(--nearblack); }
+  .founders-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--dim-light);
+    border: 1px solid var(--dim-light);
+  }
+  .founder { background: var(--white); padding: 28px 24px; }
+  .founder-mark {
+    width: 44px; height: 44px;
+    border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 600; color: var(--green);
+    margin-bottom: 16px;
+  }
+  .founder-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .founder-name { font-size: 16px; font-weight: 600; color: var(--green); }
+  .founder-role {
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray);
+  }
+  .founder-body {
+    margin-top: 12px; font-size: 12px; line-height: 1.7; color: #555;
+  }
+
+  /* ── 09 CLOSING ───────────────────────────── */
+  .closing { background: var(--green); }
+  .closing-statement {
+    font-size: clamp(32px, 5vw, 56px); font-weight: 600; line-height: 1.1;
+  }
+  .closing-body {
+    margin-top: 24px; max-width: 520px;
+    font-size: 13px; line-height: 1.75; color: rgba(255, 255, 255, 0.7);
+  }
+  .closing .btn { margin-top: 32px; }
+
+  /* ── responsive ───────────────────────────── */
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--dim); }
+    .services-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: repeat(2, 1fr); }
+    .fit { grid-template-columns: 1fr; }
+    .fit-col:first-child {
+      border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .founders-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero { min-height: auto; padding: 32px var(--pad-x) 28px; }
+    .hero-h1 { font-size: 40px; line-height: 1.05; }
+    .hero-center { padding: 36px 0; }
+    .hero-bottom-right { display: none; }
+    .how-grid { grid-template-columns: 1fr; }
+  }
+</style>

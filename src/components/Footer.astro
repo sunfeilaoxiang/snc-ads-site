@@ -1,0 +1,111 @@
+---
+/**
+ * Site footer — Deep Forest panel. Logo, three nav columns,
+ * contact links, copyright.
+ */
+const year = new Date().getFullYear();
+
+const cols = [
+  {
+    title: 'Услуги',
+    links: [
+      { label: 'Meta Ads — ecommerce', href: '/services' },
+      { label: 'Meta Ads — lead-gen',  href: '/services' },
+      { label: 'Креатив',              href: '/services' },
+    ],
+  },
+  {
+    title: 'Компания',
+    links: [
+      { label: 'Подход',  href: '/approach' },
+      { label: 'Кейсы',   href: '/cases'    },
+      { label: 'Контакт', href: '/contact'  },
+    ],
+  },
+  {
+    title: 'Связь',
+    links: [
+      { label: 'Telegram', href: 'https://t.me/' },
+      { label: 'Email',    href: 'mailto:hello@snc-media.com' },
+    ],
+  },
+];
+---
+
+<footer class="ftr">
+  <div class="ftr-top">
+    <a class="ftr-logo" href="/" aria-label="SNC Media">
+      <span class="ftr-mark">S</span>
+      <span class="ftr-word">SNC Media</span>
+    </a>
+
+    <div class="ftr-cols">
+      {cols.map((col) => (
+        <div class="ftr-col">
+          <div class="ftr-col-title">{col.title}</div>
+          {col.links.map((link) => (
+            <a class="ftr-link tlink" href={link.href}>{link.label}</a>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <hr class="ftr-rule" />
+
+  <div class="ftr-bottom">
+    <span>&copy; {year} SNC Media &middot; Riga / EU</span>
+    <span>IBM Plex Mono &middot; #1E4D3A</span>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    background: var(--forest);
+    padding: 48px var(--pad-x) 28px;
+  }
+  .ftr-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .ftr-logo { display: flex; align-items: center; gap: 10px; }
+  .ftr-mark {
+    width: 28px; height: 28px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .ftr-word {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+  }
+
+  .ftr-cols { display: flex; gap: 56px; flex-wrap: wrap; }
+  .ftr-col { display: flex; flex-direction: column; gap: 10px; }
+  .ftr-col-title {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 4px;
+  }
+  .ftr-link { font-size: 11px; color: rgba(255, 255, 255, 0.65); }
+  .ftr-link:hover { color: var(--white); }
+
+  .ftr-rule {
+    height: 1px; border: 0;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 36px 0 18px;
+  }
+  .ftr-bottom {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 9px; letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 640px) {
+    .ftr-cols { gap: 32px; }
+  }
+</style>
