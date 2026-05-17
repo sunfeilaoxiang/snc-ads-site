@@ -1,34 +1,33 @@
 ---
 /**
- * Contact page — English. Faithful translation of src/pages/contact.astro.
- * Keep structure + styles in sync with the Russian version.
+ * Contact page — English. Adapted for English-speaking founders.
+ * Keep structure + styles in sync with src/pages/contact.astro.
  *
- * ⚠ SETUP: the WEB3FORMS_ACCESS_KEY placeholder must be replaced in BOTH
- *   this file and src/pages/contact.astro with the real key from
- *   https://web3forms.com (see ../../CLAUDE.md).
+ * ⚠ SETUP: replace WEB3FORMS_ACCESS_KEY in BOTH this file and
+ *   src/pages/contact.astro with the real key from https://web3forms.com.
  */
 import Base from '../../layouts/Base.astro';
 
 const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_KEY';
 
 const steps = [
-  'You leave a request — a couple of minutes.',
-  'We ask a few clarifying questions in writing — a short screening.',
-  'If we are a fit — we review your ad account and send a written report.',
-  'If we are not a fit — we say so straight away and honestly, no "selling". Where possible, we point you to someone else.',
+  'You send the request — takes a couple of minutes.',
+  'We ask a few qualifying questions in writing — a quick back-and-forth.',
+  'If we’re a fit, we audit your ad account and send a written report.',
+  'If we’re not, we tell you straight — no pitch. Where we can, we’ll point you to someone better suited.',
 ];
 ---
 
 <Base
   title="Contact — SNC Media | Get an audit"
-  description="Leave a request for an ad-account audit. A short screening, then a written review — if we are a fit for each other."
+  description="Request an audit of your ad account. A short qualifying step, then a written review — if we're a fit."
 >
   <section class="page-hero">
     <div class="page-hero-label">Contact</div>
     <h1 class="page-hero-h1">Get an audit.</h1>
     <p class="page-hero-lede">
-      Leave a request. We'll ask a few questions to see whether we're a fit.
-      If we are, we'll review your ad account. If not, we'll tell you straight away.
+      Send us a note. We'll ask a few questions to see if we're a fit. If we
+      are, we'll review your ad account. If not, we'll tell you straight away.
     </p>
   </section>
 
@@ -78,16 +77,16 @@ const steps = [
           <select id="ad_budget" name="ad_budget" required>
             <option value="" disabled selected>Select</option>
             <option value="Under €1,000">Under €1,000</option>
-            <option value="€1,000 – 3,000">€1,000 – 3,000</option>
-            <option value="€3,000 – 10,000">€3,000 – 10,000</option>
+            <option value="€1,000–3,000">€1,000–3,000</option>
+            <option value="€3,000–10,000">€3,000–10,000</option>
             <option value="Over €10,000">Over €10,000</option>
           </select>
         </div>
       </div>
 
       <div class="field">
-        <label for="message">Briefly about the task <span class="opt">— optional</span></label>
-        <textarea id="message" name="message" rows="4" placeholder="What is wrong with the ads now, what you want to achieve."></textarea>
+        <label for="message">Anything we should know <span class="opt">— optional</span></label>
+        <textarea id="message" name="message" rows="4" placeholder="What's wrong with your ads right now, and what you want to hit."></textarea>
       </div>
 
       <button type="submit" class="btn btn-on-white form-submit">Send request</button>
@@ -110,9 +109,9 @@ const steps = [
 
   <!-- Direct contact -->
   <section class="section section-forest">
-    <div class="sec-label on-dark">Direct contact</div>
+    <div class="sec-label on-dark">Prefer to skip the form?</div>
     <p class="lede muted-dark" style="margin-top:20px;">
-      Don't like forms — write to us directly.
+      Message us directly.
     </p>
     <div class="direct">
       <a class="direct-link" href="https://t.me/">Telegram &rarr;</a>
@@ -196,7 +195,7 @@ const steps = [
       const key = (form.elements.namedItem('access_key') as HTMLInputElement)?.value;
       if (!key || key.startsWith('REPLACE_WITH')) {
         status.textContent =
-          'The form is not connected yet. Message us on Telegram or by email below.';
+          "The form isn't live yet — message us on Telegram or by email below.";
         status.className = 'form-status err';
         return;
       }
@@ -215,7 +214,7 @@ const steps = [
         const data = await res.json();
         if (data.success) {
           form.reset();
-          status.textContent = 'Request sent. We will reply within one business day.';
+          status.textContent = "Request sent. We'll get back to you within one business day.";
           status.className = 'form-status ok';
           submit.textContent = 'Sent';
         } else {
@@ -223,7 +222,7 @@ const steps = [
         }
       } catch {
         status.textContent =
-          'Could not send. Please try again or message us on Telegram.';
+          "Couldn't send — try again, or message us on Telegram.";
         status.className = 'form-status err';
         submit.disabled = false;
         submit.textContent = 'Send request';

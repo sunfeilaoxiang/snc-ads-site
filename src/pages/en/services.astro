@@ -1,29 +1,29 @@
 ---
 /**
- * Services page — English. Faithful translation of src/pages/services.astro.
- * Keep structure + styles in sync with the Russian version.
+ * Services page — English. Adapted for English-speaking founders.
+ * Keep structure + styles in sync with src/pages/services.astro.
  */
 import Base from '../../layouts/Base.astro';
 import CtaClosing from '../../components/CtaClosing.astro';
 
 const included = [
-  { t: 'Account audit',       d: 'Tracking, structure, creatives. Where the budget leaks.' },
-  { t: 'Campaign setup',      d: 'Account structure, Pixel/CAPI, catalogs and feeds.' },
-  { t: 'Creative testing',    d: 'Briefs, rotation, iterations. Decisions by data, not by taste.' },
-  { t: 'Daily optimization',  d: 'Budgets, bids, scaling the winners, cutting the weak.' },
-  { t: 'Weekly update',       d: 'A written report every Friday. What is done, what is next.' },
-  { t: 'Monthly report',      d: 'The ad P&L. What worked, what did not, the plan for the month.' },
-  { t: 'Strategy call',       d: 'Once a month, 30 minutes, if the client wants it.' },
+  { t: 'Account audit',      d: 'Tracking, structure, creative. Where the budget is leaking.' },
+  { t: 'Campaign setup',     d: 'Account structure, Pixel/CAPI, catalogs and feeds.' },
+  { t: 'Creative testing',   d: 'Briefs, rotation, iteration. Calls made on data, not taste.' },
+  { t: 'Daily optimization', d: 'Budgets, bids, scaling winners, cutting losers.' },
+  { t: 'Weekly update',      d: 'A written report every Friday — what got done, what’s next.' },
+  { t: 'Monthly report',     d: 'The ad P&L. What worked, what didn’t, the plan ahead.' },
+  { t: 'Strategy call',      d: 'Once a month, 30 minutes — if you want it.' },
 ];
 
 const lines = [
   {
     name: 'Ecommerce',
-    body: 'Catalogs, feeds, Advantage+ Shopping, retargeting. We derive target ROAS from your margin, AOV, conversion rate and payback window — ROAS detached from those numbers means nothing.',
+    body: 'Catalogs, feeds, Advantage+ Shopping, retargeting. We set a target ROAS off your margin, AOV, conversion rate and payback window — ROAS on its own, without those numbers, tells you nothing.',
   },
   {
     name: 'Lead-gen',
-    body: 'Lead campaigns for service businesses. The goal is cost and quality per lead, not clicks. What happens after the lead — converting it to a sale — is partly your job. We say so plainly.',
+    body: 'Lead campaigns for service businesses. We optimize for cost per lead and lead quality — not clicks. What happens after the lead — closing the sale — is partly on you, and we’ll say that upfront.',
   },
 ];
 
@@ -32,34 +32,34 @@ const promise = [
   'Dashboard access from day one',
   'Audit and benchmarks within 7 days of kickoff',
   'A monthly call — optional, 30 minutes',
-  'Cancellation with 30 days’ notice',
+  "30 days' notice to cancel",
 ];
 
 const noPromise = [
-  'Guaranteed ROAS',
-  'Guaranteed timelines ("results in 14 days")',
-  'A specific number of leads or sales before analysing the account',
-  '24/7 support and same-day replies',
-  'Free trials and money-back guarantees',
+  'A guaranteed ROAS',
+  'A guaranteed timeline ("results in 14 days")',
+  "A lead or sales number before we've seen the account",
+  '24/7 support or same-day replies',
+  'Free trials or money-back guarantees',
 ];
 ---
 
 <Base
   title="Services — SNC Media | Meta advertising for ecommerce"
-  description="Meta paid media for ecommerce and lead-gen. One channel, run deep. What is included, the two lines of work, what we promise and what we do not."
+  description="Meta paid media for ecommerce and lead-gen. One channel, done properly. What's included, the two tracks, and what we will and won't promise."
 >
   <section class="page-hero">
     <div class="page-hero-label">Services</div>
-    <h1 class="page-hero-h1">Meta advertising.<br />One channel, run deep.</h1>
+    <h1 class="page-hero-h1">Meta advertising.<br />One channel, done properly.</h1>
     <p class="page-hero-lede">
-      We do one thing and do it at a senior level. No full-service menu —
-      Meta paid media, run like an operating system.
+      We do one thing, at a senior level. No full-service menu — just Meta
+      paid media, run like an operating system.
     </p>
   </section>
 
   <!-- What's included -->
   <section class="section section-dark">
-    <div class="sec-label on-dark">01 — What is included</div>
+    <div class="sec-label on-dark">01 — What's included</div>
     <div class="incl-list">
       {included.map((i) => (
         <div class="incl">
@@ -70,13 +70,13 @@ const noPromise = [
     </div>
   </section>
 
-  <!-- Two lines -->
+  <!-- Two tracks -->
   <section class="section section-warm">
-    <div class="sec-label">02 — Two lines of work</div>
+    <div class="sec-label">02 — Two tracks</div>
     <p class="lede muted-light" style="margin-top:16px;">
-      Price depends on complexity. Ecommerce usually takes more work than
-      lead-gen and costs more. We name the exact figure after a short
-      conversation — it is deliberately not on the site.
+      Pricing tracks complexity. Ecommerce usually takes more work than
+      lead-gen, and costs more. We give you the exact figure after a short
+      call — it's deliberately not on the site.
     </p>
     <div class="lines-grid">
       {lines.map((l) => (
@@ -89,8 +89,8 @@ const noPromise = [
     <div class="creative">
       <h3 class="line-name">Creative — optional</h3>
       <p class="line-body muted-light">
-        Briefs built for the platform and coordination with freelancers.
-        Production is billed to the client separately — not part of the retainer.
+        Platform-specific briefs and freelance coordination. Production is
+        billed separately — never baked into the retainer.
       </p>
     </div>
   </section>
@@ -102,24 +102,24 @@ const noPromise = [
       Google Ads, TikTok, SEO, Amazon, influencers — not yet.
     </h2>
     <p class="lede muted-dark" style="margin-top:20px;">
-      One channel run deep beats five channels run at a mediocre level. We will
-      add new services once the Meta process is fully dialled in — and only as
-      an add-on for existing clients, not for everyone.
+      One channel run properly beats five run at a mediocre level. We'll add
+      services once the Meta process is fully dialled in — and only as an
+      add-on for existing clients, not a menu for everyone.
     </p>
   </section>
 
   <!-- Promise / don't promise -->
   <section class="section section-dark">
-    <div class="sec-label on-dark">04 — Honest about expectations</div>
+    <div class="sec-label on-dark">04 — Straight talk on expectations</div>
     <div class="promise-grid">
       <div class="promise-col">
-        <div class="promise-head promise-head-yes">We promise</div>
+        <div class="promise-head promise-head-yes">What we promise</div>
         {promise.map((p) => (
           <div class="promise-row"><span class="pm pm-yes">&rarr;</span><span>{p}</span></div>
         ))}
       </div>
       <div class="promise-col">
-        <div class="promise-head promise-head-no">We don't promise</div>
+        <div class="promise-head promise-head-no">What we don't</div>
         {noPromise.map((p) => (
           <div class="promise-row muted-dark"><span class="pm pm-no">&times;</span><span>{p}</span></div>
         ))}
@@ -127,14 +127,14 @@ const noPromise = [
     </div>
     <p class="promise-note muted-dark">
       We guarantee what we control: setup quality, test volume, weekly
-      optimization, transparent reporting. The result target is set jointly,
-      with a 60–90 day evaluation window.
+      optimization, transparent reporting. The result target is set together,
+      with a 60–90 day window to judge it.
     </p>
   </section>
 
   <CtaClosing
     statement="Are we a fit<br />for your business?"
-    body="Leave a request — we'll look at the account and give an honest answer. If we're not a fit, we'll say so right away."
+    body="Send us a note — we'll look at the account and give you a straight answer. If we're not a fit, we'll say so."
   />
 </Base>
 

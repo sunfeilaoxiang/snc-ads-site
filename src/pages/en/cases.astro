@@ -1,7 +1,7 @@
 ---
 /**
- * Cases page — English. Methodology only. Faithful translation of
- * src/pages/cases.astro. Keep structure + styles in sync with the RU version.
+ * Cases page — English. Methodology only. Adapted for English-speaking founders.
+ * Keep structure + styles in sync with src/pages/cases.astro.
  */
 import Base from '../../layouts/Base.astro';
 import CtaClosing from '../../components/CtaClosing.astro';
@@ -9,34 +9,34 @@ import CtaClosing from '../../components/CtaClosing.astro';
 const measure = [
   {
     name: 'Ecommerce',
-    body: 'We derive target ROAS from your margin, AOV, conversion rate and payback window. ROAS detached from those numbers means nothing — "4×" can be a failure or a success depending on the economics.',
+    body: 'We set target ROAS off your margin, AOV, conversion rate and payback window. ROAS on its own means nothing — a 4× can be a win or a loss depending on the economics.',
   },
   {
     name: 'Lead-gen',
-    body: 'Target cost per lead and lead quality — together, not separately. A cheap useless lead does not count as a result. Converting a lead into a sale is partly your job, and we say so plainly.',
+    body: 'Cost per lead and lead quality, judged together. A cheap lead that never converts isn’t a result. Closing the lead into a sale is partly your job — and we’ll say so.',
   },
 ];
 
 const structure = [
-  { t: 'Client profile', d: 'Vertical, market, size. Anonymized — until the client allows the name.' },
-  { t: 'The problem',    d: 'What was broken or under-delivered. Specific, no "market challenges".' },
-  { t: 'What we did',    d: 'Concrete actions on the account. Not "developed a strategy".' },
-  { t: 'Metrics',        d: 'Before and after. With the basis of calculation shown, not a number ripped out of context.' },
-  { t: 'Timeframe',      d: 'How long it took. Without a timeframe a number means nothing.' },
+  { t: 'Client profile', d: 'Vertical, market, size. Anonymized until the client clears the name.' },
+  { t: 'The problem',    d: 'What was broken or underperforming. Specific — no "market headwinds".' },
+  { t: 'What we did',    d: 'The actual moves on the account. Not "developed a strategy".' },
+  { t: 'The numbers',    d: 'Before and after, with the basis of calculation shown — not a figure ripped out of context.' },
+  { t: 'Timeframe',      d: 'How long it took. A number with no timeframe means nothing.' },
 ];
 ---
 
 <Base
   title="Cases — SNC Media | How we measure results"
-  description="SNC Media launched in 2026. Cases will appear as the first clients come out of NDA. Here is how we measure results and what each case study will contain."
+  description="SNC Media launched in 2026. Case studies land as the first clients clear NDA. Here's how we measure results and what every case study will contain."
 >
   <section class="page-hero">
     <div class="page-hero-label">Cases</div>
-    <h1 class="page-hero-h1">Cases — in progress.</h1>
+    <h1 class="page-hero-h1">Case studies — in progress.</h1>
     <p class="page-hero-lede">
-      SNC Media launched in 2026. Anonymized cases will appear here as the
-      first clients come out of NDA. For now — an honest account of how we
-      measure results and what each case study will contain.
+      SNC Media launched in 2026. Anonymized case studies will land here as the
+      first clients clear NDA. For now — a straight account of how we measure
+      results and what every case study will contain.
     </p>
   </section>
 
@@ -55,7 +55,7 @@ const structure = [
 
   <!-- What a case study contains -->
   <section class="section section-light">
-    <div class="sec-label">02 — What a case study will contain</div>
+    <div class="sec-label">02 — What every case study will contain</div>
     <div class="struct">
       {structure.map((s) => (
         <div class="struct-row">
@@ -68,33 +68,33 @@ const structure = [
 
   <!-- Reporting -->
   <section class="section section-warm">
-    <div class="sec-label">03 — This is what the work looks like</div>
+    <div class="sec-label">03 — What the work looks like</div>
     <h2 class="statement" style="margin-top:24px;max-width:680px;">
-      Transparency is visible before a case study even exists.
+      The transparency shows up long before a case study does.
     </h2>
     <p class="lede muted-light" style="margin-top:20px;">
       A dashboard with the numbers from day one. A written update every Friday.
-      A monthly review of what worked and what is next. A case study is simply
-      the summary of work like that over a period.
+      A monthly review of what worked and what's next. A case study is just
+      that work, summed up over a period.
     </p>
   </section>
 
   <!-- Honest note -->
   <section class="section section-forest">
-    <div class="sec-label on-dark">04 — Honest</div>
+    <div class="sec-label on-dark">04 — Straight talk</div>
     <h2 class="statement" style="margin-top:24px;max-width:680px;">
-      We don't publish other people's logos or other people's results.
+      We don't borrow other people's logos or results.
     </h2>
     <p class="lede muted-dark" style="margin-top:20px;">
-      The cases on this page will appear real — with real numbers from real
-      SNC clients. Want to see results from the founders' past projects — ask
-      during the audit, we'll show you in person.
+      The case studies here will be real — real numbers from real SNC clients.
+      Want to see what the founders have done before? Ask on the audit call and
+      we'll walk you through it.
     </p>
   </section>
 
   <CtaClosing
     statement="Want to see<br />the numbers?"
-    body="During the audit we'll show results from past projects and review your account."
+    body="On the audit call we'll walk through past results and review your account."
   />
 </Base>
 

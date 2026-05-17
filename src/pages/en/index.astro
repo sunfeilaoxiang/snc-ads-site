@@ -1,7 +1,8 @@
 ---
 /**
- * Home page — English. Faithful translation of src/pages/index.astro.
- * Keep structure + styles in sync with the Russian version.
+ * Home page — English. Adapted for English-speaking founders (not a literal
+ * translation of the Russian). Native performance-marketing voice; keep
+ * structure + styles in sync with src/pages/index.astro.
  */
 import Base from '../../layouts/Base.astro';
 import { localizedUrl } from '../../lib/links';
@@ -9,48 +10,48 @@ import { localizedUrl } from '../../lib/links';
 const u = (p: string) => localizedUrl(p, 'en');
 
 const principles = [
-  { k: 'Meta',         v: 'one channel, run deep' },
-  { k: 'In writing',   v: 'reports and briefs — no needless calls' },
-  { k: 'From day one', v: 'a live dashboard and full data access' },
-  { k: '30 days',      v: 'cancel with no penalty, no questions' },
+  { k: 'Meta',       v: 'one channel, done properly' },
+  { k: 'In writing', v: 'reports and briefs, not status calls' },
+  { k: 'Day one',    v: 'live dashboard, full account access' },
+  { k: '30 days',    v: 'cancel any time, no penalty' },
 ];
 
 const services = [
   {
     name: 'Meta Ads — ecommerce',
-    body: 'Launch, creative testing, optimization. Pixel/CAPI, catalogs, Advantage+ Shopping, retargeting. A written update every week.',
+    body: 'Campaign launch, creative testing, optimization. Pixel/CAPI, catalogs, Advantage+ Shopping, retargeting. A written update every week.',
   },
   {
     name: 'Meta Ads — lead-gen',
-    body: 'Lead campaigns for service businesses. The goal is cost and quality per lead, not clicks. A transparent funnel from impression to enquiry.',
+    body: 'Lead campaigns for service businesses. We optimize for cost per lead and lead quality — not clicks. A clear funnel from impression to enquiry.',
   },
   {
     name: 'Creative (optional)',
-    body: 'Creative briefs built for the platform. Coordination with freelancers. Production is billed to the client separately — not part of the retainer.',
+    body: 'Platform-specific creative briefs and freelance coordination. Production is billed separately — never baked into the retainer.',
   },
 ];
 
 const steps = [
-  { n: '01', t: 'Audit',              d: '30 minutes. We review the account, tracking and creatives. You get a written report and an honest answer: are we a fit or not.' },
+  { n: '01', t: 'Audit',              d: '30 minutes. We go through the account, tracking and creative, then send a written report and a straight answer: are we a fit.' },
   { n: '02', t: 'Onboarding',         d: 'Access, a templated brief, agreed budget and KPIs. Campaigns live within 14 days.' },
-  { n: '03', t: 'Daily optimization', d: 'Creative tests, budget optimization, scaling the winners. Without calls.' },
-  { n: '04', t: 'Reporting',          d: 'A live dashboard. A written update every Friday. A monthly strategy call — if the client wants one.' },
+  { n: '03', t: 'Daily optimization', d: 'Creative tests, budget shifts, scaling what works, cutting what doesn’t. No calls required.' },
+  { n: '04', t: 'Reporting',          d: 'A live dashboard. A written update every Friday. A monthly strategy call — only if you want one.' },
 ];
 
 const fitYes = [
-  'An ecommerce brand with annual revenue from €300k',
-  'Ad budget from €1k/mo — the comfortable range is €3–10k/mo',
-  'Ready to work in writing, via templates',
-  'Want transparent reporting with numbers, not presentations',
-  'Understand that results are a function of product, creative and budget — not the agency alone',
+  'An ecommerce brand doing €300k+ a year',
+  'Ad budget from €1k/mo — €3–10k/mo is the sweet spot',
+  'Comfortable working in writing, through templates',
+  'Want reporting with real numbers, not slide decks',
+  'Know results come from product, creative and budget — not the agency alone',
 ];
 
 const fitNo = [
-  'Looking for guaranteed ROAS or a guaranteed number of leads',
-  'Ad budget below €1k/mo',
+  'Want a guaranteed ROAS or a guaranteed lead count',
+  'Ad budget under €1k/mo',
   'Need daily calls and 24/7 WhatsApp access',
-  'Want the agency to "invent a strategy" instead of understanding their own business',
-  'A local service business with no online sales (we are about ecommerce)',
+  'Want the agency to "come up with a strategy" instead of knowing their own business',
+  'A local service business with no online sales — we do ecommerce',
 ];
 
 const founders = [
@@ -58,35 +59,35 @@ const founders = [
     initial: 'N',
     name: 'Nikita',
     role: 'Meta / Delivery',
-    body: '4 years running Meta Ads for ecommerce brands in the EU. Owns ad strategy, delivery and QA. Before SNC — a senior performance marketer at an agency.',
+    body: 'Four years running Meta Ads for EU ecommerce brands. Owns ad strategy, delivery and QA. Came from a senior performance role at an agency.',
   },
   {
     initial: 'G',
     name: 'Gima',
-    role: 'CCO / financial discipline',
-    body: '5+ years of fractional CFO work for SMBs and startups. Owns the commercial side, client relationships, pricing and unit economics.',
+    role: 'CCO / Finance',
+    body: '5+ years of fractional CFO work for SMBs and startups. Runs the commercial side — client relationships, pricing, unit economics.',
   },
 ];
 ---
 
 <Base
   title="SNC Media — Performance marketing for ecommerce brands"
-  description="Senior-level Meta advertising for ecommerce founders. No needless calls, no agency theatre. Transparent written reporting."
-  ogTitle="SNC Media — Performance, without the theatre."
-  ogDescription="Meta ads for ecommerce. Senior execution, transparent reporting, an async way of working."
+  description="Senior-level Meta advertising for ecommerce founders. No status calls, no agency theatre — just transparent, written reporting."
+  ogTitle="SNC Media — Performance marketing, minus the theatre."
+  ogDescription="Meta ads for ecommerce founders. Senior execution, transparent reporting, async by default."
 >
   <!-- ══ 01 · HERO ══════════════════════════════════════ -->
   <section class="hero">
     <div class="hero-top">
       <span class="hero-label">SNC Media &middot; Performance</span>
-      <span class="hero-eyebrow">Riga / EU &middot; since 2026</span>
+      <span class="hero-eyebrow">Riga / EU &middot; Since 2026</span>
     </div>
 
     <div class="hero-center">
-      <h1 class="hero-h1">Performance<br />marketing<br />for ecommerce.<br />Without the theatre.</h1>
+      <h1 class="hero-h1">Performance<br />marketing<br />for ecommerce.<br />No agency theatre.</h1>
       <p class="hero-sub">
-        Meta advertising for brands that have outgrown the DIY launch but
-        aren't ready to pay agencies €5k/mo for dashboards and calls.
+        Meta ads for brands that have outgrown running it themselves — but
+        won't pay an agency €5k a month for dashboards and status calls.
       </p>
       <div class="hero-cta">
         <a class="btn btn-on-green" href={u('/contact')}>Get an audit</a>
@@ -95,7 +96,7 @@ const founders = [
     </div>
 
     <div class="hero-bottom">
-      <span>Senior execution &middot; without the agency ballast</span>
+      <span>Senior execution &middot; none of the overhead</span>
       <span class="hero-bottom-right">Meta Ads &middot; ecommerce &amp; lead-gen</span>
     </div>
   </section>
@@ -113,13 +114,13 @@ const founders = [
   <!-- ══ 03 · POSITIONING ═══════════════════════════════ -->
   <section class="section pos">
     <div class="sec-label on-dark">01 — Positioning</div>
-    <h2 class="pos-statement">Senior execution<br />without the agency ballast.</h2>
+    <h2 class="pos-statement">Senior execution.<br />None of the overhead.</h2>
     <p class="pos-body">
-      Most SMB brands pay agencies not for the work but for the infrastructure:
-      account management, calls, decks, "strategy sessions". We removed
-      everything that doesn't move the number. What's left is senior-level
-      execution, transparent dashboards and a written communication format.
-      That is what lets us cost less for the same quality of work.
+      Most SMB brands don't pay an agency for the work — they pay for the
+      overhead: account managers, status calls, decks, "strategy sessions".
+      We cut everything that doesn't move the needle. What's left is
+      senior-level execution, live dashboards, and communication in writing.
+      That's how we charge less for the same quality of work.
     </p>
   </section>
 
@@ -135,10 +136,10 @@ const founders = [
       ))}
     </div>
     <p class="services-note">
-      Google Ads, TikTok, SEO, Amazon, influencers — we don't do them yet.
-      One channel, known deeply.
+      Google, TikTok, SEO, Amazon, influencers — we don't do them. One channel,
+      known cold.
     </p>
-    <a class="services-cta tlink" href={u('/services')}>More about services &rarr;</a>
+    <a class="services-cta tlink" href={u('/services')}>See services &rarr;</a>
   </section>
 
   <!-- ══ 05 · HOW WE WORK ═══════════════════════════════ -->
@@ -153,13 +154,13 @@ const founders = [
         </div>
       ))}
     </div>
-    <a class="how-cta tlink" href={u('/approach')}>More about our approach &rarr;</a>
+    <a class="how-cta tlink" href={u('/approach')}>See our approach &rarr;</a>
   </section>
 
   <!-- ══ 06 · FIT ═══════════════════════════════════════ -->
   <section class="section fit">
     <div class="fit-col">
-      <div class="fit-head fit-head-yes">Good fit</div>
+      <div class="fit-head fit-head-yes">A fit</div>
       {fitYes.map((row) => (
         <div class="fit-row"><span class="fit-mark fit-mark-yes">&rarr;</span><span>{row}</span></div>
       ))}
@@ -176,11 +177,11 @@ const founders = [
   <section class="section cases">
     <div class="sec-label on-dark">04 — Cases</div>
     <p class="cases-statement">
-      Cases — in progress. Anonymized results will appear here as clients
-      come out of NDA.
+      Case studies are in progress. Anonymized results land here as clients
+      clear NDA.
     </p>
-    <p class="cases-sub">We can share cases personally during the audit — just ask.</p>
-    <a class="cases-cta tlink" href={u('/contact')}>Request cases &rarr;</a>
+    <p class="cases-sub">Happy to walk through results on the audit call — just ask.</p>
+    <a class="cases-cta tlink" href={u('/contact')}>Ask for cases &rarr;</a>
   </section>
 
   <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
@@ -202,11 +203,11 @@ const founders = [
 
   <!-- ══ 09 · CLOSING CTA ═══════════════════════════════ -->
   <section class="section closing">
-    <h2 class="closing-statement">A review of<br />your ad account.</h2>
+    <h2 class="closing-statement">A straight read on<br />your ad account.</h2>
     <p class="closing-body">
-      Leave a request — we'll ask a few questions to see whether we're a fit.
-      If we are, we'll review your current account and show what's leaving
-      money on the table. If not, we'll tell you straight away.
+      Send us a note. We'll ask a few questions to see if we're a fit. If we
+      are, we'll audit your account and show you what's leaving money on the
+      table. If not, we'll say so — no pitch.
     </p>
     <a class="btn btn-on-green" href={u('/contact')}>Get an audit</a>
   </section>

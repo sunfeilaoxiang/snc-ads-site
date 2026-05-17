@@ -1,7 +1,7 @@
 ---
 /**
- * Approach page — English. Faithful translation of src/pages/approach.astro.
- * Keep structure + styles in sync with the Russian version.
+ * Approach page — English. Adapted for English-speaking founders.
+ * Keep structure + styles in sync with src/pages/approach.astro.
  */
 import Base from '../../layouts/Base.astro';
 import CtaClosing from '../../components/CtaClosing.astro';
@@ -9,41 +9,40 @@ import CtaClosing from '../../components/CtaClosing.astro';
 const steps = [
   {
     n: '01', t: 'Audit',
-    d: '30 minutes of conversation plus an account review. We look at tracking, campaign structure and creatives. You get a written report and an honest answer: are we a fit or not.',
+    d: 'A 30-minute call and an account review. We look at tracking, campaign structure and creative, then send a written report and a straight answer: are we a fit.',
   },
   {
     n: '02', t: 'Onboarding',
-    d: 'Access, a templated brief, agreed budget and KPIs. Audit and benchmarks within 7 days. Campaigns live within 14 days.',
+    d: 'Access, a templated brief, agreed budget and KPIs. Audit and benchmarks within 7 days. Campaigns live within 14.',
   },
   {
     n: '03', t: 'Daily optimization',
-    d: 'Creative tests, budget optimization, scaling the winners, cutting the weak. Without calls — we work, we don’t report in real time.',
+    d: 'Creative tests, budget shifts, scaling winners, cutting losers. No calls — we work the account, we don’t narrate it in real time.',
   },
   {
     n: '04', t: 'Reporting',
-    d: 'A live dashboard from day one. A written update every Friday. A monthly review. A strategy call once a month — if you want one.',
+    d: 'A live dashboard from day one. A written update every Friday. A monthly review. A strategy call once a month — your call.',
   },
 ];
 
 const asks = [
-  'Phrase requests in writing, using our templates',
-  'Give clear direction — where to take the business and what is needed from the ads',
-  'Understand that the result is a function of product, creative and budget — not the agency alone',
-  'Respond to written requests within 24–48 hours',
+  'Put requests in writing, using our templates',
+  'Give clear direction — where the business is going and what you need from the ads',
+  'Accept that results come from product, creative and budget — not the agency alone',
+  'Reply to written requests within 24–48 hours',
 ];
 ---
 
 <Base
   title="Approach — SNC Media | Written-first, no theatre"
-  description="How SNC Media works: senior execution, a written-first format, an async cadence. The four stages of work, transparent reporting, what we ask of the client."
+  description="How SNC Media works: senior execution, written-first communication, an async cadence. The four stages, transparent reporting, and what we ask of you."
 >
   <section class="page-hero">
     <div class="page-hero-label">Approach</div>
     <h1 class="page-hero-h1">Written-first.<br />No theatre.</h1>
     <p class="page-hero-lede">
-      We removed everything from the work that doesn't move the number:
-      needless calls, decks, "strategy sessions". What's left is senior-level
-      execution and transparency.
+      We've cut everything that doesn't move the needle — status calls, decks,
+      "strategy sessions". What's left is senior execution and full transparency.
     </p>
   </section>
 
@@ -51,14 +50,13 @@ const asks = [
   <section class="section section-dark">
     <div class="sec-label on-dark">01 — The operating model</div>
     <h2 class="statement" style="margin-top:24px;max-width:680px;">
-      Senior execution. A written format. An async cadence.
+      Senior execution. Written-first. Async by default.
     </h2>
     <p class="lede muted-dark" style="margin-top:20px;">
-      All routine communication is in writing. One strategy call a month,
-      optional. This isn't "being unavailable" — it is a deliberate cadence
-      without firefighting and without the illusion of being "always on". Less
-      time goes to bureaucracy — which is why we cost less for the same quality
-      of work.
+      Routine communication happens in writing. One strategy call a month,
+      optional. This isn't us being hard to reach — it's a deliberate cadence
+      with no firefighting and no "always-on" theatre. Less time goes to admin,
+      which is exactly why we cost less for the same quality of work.
     </p>
   </section>
 
@@ -86,9 +84,9 @@ const asks = [
     </h2>
     <p class="lede muted-light" style="margin-top:20px;">
       A dashboard with the numbers — from day one. A written update every
-      Friday. A monthly review. No "filtered" reports and no vanity metrics. A
-      weak month — we write first, with the reason and the plan, instead of
-      waiting to be asked.
+      Friday. A monthly review. No filtered reporting, no vanity metrics. When
+      a month is weak, we tell you first — with the reason and the plan —
+      instead of waiting for the question.
     </p>
   </section>
 
@@ -96,8 +94,7 @@ const asks = [
   <section class="section section-forest">
     <div class="sec-label on-dark">04 — What we ask in return</div>
     <p class="lede muted-dark" style="margin-top:20px;">
-      The low price is a consequence of the model. For it to work, we need the
-      client to:
+      The lower price is a function of the model. For it to work, we need you to:
     </p>
     <div class="asks">
       {asks.map((a) => (
@@ -108,8 +105,8 @@ const asks = [
   </section>
 
   <CtaClosing
-    statement="Does this format<br />suit you?"
-    body="We start with an audit. 30 minutes, a written report, an honest answer on whether we're compatible."
+    statement="Does this way<br />of working suit you?"
+    body="Start with an audit. 30 minutes, a written report, and a straight answer on fit."
   />
 </Base>
 
