@@ -1,16 +1,19 @@
 ---
 /**
- * Site header — logo left, nav center, CTA right.
- * Fixed/sticky over the page. Transparent on the green hero,
- * solid near-black once scrolled (handled with a small inline script).
+ * Site header — logo left, nav + CTA right.
+ * Sticky; transparent green over the hero, near-black once scrolled.
+ * Below 760px the nav collapses into a hamburger → full-screen overlay menu.
+ *
+ * "Кейсы" is intentionally NOT in the primary nav — it's a methodology page
+ * with no client cases yet, so a top-nav slot would be a let-down click.
+ * It stays reachable from the footer.
  */
 import { url } from '../lib/links';
 
 const nav = [
-  { label: 'Услуги',  href: '/services'  },
-  { label: 'Подход',  href: '/approach'  },
-  { label: 'Кейсы',   href: '/cases'     },
-  { label: 'Контакт', href: '/contact'   },
+  { label: 'Услуги',  href: '/services' },
+  { label: 'Подход',  href: '/approach' },
+  { label: 'Контакт', href: '/contact'  },
 ];
 ---
 
@@ -20,20 +23,41 @@ const nav = [
     <span class="hdr-word">SNC<span class="hdr-word-sub">Media</span></span>
   </a>
 
-  <nav class="hdr-nav">
+  <nav class="hdr-nav" aria-label="Основная навигация">
     {nav.map((item) => (
       <a class="hdr-nav-link tlink" href={url(item.href)}>{item.label}</a>
     ))}
   </nav>
 
   <a class="hdr-cta" href={url('/contact')}>Получить аудит</a>
+
+  <button
+    class="hdr-burger"
+    id="nav-toggle"
+    aria-label="Открыть меню"
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+  >
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- Mobile overlay menu -->
+<div class="mnav" id="mobile-nav" hidden>
+  <nav class="mnav-links" aria-label="Мобильная навигация">
+    {nav.map((item) => (
+      <a class="mnav-link" href={url(item.href)}>{item.label}</a>
+    ))}
+    <a class="mnav-link mnav-link-sub" href={url('/cases')}>Кейсы</a>
+  </nav>
+  <a class="mnav-cta" href={url('/contact')}>Получить аудит</a>
+</div>
 
 <style>
   .hdr {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 200;
     height: 56px;
     display: flex;
     align-items: center;
@@ -61,15 +85,15 @@ const nav = [
     text-transform: uppercase; color: rgba(255, 255, 255, 0.55);
   }
 
-  .hdr-nav { display: flex; gap: 28px; }
+  .hdr-nav { display: flex; gap: 28px; margin-left: auto; margin-right: 28px; }
   .hdr-nav-link {
-    font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255, 255, 255, 0.7);
+    font-size: 11px; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.75);
   }
   .hdr-nav-link:hover { color: var(--white); }
 
   .hdr-cta {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 9px 16px;
     border: 1px solid var(--white);
@@ -77,17 +101,86 @@ const nav = [
   }
   .hdr-cta:hover { background: var(--white); color: var(--green); }
 
+  /* ── Hamburger ──────────────────────────────── */
+  .hdr-burger {
+    display: none;
+    width: 40px; height: 40px;
+    background: transparent; border: 0; cursor: pointer;
+    flex-direction: column; justify-content: center; align-items: flex-end;
+    gap: 5px; padding: 8px;
+  }
+  .hdr-burger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white); transition: transform 0.2s, opacity 0.2s;
+  }
+  .hdr.menu-open .hdr-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hdr.menu-open .hdr-burger span:nth-child(2) { opacity: 0; }
+  .hdr.menu-open .hdr-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── Mobile overlay ─────────────────────────── */
+  .mnav {
+    position: fixed;
+    inset: 56px 0 0 0;
+    z-index: 150;
+    background: var(--green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 var(--pad-x) 64px;
+  }
+  .mnav[hidden] { display: none; }
+  .mnav-links { display: flex; flex-direction: column; gap: 4px; }
+  .mnav-link {
+    font-size: 32px; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--white);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .mnav-link-sub { font-size: 22px; color: rgba(255, 255, 255, 0.6); }
+  .mnav-cta {
+    margin-top: 28px; align-self: flex-start;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    background: var(--white); color: var(--green);
+  }
+
   @media (max-width: 760px) {
-    .hdr-nav { display: none; }
+    .hdr-nav, .hdr-cta { display: none; }
+    .hdr-burger { display: flex; }
   }
 </style>
 
 <script is:inline>
   (function () {
-    const header = document.getElementById('site-header');
-    if (!header) return;
-    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    var header = document.getElementById('site-header');
+    var toggle = document.getElementById('nav-toggle');
+    var menu = document.getElementById('mobile-nav');
+    if (!header || !toggle || !menu) return;
+
+    function onScroll() {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    function setMenu(open) {
+      menu.hidden = !open;
+      header.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    toggle.addEventListener('click', function () {
+      setMenu(menu.hidden);
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target && e.target.tagName === 'A') setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) setMenu(false);
+    });
   })();
 </script>

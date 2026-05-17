@@ -60,7 +60,7 @@ const noPromise = [
   <!-- Что входит -->
   <section class="section section-dark">
     <div class="sec-label on-dark">01 — Что входит</div>
-    <div class="incl-grid">
+    <div class="incl-list">
       {included.map((i) => (
         <div class="incl">
           <h3 class="incl-t">{i.t}</h3>
@@ -139,14 +139,15 @@ const noPromise = [
 </Base>
 
 <style>
-  .incl-grid {
-    margin-top: 28px;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-    background: var(--dim); border: 1px solid var(--dim);
+  /* "Что входит" — a rows list (was a 2-col grid; 7 items left an orphan cell). */
+  .incl-list { margin-top: 28px; }
+  .incl {
+    display: grid; grid-template-columns: 240px 1fr; gap: 24px;
+    padding: 20px 0; border-top: 1px solid var(--dim);
   }
-  .incl { background: var(--nearblack); padding: 24px 22px; }
-  .incl-t { font-size: 13px; font-weight: 600; color: var(--sage); }
-  .incl-d { margin-top: 8px; font-size: 12px; line-height: 1.7; }
+  .incl:last-child { border-bottom: 1px solid var(--dim); }
+  .incl-t { font-size: 15px; font-weight: 600; color: var(--sage); }
+  .incl-d { font-size: 14px; line-height: 1.7; }
 
   .lines-grid {
     margin-top: 28px;
@@ -155,7 +156,7 @@ const noPromise = [
   }
   .line { background: var(--offwhite); padding: 28px 24px; }
   .line-name { font-size: 15px; font-weight: 600; color: var(--green); }
-  .line-body { margin-top: 12px; font-size: 12px; line-height: 1.75; }
+  .line-body { margin-top: 12px; font-size: 14px; line-height: 1.75; }
   .creative {
     margin-top: 1px; background: var(--offwhite);
     border: 1px solid var(--dim-light); padding: 28px 24px;
@@ -168,25 +169,26 @@ const noPromise = [
   .promise-col { padding: 0 32px; }
   .promise-col:first-child { border-right: 1px solid var(--dim); padding-left: 0; }
   .promise-head {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
     text-transform: uppercase; margin-bottom: 18px;
   }
   .promise-head-yes { color: var(--sage); }
   .promise-head-no  { color: var(--bronze); }
   .promise-row {
     display: flex; gap: 12px; align-items: flex-start;
-    font-size: 13px; line-height: 1.7; margin-bottom: 12px;
+    font-size: 14px; line-height: 1.7; margin-bottom: 12px;
   }
   .pm { flex-shrink: 0; }
   .pm-yes { color: var(--sage); }
   .pm-no  { color: var(--bronze); }
   .promise-note {
     margin-top: 28px; max-width: 640px;
-    font-size: 12px; line-height: 1.8;
+    font-size: 14px; line-height: 1.8;
   }
 
   @media (max-width: 760px) {
-    .incl-grid, .lines-grid { grid-template-columns: 1fr; }
+    .incl { grid-template-columns: 1fr; gap: 6px; }
+    .lines-grid { grid-template-columns: 1fr; }
     .promise-grid { grid-template-columns: 1fr; gap: 28px; }
     .promise-col { padding: 0; }
     .promise-col:first-child {

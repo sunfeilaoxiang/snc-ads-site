@@ -36,6 +36,8 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
   background: var(--nearblack);
   color: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -46,13 +48,23 @@ img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
+/* Visible keyboard focus — required for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 2px;
+}
+
 /* ── Shared primitives ──────────────────────── */
 
 /* Section label — "01 — ПОЗИЦИЯ" eyebrow */
 .sec-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--green);
 }
@@ -110,8 +122,8 @@ ul { list-style: none; }
 /* Compact interior-page hero */
 .page-hero { background: var(--green); padding: 80px var(--pad-x) 64px; }
 .page-hero-label {
-  font-size: 9px; font-weight: 600; letter-spacing: 0.25em;
-  text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255, 255, 255, 0.65);
 }
 .page-hero-h1 {
   margin-top: 24px;
@@ -131,6 +143,6 @@ ul { list-style: none; }
 }
 
 /* Body copy helpers */
-.lede { font-size: 14px; line-height: 1.8; max-width: 640px; }
-.muted-dark  { color: rgba(255, 255, 255, 0.7); }
-.muted-light { color: #555; }
+.lede { font-size: 15px; line-height: 1.8; max-width: 640px; }
+.muted-dark  { color: rgba(255, 255, 255, 0.78); }
+.muted-light { color: #4a4a4a; }
