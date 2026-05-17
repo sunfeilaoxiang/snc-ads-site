@@ -3,6 +3,8 @@
  * Site footer — Deep Forest panel. Logo, three nav columns,
  * contact links, copyright.
  */
+import { url } from '../lib/links';
+
 const year = new Date().getFullYear();
 
 const cols = [
@@ -34,7 +36,7 @@ const cols = [
 
 <footer class="ftr">
   <div class="ftr-top">
-    <a class="ftr-logo" href="/" aria-label="SNC Media">
+    <a class="ftr-logo" href={url('/')} aria-label="SNC Media">
       <span class="ftr-mark">S</span>
       <span class="ftr-word">SNC Media</span>
     </a>
@@ -44,7 +46,10 @@ const cols = [
         <div class="ftr-col">
           <div class="ftr-col-title">{col.title}</div>
           {col.links.map((link) => (
-            <a class="ftr-link tlink" href={link.href}>{link.label}</a>
+            <a
+              class="ftr-link tlink"
+              href={link.href.startsWith('/') ? url(link.href) : link.href}
+            >{link.label}</a>
           ))}
         </div>
       ))}

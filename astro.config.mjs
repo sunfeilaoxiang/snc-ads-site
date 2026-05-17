@@ -1,8 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// `site` is used for canonical URLs, sitemap, and OG tags.
-// Update this to the real domain once it's connected.
+// Deployed to GitHub Pages at https://sunfeilaoxiang.github.io/snc-media-site/
+// `site` + `base` produce correct canonical URLs, asset paths, and links.
+//
+// When a custom domain is connected later:
+//   - set `site` to the domain (e.g. 'https://snc-media.com')
+//   - set `base` to '/'
+// The url() helper in src/lib/links.ts adjusts every internal link automatically.
 export default defineConfig({
-  site: 'https://snc-media.vercel.app',
+  site: 'https://sunfeilaoxiang.github.io',
+  base: '/snc-media-site',
 });

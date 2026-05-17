@@ -5,6 +5,7 @@
  * Facts reconciled with ../../snc-media-ops/00_SNC_Media_Operations_Bible.md.
  */
 import Base from '../layouts/Base.astro';
+import { url } from '../lib/links';
 
 const stats = [
   { num: '2',     label: 'сооснователя' },
@@ -85,8 +86,8 @@ const founders = [
         но не готовы платить агентствам по €5k/мес за дашборды и созвоны.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-on-green" href="/contact">Получить аудит</a>
-        <a class="hero-link tlink" href="/approach">Как мы работаем &rarr;</a>
+        <a class="btn btn-on-green" href={url('/contact')}>Получить аудит</a>
+        <a class="hero-link tlink" href={url('/approach')}>Как мы работаем &rarr;</a>
       </div>
     </div>
 
@@ -134,7 +135,7 @@ const founders = [
       Google Ads, TikTok, SEO, Amazon, инфлюенсеры — пока не делаем.
       Один канал, который знаем глубоко.
     </p>
-    <a class="services-cta tlink" href="/services">Подробнее об услугах &rarr;</a>
+    <a class="services-cta tlink" href={url('/services')}>Подробнее об услугах &rarr;</a>
   </section>
 
   <!-- ══ 05 · HOW WE WORK ═══════════════════════════════ -->
@@ -149,7 +150,7 @@ const founders = [
         </div>
       ))}
     </div>
-    <a class="how-cta tlink" href="/approach">Подробнее о подходе &rarr;</a>
+    <a class="how-cta tlink" href={url('/approach')}>Подробнее о подходе &rarr;</a>
   </section>
 
   <!-- ══ 06 · FIT ═══════════════════════════════════════ -->
@@ -176,7 +177,7 @@ const founders = [
       выхода клиентов из NDA.
     </p>
     <p class="cases-sub">Можем поделиться кейсами лично на аудите — присылайте запрос.</p>
-    <a class="cases-cta tlink" href="/contact">Запросить кейсы &rarr;</a>
+    <a class="cases-cta tlink" href={url('/contact')}>Запросить кейсы &rarr;</a>
   </section>
 
   <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
@@ -204,7 +205,7 @@ const founders = [
       друг другу. Если да — разберём текущий аккаунт и покажем, что оставляет
       деньги на столе. Если нет — честно скажем сразу.
     </p>
-    <a class="btn btn-on-green" href="/contact">Получить аудит</a>
+    <a class="btn btn-on-green" href={url('/contact')}>Получить аудит</a>
   </section>
 </Base>
 

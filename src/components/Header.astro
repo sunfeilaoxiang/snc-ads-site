@@ -4,6 +4,8 @@
  * Fixed/sticky over the page. Transparent on the green hero,
  * solid near-black once scrolled (handled with a small inline script).
  */
+import { url } from '../lib/links';
+
 const nav = [
   { label: 'Услуги',  href: '/services'  },
   { label: 'Подход',  href: '/approach'  },
@@ -13,18 +15,18 @@ const nav = [
 ---
 
 <header class="hdr" id="site-header">
-  <a class="hdr-logo" href="/" aria-label="SNC Media — на главную">
+  <a class="hdr-logo" href={url('/')} aria-label="SNC Media — на главную">
     <span class="hdr-mark">S</span>
     <span class="hdr-word">SNC<span class="hdr-word-sub">Media</span></span>
   </a>
 
   <nav class="hdr-nav">
     {nav.map((item) => (
-      <a class="hdr-nav-link tlink" href={item.href}>{item.label}</a>
+      <a class="hdr-nav-link tlink" href={url(item.href)}>{item.label}</a>
     ))}
   </nav>
 
-  <a class="hdr-cta" href="/contact">Получить аудит</a>
+  <a class="hdr-cta" href={url('/contact')}>Получить аудит</a>
 </header>
 
 <style>
