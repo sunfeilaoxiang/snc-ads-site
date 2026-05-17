@@ -1,0 +1,407 @@
+---
+/**
+ * Home page — English. Faithful translation of src/pages/index.astro.
+ * Keep structure + styles in sync with the Russian version.
+ */
+import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
+
+const u = (p: string) => localizedUrl(p, 'en');
+
+const principles = [
+  { k: 'Meta',         v: 'one channel, run deep' },
+  { k: 'In writing',   v: 'reports and briefs — no needless calls' },
+  { k: 'From day one', v: 'a live dashboard and full data access' },
+  { k: '30 days',      v: 'cancel with no penalty, no questions' },
+];
+
+const services = [
+  {
+    name: 'Meta Ads — ecommerce',
+    body: 'Launch, creative testing, optimization. Pixel/CAPI, catalogs, Advantage+ Shopping, retargeting. A written update every week.',
+  },
+  {
+    name: 'Meta Ads — lead-gen',
+    body: 'Lead campaigns for service businesses. The goal is cost and quality per lead, not clicks. A transparent funnel from impression to enquiry.',
+  },
+  {
+    name: 'Creative (optional)',
+    body: 'Creative briefs built for the platform. Coordination with freelancers. Production is billed to the client separately — not part of the retainer.',
+  },
+];
+
+const steps = [
+  { n: '01', t: 'Audit',              d: '30 minutes. We review the account, tracking and creatives. You get a written report and an honest answer: are we a fit or not.' },
+  { n: '02', t: 'Onboarding',         d: 'Access, a templated brief, agreed budget and KPIs. Campaigns live within 14 days.' },
+  { n: '03', t: 'Daily optimization', d: 'Creative tests, budget optimization, scaling the winners. Without calls.' },
+  { n: '04', t: 'Reporting',          d: 'A live dashboard. A written update every Friday. A monthly strategy call — if the client wants one.' },
+];
+
+const fitYes = [
+  'An ecommerce brand with annual revenue from €300k',
+  'Ad budget from €1k/mo — the comfortable range is €3–10k/mo',
+  'Ready to work in writing, via templates',
+  'Want transparent reporting with numbers, not presentations',
+  'Understand that results are a function of product, creative and budget — not the agency alone',
+];
+
+const fitNo = [
+  'Looking for guaranteed ROAS or a guaranteed number of leads',
+  'Ad budget below €1k/mo',
+  'Need daily calls and 24/7 WhatsApp access',
+  'Want the agency to "invent a strategy" instead of understanding their own business',
+  'A local service business with no online sales (we are about ecommerce)',
+];
+
+const founders = [
+  {
+    initial: 'N',
+    name: 'Nikita',
+    role: 'Meta / Delivery',
+    body: '4 years running Meta Ads for ecommerce brands in the EU. Owns ad strategy, delivery and QA. Before SNC — a senior performance marketer at an agency.',
+  },
+  {
+    initial: 'G',
+    name: 'Gima',
+    role: 'CCO / financial discipline',
+    body: '5+ years of fractional CFO work for SMBs and startups. Owns the commercial side, client relationships, pricing and unit economics.',
+  },
+];
+---
+
+<Base
+  title="SNC Media — Performance marketing for ecommerce brands"
+  description="Senior-level Meta advertising for ecommerce founders. No needless calls, no agency theatre. Transparent written reporting."
+  ogTitle="SNC Media — Performance, without the theatre."
+  ogDescription="Meta ads for ecommerce. Senior execution, transparent reporting, an async way of working."
+>
+  <!-- ══ 01 · HERO ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-top">
+      <span class="hero-label">SNC Media &middot; Performance</span>
+      <span class="hero-eyebrow">Riga / EU &middot; since 2026</span>
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-h1">Performance<br />marketing<br />for ecommerce.<br />Without the theatre.</h1>
+      <p class="hero-sub">
+        Meta advertising for brands that have outgrown the DIY launch but
+        aren't ready to pay agencies €5k/mo for dashboards and calls.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-on-green" href={u('/contact')}>Get an audit</a>
+        <a class="hero-link tlink" href={u('/approach')}>How we work &rarr;</a>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <span>Senior execution &middot; without the agency ballast</span>
+      <span class="hero-bottom-right">Meta Ads &middot; ecommerce &amp; lead-gen</span>
+    </div>
+  </section>
+
+  <!-- ══ 02 · PRINCIPLES ════════════════════════════════ -->
+  <section class="principles">
+    {principles.map((p) => (
+      <div class="principle">
+        <div class="principle-k">{p.k}</div>
+        <div class="principle-v">{p.v}</div>
+      </div>
+    ))}
+  </section>
+
+  <!-- ══ 03 · POSITIONING ═══════════════════════════════ -->
+  <section class="section pos">
+    <div class="sec-label on-dark">01 — Positioning</div>
+    <h2 class="pos-statement">Senior execution<br />without the agency ballast.</h2>
+    <p class="pos-body">
+      Most SMB brands pay agencies not for the work but for the infrastructure:
+      account management, calls, decks, "strategy sessions". We removed
+      everything that doesn't move the number. What's left is senior-level
+      execution, transparent dashboards and a written communication format.
+      That is what lets us cost less for the same quality of work.
+    </p>
+  </section>
+
+  <!-- ══ 04 · WHAT WE DO ════════════════════════════════ -->
+  <section class="section services">
+    <div class="sec-label">02 — What we do</div>
+    <div class="services-grid">
+      {services.map((s) => (
+        <div class="service">
+          <h3 class="service-name">{s.name}</h3>
+          <p class="service-body">{s.body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="services-note">
+      Google Ads, TikTok, SEO, Amazon, influencers — we don't do them yet.
+      One channel, known deeply.
+    </p>
+    <a class="services-cta tlink" href={u('/services')}>More about services &rarr;</a>
+  </section>
+
+  <!-- ══ 05 · HOW WE WORK ═══════════════════════════════ -->
+  <section class="section how">
+    <div class="sec-label">03 — How we work</div>
+    <div class="how-grid">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="step-n">{s.n}</div>
+          <h3 class="step-t">{s.t}</h3>
+          <p class="step-d">{s.d}</p>
+        </div>
+      ))}
+    </div>
+    <a class="how-cta tlink" href={u('/approach')}>More about our approach &rarr;</a>
+  </section>
+
+  <!-- ══ 06 · FIT ═══════════════════════════════════════ -->
+  <section class="section fit">
+    <div class="fit-col">
+      <div class="fit-head fit-head-yes">Good fit</div>
+      {fitYes.map((row) => (
+        <div class="fit-row"><span class="fit-mark fit-mark-yes">&rarr;</span><span>{row}</span></div>
+      ))}
+    </div>
+    <div class="fit-col">
+      <div class="fit-head fit-head-no">Not a fit</div>
+      {fitNo.map((row) => (
+        <div class="fit-row fit-row-no"><span class="fit-mark fit-mark-no">&times;</span><span>{row}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══ 07 · CASES ═════════════════════════════════════ -->
+  <section class="section cases">
+    <div class="sec-label on-dark">04 — Cases</div>
+    <p class="cases-statement">
+      Cases — in progress. Anonymized results will appear here as clients
+      come out of NDA.
+    </p>
+    <p class="cases-sub">We can share cases personally during the audit — just ask.</p>
+    <a class="cases-cta tlink" href={u('/contact')}>Request cases &rarr;</a>
+  </section>
+
+  <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
+  <section class="section founders">
+    <div class="sec-label">05 — Who we are</div>
+    <div class="founders-grid">
+      {founders.map((f) => (
+        <div class="founder">
+          <div class="founder-mark">{f.initial}</div>
+          <div class="founder-head">
+            <span class="founder-name">{f.name}</span>
+            <span class="founder-role">{f.role}</span>
+          </div>
+          <p class="founder-body">{f.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══ 09 · CLOSING CTA ═══════════════════════════════ -->
+  <section class="section closing">
+    <h2 class="closing-statement">A review of<br />your ad account.</h2>
+    <p class="closing-body">
+      Leave a request — we'll ask a few questions to see whether we're a fit.
+      If we are, we'll review your current account and show what's leaving
+      money on the table. If not, we'll tell you straight away.
+    </p>
+    <a class="btn btn-on-green" href={u('/contact')}>Get an audit</a>
+  </section>
+</Base>
+
+<style>
+  /* ── 01 HERO ──────────────────────────────── */
+  .hero {
+    background: var(--green);
+    min-height: calc(100vh - 56px);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 48px var(--pad-x) 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute;
+    top: -70px; right: -70px; width: 420px; height: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.06); pointer-events: none;
+  }
+  .hero-top {
+    display: flex; justify-content: space-between;
+    padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative; z-index: 1;
+  }
+  .hero-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+  }
+  .hero-eyebrow {
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .hero-center { position: relative; z-index: 1; padding: 48px 0; }
+  .hero-h1 {
+    font-size: clamp(40px, 8.5vw, 116px);
+    font-weight: 600; letter-spacing: 0.02em; line-height: 0.98;
+  }
+  .hero-sub {
+    margin-top: 32px; max-width: 560px;
+    font-size: clamp(14px, 1.4vw, 16px); font-weight: 400;
+    line-height: 1.75; color: rgba(255, 255, 255, 0.7);
+  }
+  .hero-cta { margin-top: 40px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .hero-link { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+  .hero-link:hover { color: var(--white); }
+  .hero-bottom {
+    display: flex; justify-content: space-between;
+    padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative; z-index: 1;
+    font-size: 9px; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* ── 02 PRINCIPLES ────────────────────────── */
+  .principles {
+    background: var(--nearblack);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--dim);
+  }
+  .principle { padding: 36px var(--pad-x); border-right: 1px solid var(--dim); }
+  .principle:last-child { border-right: 0; }
+  .principle-k { font-size: 22px; font-weight: 600; color: var(--green); line-height: 1.1; }
+  .principle-v {
+    margin-top: 12px; font-size: 13px; line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  /* ── 03 POSITIONING ───────────────────────── */
+  .pos { background: var(--nearblack); border-top: 1px solid var(--dim); }
+  .pos-statement {
+    margin-top: 28px;
+    font-size: clamp(28px, 4vw, 44px); font-weight: 600;
+    line-height: 1.15; letter-spacing: 0.01em;
+  }
+  .pos-body {
+    margin-top: 24px; max-width: 640px;
+    font-size: 15px; line-height: 1.85; color: rgba(255, 255, 255, 0.78);
+  }
+
+  /* ── 04 SERVICES ──────────────────────────── */
+  .services { background: var(--offwhite); color: var(--nearblack); }
+  .services-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--dim-light); border: 1px solid var(--dim-light);
+  }
+  .service { background: var(--offwhite); padding: 28px 24px; }
+  .service-name { font-size: 15px; font-weight: 600; color: var(--green); }
+  .service-body { margin-top: 12px; font-size: 14px; line-height: 1.7; color: #4a4a4a; }
+  .services-note { margin-top: 20px; font-size: 12px; font-style: italic; color: var(--graphite); }
+  .services-cta {
+    display: inline-block; margin-top: 18px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+  }
+
+  /* ── 05 HOW ───────────────────────────────── */
+  .how { background: var(--white); color: var(--nearblack); }
+  .how-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+  }
+  .step { border-top: 2px solid var(--green); padding-top: 16px; }
+  .step-n { font-size: 11px; font-weight: 600; color: var(--bronze); letter-spacing: 0.1em; }
+  .step-t { margin-top: 8px; font-size: 15px; font-weight: 600; color: var(--green); }
+  .step-d { margin-top: 10px; font-size: 14px; line-height: 1.7; color: #4a4a4a; }
+  .how-cta {
+    display: inline-block; margin-top: 24px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+  }
+
+  /* ── 06 FIT ───────────────────────────────── */
+  .fit { background: var(--forest); display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .fit-col { padding: 8px 36px; }
+  .fit-col:first-child { border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  .fit-head {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .fit-head-yes { color: var(--sage); }
+  .fit-head-no  { color: var(--bronze); }
+  .fit-row {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; line-height: 1.7; margin-bottom: 14px;
+  }
+  .fit-row-no { color: rgba(255, 255, 255, 0.72); }
+  .fit-mark { flex-shrink: 0; }
+  .fit-mark-yes { color: var(--sage); }
+  .fit-mark-no  { color: var(--bronze); }
+
+  /* ── 07 CASES ─────────────────────────────── */
+  .cases { background: var(--nearblack); }
+  .cases-statement {
+    margin-top: 28px; max-width: 640px;
+    font-size: clamp(20px, 3vw, 28px); font-weight: 600; line-height: 1.3;
+  }
+  .cases-sub {
+    margin-top: 16px; font-size: 13px; color: rgba(255, 255, 255, 0.6);
+    max-width: 480px; line-height: 1.7;
+  }
+  .cases-cta {
+    display: inline-block; margin-top: 18px;
+    font-size: 11px; font-weight: 600; color: var(--sage);
+  }
+
+  /* ── 08 FOUNDERS ──────────────────────────── */
+  .founders { background: var(--white); color: var(--nearblack); }
+  .founders-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--dim-light); border: 1px solid var(--dim-light);
+  }
+  .founder { background: var(--white); padding: 28px 24px; }
+  .founder-mark {
+    width: 44px; height: 44px;
+    border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 600; color: var(--green);
+    margin-bottom: 16px;
+  }
+  .founder-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .founder-name { font-size: 16px; font-weight: 600; color: var(--green); }
+  .founder-role {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray);
+  }
+  .founder-body { margin-top: 12px; font-size: 14px; line-height: 1.7; color: #4a4a4a; }
+
+  /* ── 09 CLOSING ───────────────────────────── */
+  .closing { background: var(--green); }
+  .closing-statement {
+    font-size: clamp(32px, 5vw, 56px); font-weight: 600; line-height: 1.1;
+  }
+  .closing-body {
+    margin-top: 24px; max-width: 520px;
+    font-size: 14px; line-height: 1.75; color: rgba(255, 255, 255, 0.78);
+  }
+  .closing .btn { margin-top: 32px; }
+
+  /* ── responsive ───────────────────────────── */
+  @media (max-width: 860px) {
+    .principles { grid-template-columns: repeat(2, 1fr); }
+    .principle:nth-child(2) { border-right: 0; }
+    .principle:nth-child(-n+2) { border-bottom: 1px solid var(--dim); }
+    .services-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: repeat(2, 1fr); }
+    .fit { grid-template-columns: 1fr; }
+    .fit-col:first-child {
+      border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .founders-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero { min-height: auto; padding: 32px var(--pad-x) 28px; }
+    .hero-h1 { font-size: 40px; line-height: 1.05; }
+    .hero-center { padding: 36px 0; }
+    .hero-bottom-right { display: none; }
+    .how-grid { grid-template-columns: 1fr; }
+  }
+</style>

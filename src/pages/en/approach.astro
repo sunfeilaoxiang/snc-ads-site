@@ -1,0 +1,143 @@
+---
+/**
+ * Approach page — English. Faithful translation of src/pages/approach.astro.
+ * Keep structure + styles in sync with the Russian version.
+ */
+import Base from '../../layouts/Base.astro';
+import CtaClosing from '../../components/CtaClosing.astro';
+
+const steps = [
+  {
+    n: '01', t: 'Audit',
+    d: '30 minutes of conversation plus an account review. We look at tracking, campaign structure and creatives. You get a written report and an honest answer: are we a fit or not.',
+  },
+  {
+    n: '02', t: 'Onboarding',
+    d: 'Access, a templated brief, agreed budget and KPIs. Audit and benchmarks within 7 days. Campaigns live within 14 days.',
+  },
+  {
+    n: '03', t: 'Daily optimization',
+    d: 'Creative tests, budget optimization, scaling the winners, cutting the weak. Without calls — we work, we don’t report in real time.',
+  },
+  {
+    n: '04', t: 'Reporting',
+    d: 'A live dashboard from day one. A written update every Friday. A monthly review. A strategy call once a month — if you want one.',
+  },
+];
+
+const asks = [
+  'Phrase requests in writing, using our templates',
+  'Give clear direction — where to take the business and what is needed from the ads',
+  'Understand that the result is a function of product, creative and budget — not the agency alone',
+  'Respond to written requests within 24–48 hours',
+];
+---
+
+<Base
+  title="Approach — SNC Media | Written-first, no theatre"
+  description="How SNC Media works: senior execution, a written-first format, an async cadence. The four stages of work, transparent reporting, what we ask of the client."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Approach</div>
+    <h1 class="page-hero-h1">Written-first.<br />No theatre.</h1>
+    <p class="page-hero-lede">
+      We removed everything from the work that doesn't move the number:
+      needless calls, decks, "strategy sessions". What's left is senior-level
+      execution and transparency.
+    </p>
+  </section>
+
+  <!-- Operating model -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">01 — The operating model</div>
+    <h2 class="statement" style="margin-top:24px;max-width:680px;">
+      Senior execution. A written format. An async cadence.
+    </h2>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      All routine communication is in writing. One strategy call a month,
+      optional. This isn't "being unavailable" — it is a deliberate cadence
+      without firefighting and without the illusion of being "always on". Less
+      time goes to bureaucracy — which is why we cost less for the same quality
+      of work.
+    </p>
+  </section>
+
+  <!-- Four stages -->
+  <section class="section section-light">
+    <div class="sec-label">02 — Four stages</div>
+    <div class="steps">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="step-n">{s.n}</div>
+          <div class="step-main">
+            <h3 class="step-t">{s.t}</h3>
+            <p class="step-d muted-light">{s.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Transparency -->
+  <section class="section section-warm">
+    <div class="sec-label">03 — Transparency</div>
+    <h2 class="statement" style="margin-top:24px;max-width:680px;">
+      You see everything. In real time.
+    </h2>
+    <p class="lede muted-light" style="margin-top:20px;">
+      A dashboard with the numbers — from day one. A written update every
+      Friday. A monthly review. No "filtered" reports and no vanity metrics. A
+      weak month — we write first, with the reason and the plan, instead of
+      waiting to be asked.
+    </p>
+  </section>
+
+  <!-- What we ask -->
+  <section class="section section-forest">
+    <div class="sec-label on-dark">04 — What we ask in return</div>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      The low price is a consequence of the model. For it to work, we need the
+      client to:
+    </p>
+    <div class="asks">
+      {asks.map((a) => (
+        <div class="ask"><span class="ask-mark">&rarr;</span><span>{a}</span></div>
+      ))}
+    </div>
+    <p class="asks-note muted-dark">We're a partner, not a babysitter. It's a fair deal both ways.</p>
+  </section>
+
+  <CtaClosing
+    statement="Does this format<br />suit you?"
+    body="We start with an audit. 30 minutes, a written report, an honest answer on whether we're compatible."
+  />
+</Base>
+
+<style>
+  .steps { margin-top: 28px; }
+  .step {
+    display: flex; gap: 28px;
+    padding: 24px 0; border-top: 1px solid var(--dim-light);
+  }
+  .step:last-child { border-bottom: 1px solid var(--dim-light); }
+  .step-n {
+    font-size: 13px; font-weight: 600; color: var(--bronze);
+    letter-spacing: 0.1em; flex-shrink: 0; padding-top: 2px;
+  }
+  .step-main { max-width: 720px; }
+  .step-t { font-size: 16px; font-weight: 600; color: var(--green); }
+  .step-d { margin-top: 8px; font-size: 14px; line-height: 1.75; }
+
+  .asks { margin-top: 24px; max-width: 640px; }
+  .ask {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; line-height: 1.7; margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .ask-mark { color: var(--sage); flex-shrink: 0; }
+  .asks-note { margin-top: 20px; font-size: 13px; font-style: italic; }
+
+  @media (max-width: 640px) {
+    .step { gap: 16px; }
+  }
+</style>

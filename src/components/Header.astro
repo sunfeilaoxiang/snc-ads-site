@@ -1,40 +1,43 @@
 ---
 /**
- * Site header — logo left, nav + CTA right.
- * Sticky; transparent green over the hero, near-black once scrolled.
- * Below 760px the nav collapses into a hamburger → full-screen overlay menu.
+ * Site header — logo, nav, language switcher, CTA. Locale-aware.
+ * Below 760px the nav collapses into a hamburger → full-screen overlay.
  *
- * "Кейсы" is intentionally NOT in the primary nav — it's a methodology page
- * with no client cases yet, so a top-nav slot would be a let-down click.
- * It stays reachable from the footer.
+ * "Cases / Кейсы" is intentionally NOT in the primary nav — it's a methodology
+ * page with no client cases yet. It stays reachable from the footer and the
+ * mobile overlay.
  */
-import { url } from '../lib/links';
+import { localizedUrl, logicalPath } from '../lib/links';
+import { ui, type Locale } from '../i18n/ui';
 
-const nav = [
-  { label: 'Услуги',  href: '/services' },
-  { label: 'Подход',  href: '/approach' },
-  { label: 'Контакт', href: '/contact'  },
-];
+const locale = (Astro.currentLocale ?? 'ru') as Locale;
+const t = ui[locale];
+const otherLocale: Locale = locale === 'en' ? 'ru' : 'en';
+const switchHref = localizedUrl(logicalPath(Astro.url.pathname), otherLocale);
+const u = (p: string) => localizedUrl(p, locale);
 ---
 
 <header class="hdr" id="site-header">
-  <a class="hdr-logo" href={url('/')} aria-label="SNC Media — на главную">
+  <a class="hdr-logo" href={u('/')} aria-label="SNC Media">
     <span class="hdr-mark">S</span>
     <span class="hdr-word">SNC<span class="hdr-word-sub">Media</span></span>
   </a>
 
-  <nav class="hdr-nav" aria-label="Основная навигация">
-    {nav.map((item) => (
-      <a class="hdr-nav-link tlink" href={url(item.href)}>{item.label}</a>
+  <nav class="hdr-nav" aria-label={t.navAria}>
+    {t.nav.map((item) => (
+      <a class="hdr-nav-link tlink" href={u(item.path)}>{item.label}</a>
     ))}
   </nav>
 
-  <a class="hdr-cta" href={url('/contact')}>Получить аудит</a>
+  <div class="hdr-right">
+    <a class="hdr-lang" href={switchHref} aria-label={t.langAria}>{t.langLabel}</a>
+    <a class="hdr-cta" href={u('/contact')}>{t.cta}</a>
+  </div>
 
   <button
     class="hdr-burger"
     id="nav-toggle"
-    aria-label="Открыть меню"
+    aria-label={t.menuOpen}
     aria-expanded="false"
     aria-controls="mobile-nav"
   >
@@ -44,13 +47,16 @@ const nav = [
 
 <!-- Mobile overlay menu -->
 <div class="mnav" id="mobile-nav" hidden>
-  <nav class="mnav-links" aria-label="Мобильная навигация">
-    {nav.map((item) => (
-      <a class="mnav-link" href={url(item.href)}>{item.label}</a>
+  <nav class="mnav-links" aria-label={t.mobileNavAria}>
+    {t.nav.map((item) => (
+      <a class="mnav-link" href={u(item.path)}>{item.label}</a>
     ))}
-    <a class="mnav-link mnav-link-sub" href={url('/cases')}>Кейсы</a>
+    <a class="mnav-link mnav-link-sub" href={u('/cases')}>{t.casesLabel}</a>
   </nav>
-  <a class="mnav-cta" href={url('/contact')}>Получить аудит</a>
+  <div class="mnav-foot">
+    <a class="mnav-cta" href={u('/contact')}>{t.cta}</a>
+    <a class="mnav-lang" href={switchHref} aria-label={t.langAria}>{t.langLabel}</a>
+  </div>
 </div>
 
 <style>
@@ -91,6 +97,16 @@ const nav = [
     text-transform: uppercase; color: rgba(255, 255, 255, 0.75);
   }
   .hdr-nav-link:hover { color: var(--white); }
+
+  .hdr-right { display: flex; align-items: center; gap: 18px; }
+  .hdr-lang {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 4px 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .hdr-lang:hover { color: var(--white); border-bottom-color: rgba(255, 255, 255, 0.5); }
 
   .hdr-cta {
     font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
@@ -138,16 +154,25 @@ const nav = [
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   .mnav-link-sub { font-size: 22px; color: rgba(255, 255, 255, 0.6); }
+  .mnav-foot {
+    margin-top: 28px;
+    display: flex; align-items: center; gap: 24px;
+  }
   .mnav-cta {
-    margin-top: 28px; align-self: flex-start;
     font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 16px 28px;
     background: var(--white); color: var(--green);
   }
+  .mnav-lang {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 2px;
+  }
 
   @media (max-width: 760px) {
-    .hdr-nav, .hdr-cta { display: none; }
+    .hdr-nav, .hdr-right { display: none; }
     .hdr-burger { display: flex; }
   }
 </style>
@@ -165,11 +190,12 @@ const nav = [
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 
+    var labelOpen = toggle.getAttribute('aria-label') || 'Menu';
+
     function setMenu(open) {
       menu.hidden = !open;
       header.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
       document.body.style.overflow = open ? 'hidden' : '';
     }
 

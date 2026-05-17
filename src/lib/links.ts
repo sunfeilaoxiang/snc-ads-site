@@ -1,23 +1,45 @@
 /**
- * Prefix an internal path with the site's configured base path so links work
- * whether the site is served from a subpath (GitHub Pages: /snc-media-site/)
- * or from root (custom domain: /).
+ * URL helpers — base-path aware and locale aware.
  *
- * Astro's import.meta.env.BASE_URL reflects the `base` config and may or may
- * not carry a trailing slash depending on how `base` is written — so this
- * helper normalizes both sides: strip any trailing slash from the base, force
- * exactly one leading slash on the path, then join.
+ * The site is served from a subpath on GitHub Pages (/snc-media-site/) and is
+ * bilingual: Russian at the root, English under /en/.
  *
- * When a custom domain is connected, set `base: '/'` in astro.config.mjs and
- * every link produced here adjusts automatically — no other changes needed.
+ * - `url(path)`          — base-prefixed path, no locale (Russian default).
+ * - `localizedUrl(p,loc)`— base + locale prefix + path.
+ * - `logicalPath(pn)`    — strip base + locale prefix from a pathname, giving
+ *                          the language-neutral page path (used by the
+ *                          language switcher).
  *
- * Use only for INTERNAL paths ("/contact", "/"). External links (https://,
- * mailto:) must be passed through unchanged.
+ * When a custom domain is connected, set `base: '/'` in astro.config.mjs —
+ * everything here adjusts automatically.
  */
 const BASE = import.meta.env.BASE_URL;
 
+function baseClean(): string {
+  return BASE.replace(/\/+$/, ''); // drop trailing slash(es)
+}
+
+/** Base-prefixed internal path (Russian / default locale). */
 export function url(path: string): string {
-  const base = BASE.replace(/\/+$/, '');            // drop trailing slash(es)
-  const p = '/' + String(path).replace(/^\/+/, ''); // exactly one leading slash
-  return base + p;
+  return baseClean() + '/' + String(path).replace(/^\/+/, '');
+}
+
+/** Base- and locale-prefixed internal path. locale 'en' → /en/..., else root. */
+export function localizedUrl(path: string, locale: string): string {
+  const p = '/' + String(path).replace(/^\/+/, '');
+  const prefix = locale === 'en' ? '/en' : '';
+  return baseClean() + prefix + p;
+}
+
+/**
+ * Strip the base path and any /en locale prefix from a full pathname,
+ * returning the language-neutral logical path ('/' or '/services' etc.).
+ */
+export function logicalPath(pathname: string): string {
+  let p = pathname;
+  const base = baseClean();
+  if (base && p.startsWith(base)) p = p.slice(base.length);
+  p = p.replace(/^\/en(?=\/|$)/, ''); // strip /en prefix
+  p = p.replace(/\/+$/, '');          // strip trailing slash
+  return p === '' ? '/' : p;
 }

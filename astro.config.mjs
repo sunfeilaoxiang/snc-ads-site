@@ -11,4 +11,10 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://sunfeilaoxiang.github.io',
   base: '/snc-media-site',
+  // Bilingual: Russian at root (/), English under /en/.
+  i18n: {
+    defaultLocale: 'ru',
+    locales: ['ru', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
 });

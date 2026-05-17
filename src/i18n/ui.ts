@@ -1,0 +1,101 @@
+/**
+ * UI strings for shared chrome (header, footer, closing CTA) in both locales.
+ * Page body content lives in the page files themselves (one .astro per locale).
+ */
+
+export type Locale = 'ru' | 'en';
+
+interface NavItem { label: string; path: string; }
+
+interface FooterCol { title: string; links: NavItem[]; }
+
+interface UiStrings {
+  nav: NavItem[];
+  casesLabel: string;
+  cta: string;
+  menuOpen: string;
+  menuClose: string;
+  navAria: string;
+  mobileNavAria: string;
+  langLabel: string;
+  langAria: string;
+  footer: {
+    services: FooterCol;
+    company: FooterCol;
+    contactTitle: string;
+    rights: string;
+  };
+}
+
+export const ui: Record<Locale, UiStrings> = {
+  ru: {
+    nav: [
+      { label: 'Услуги',  path: '/services' },
+      { label: 'Подход',  path: '/approach' },
+      { label: 'Контакт', path: '/contact'  },
+    ],
+    casesLabel: 'Кейсы',
+    cta: 'Получить аудит',
+    menuOpen: 'Открыть меню',
+    menuClose: 'Закрыть меню',
+    navAria: 'Основная навигация',
+    mobileNavAria: 'Мобильная навигация',
+    langLabel: 'EN',
+    langAria: 'Switch to English',
+    footer: {
+      services: {
+        title: 'Услуги',
+        links: [
+          { label: 'Meta Ads — ecommerce', path: '/services' },
+          { label: 'Meta Ads — lead-gen',  path: '/services' },
+          { label: 'Креатив',              path: '/services' },
+        ],
+      },
+      company: {
+        title: 'Компания',
+        links: [
+          { label: 'Подход',  path: '/approach' },
+          { label: 'Кейсы',   path: '/cases'    },
+          { label: 'Контакт', path: '/contact'  },
+        ],
+      },
+      contactTitle: 'Связь',
+      rights: '© {year} SNC Media · Riga / EU',
+    },
+  },
+  en: {
+    nav: [
+      { label: 'Services', path: '/services' },
+      { label: 'Approach', path: '/approach' },
+      { label: 'Contact',  path: '/contact'  },
+    ],
+    casesLabel: 'Cases',
+    cta: 'Get an audit',
+    menuOpen: 'Open menu',
+    menuClose: 'Close menu',
+    navAria: 'Main navigation',
+    mobileNavAria: 'Mobile navigation',
+    langLabel: 'RU',
+    langAria: 'Переключить на русский',
+    footer: {
+      services: {
+        title: 'Services',
+        links: [
+          { label: 'Meta Ads — ecommerce', path: '/services' },
+          { label: 'Meta Ads — lead-gen',  path: '/services' },
+          { label: 'Creative',             path: '/services' },
+        ],
+      },
+      company: {
+        title: 'Company',
+        links: [
+          { label: 'Approach', path: '/approach' },
+          { label: 'Cases',    path: '/cases'    },
+          { label: 'Contact',  path: '/contact'  },
+        ],
+      },
+      contactTitle: 'Contact',
+      rights: '© {year} SNC Media · Riga / EU',
+    },
+  },
+};

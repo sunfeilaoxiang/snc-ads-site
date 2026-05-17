@@ -1,0 +1,197 @@
+---
+/**
+ * Services page — English. Faithful translation of src/pages/services.astro.
+ * Keep structure + styles in sync with the Russian version.
+ */
+import Base from '../../layouts/Base.astro';
+import CtaClosing from '../../components/CtaClosing.astro';
+
+const included = [
+  { t: 'Account audit',       d: 'Tracking, structure, creatives. Where the budget leaks.' },
+  { t: 'Campaign setup',      d: 'Account structure, Pixel/CAPI, catalogs and feeds.' },
+  { t: 'Creative testing',    d: 'Briefs, rotation, iterations. Decisions by data, not by taste.' },
+  { t: 'Daily optimization',  d: 'Budgets, bids, scaling the winners, cutting the weak.' },
+  { t: 'Weekly update',       d: 'A written report every Friday. What is done, what is next.' },
+  { t: 'Monthly report',      d: 'The ad P&L. What worked, what did not, the plan for the month.' },
+  { t: 'Strategy call',       d: 'Once a month, 30 minutes, if the client wants it.' },
+];
+
+const lines = [
+  {
+    name: 'Ecommerce',
+    body: 'Catalogs, feeds, Advantage+ Shopping, retargeting. We derive target ROAS from your margin, AOV, conversion rate and payback window — ROAS detached from those numbers means nothing.',
+  },
+  {
+    name: 'Lead-gen',
+    body: 'Lead campaigns for service businesses. The goal is cost and quality per lead, not clicks. What happens after the lead — converting it to a sale — is partly your job. We say so plainly.',
+  },
+];
+
+const promise = [
+  'A written update every Friday',
+  'Dashboard access from day one',
+  'Audit and benchmarks within 7 days of kickoff',
+  'A monthly call — optional, 30 minutes',
+  'Cancellation with 30 days’ notice',
+];
+
+const noPromise = [
+  'Guaranteed ROAS',
+  'Guaranteed timelines ("results in 14 days")',
+  'A specific number of leads or sales before analysing the account',
+  '24/7 support and same-day replies',
+  'Free trials and money-back guarantees',
+];
+---
+
+<Base
+  title="Services — SNC Media | Meta advertising for ecommerce"
+  description="Meta paid media for ecommerce and lead-gen. One channel, run deep. What is included, the two lines of work, what we promise and what we do not."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Services</div>
+    <h1 class="page-hero-h1">Meta advertising.<br />One channel, run deep.</h1>
+    <p class="page-hero-lede">
+      We do one thing and do it at a senior level. No full-service menu —
+      Meta paid media, run like an operating system.
+    </p>
+  </section>
+
+  <!-- What's included -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">01 — What is included</div>
+    <div class="incl-list">
+      {included.map((i) => (
+        <div class="incl">
+          <h3 class="incl-t">{i.t}</h3>
+          <p class="incl-d muted-dark">{i.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Two lines -->
+  <section class="section section-warm">
+    <div class="sec-label">02 — Two lines of work</div>
+    <p class="lede muted-light" style="margin-top:16px;">
+      Price depends on complexity. Ecommerce usually takes more work than
+      lead-gen and costs more. We name the exact figure after a short
+      conversation — it is deliberately not on the site.
+    </p>
+    <div class="lines-grid">
+      {lines.map((l) => (
+        <div class="line">
+          <h3 class="line-name">{l.name}</h3>
+          <p class="line-body muted-light">{l.body}</p>
+        </div>
+      ))}
+    </div>
+    <div class="creative">
+      <h3 class="line-name">Creative — optional</h3>
+      <p class="line-body muted-light">
+        Briefs built for the platform and coordination with freelancers.
+        Production is billed to the client separately — not part of the retainer.
+      </p>
+    </div>
+  </section>
+
+  <!-- What we don't do -->
+  <section class="section section-forest">
+    <div class="sec-label on-dark">03 — What we don't do</div>
+    <h2 class="statement" style="margin-top:24px;max-width:680px;">
+      Google Ads, TikTok, SEO, Amazon, influencers — not yet.
+    </h2>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      One channel run deep beats five channels run at a mediocre level. We will
+      add new services once the Meta process is fully dialled in — and only as
+      an add-on for existing clients, not for everyone.
+    </p>
+  </section>
+
+  <!-- Promise / don't promise -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">04 — Honest about expectations</div>
+    <div class="promise-grid">
+      <div class="promise-col">
+        <div class="promise-head promise-head-yes">We promise</div>
+        {promise.map((p) => (
+          <div class="promise-row"><span class="pm pm-yes">&rarr;</span><span>{p}</span></div>
+        ))}
+      </div>
+      <div class="promise-col">
+        <div class="promise-head promise-head-no">We don't promise</div>
+        {noPromise.map((p) => (
+          <div class="promise-row muted-dark"><span class="pm pm-no">&times;</span><span>{p}</span></div>
+        ))}
+      </div>
+    </div>
+    <p class="promise-note muted-dark">
+      We guarantee what we control: setup quality, test volume, weekly
+      optimization, transparent reporting. The result target is set jointly,
+      with a 60–90 day evaluation window.
+    </p>
+  </section>
+
+  <CtaClosing
+    statement="Are we a fit<br />for your business?"
+    body="Leave a request — we'll look at the account and give an honest answer. If we're not a fit, we'll say so right away."
+  />
+</Base>
+
+<style>
+  .incl-list { margin-top: 28px; }
+  .incl {
+    display: grid; grid-template-columns: 240px 1fr; gap: 24px;
+    padding: 20px 0; border-top: 1px solid var(--dim);
+  }
+  .incl:last-child { border-bottom: 1px solid var(--dim); }
+  .incl-t { font-size: 15px; font-weight: 600; color: var(--sage); }
+  .incl-d { font-size: 14px; line-height: 1.7; }
+
+  .lines-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--dim-light); border: 1px solid var(--dim-light);
+  }
+  .line { background: var(--offwhite); padding: 28px 24px; }
+  .line-name { font-size: 15px; font-weight: 600; color: var(--green); }
+  .line-body { margin-top: 12px; font-size: 14px; line-height: 1.75; }
+  .creative {
+    margin-top: 1px; background: var(--offwhite);
+    border: 1px solid var(--dim-light); padding: 28px 24px;
+  }
+
+  .promise-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .promise-col { padding: 0 32px; }
+  .promise-col:first-child { border-right: 1px solid var(--dim); padding-left: 0; }
+  .promise-head {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  .promise-head-yes { color: var(--sage); }
+  .promise-head-no  { color: var(--bronze); }
+  .promise-row {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; line-height: 1.7; margin-bottom: 12px;
+  }
+  .pm { flex-shrink: 0; }
+  .pm-yes { color: var(--sage); }
+  .pm-no  { color: var(--bronze); }
+  .promise-note {
+    margin-top: 28px; max-width: 640px;
+    font-size: 14px; line-height: 1.8;
+  }
+
+  @media (max-width: 760px) {
+    .incl { grid-template-columns: 1fr; gap: 6px; }
+    .lines-grid { grid-template-columns: 1fr; }
+    .promise-grid { grid-template-columns: 1fr; gap: 28px; }
+    .promise-col { padding: 0; }
+    .promise-col:first-child {
+      border-right: 0; border-bottom: 1px solid var(--dim); padding-bottom: 24px;
+    }
+  }
+</style>

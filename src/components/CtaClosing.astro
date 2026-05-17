@@ -1,27 +1,31 @@
 ---
 /**
  * Reusable closing CTA band — green, statement + body + audit button.
- * `statement` may contain <br>.
+ * `statement` may contain <br>. Locale-aware (button label + link).
  */
-import { url } from '../lib/links';
+import { localizedUrl } from '../lib/links';
+import { ui, type Locale } from '../i18n/ui';
 
 interface Props {
   statement: string;
   body: string;
 }
 const { statement, body } = Astro.props;
+
+const locale = (Astro.currentLocale ?? 'ru') as Locale;
+const t = ui[locale];
 ---
 
 <section class="section section-green cta">
   <h2 class="statement" set:html={statement}></h2>
   <p class="cta-body">{body}</p>
-  <a class="btn btn-on-green" href={url('/contact')}>Получить аудит</a>
+  <a class="btn btn-on-green" href={localizedUrl('/contact', locale)}>{t.cta}</a>
 </section>
 
 <style>
   .cta-body {
     margin-top: 20px; max-width: 520px;
-    font-size: 13px; line-height: 1.75; color: rgba(255, 255, 255, 0.7);
+    font-size: 14px; line-height: 1.75; color: rgba(255, 255, 255, 0.78);
   }
   .cta .btn { margin-top: 28px; }
 </style>

@@ -1,42 +1,25 @@
 ---
 /**
- * Site footer — Deep Forest panel. Logo, three nav columns,
- * contact links, copyright.
+ * Site footer — Deep Forest panel. Locale-aware.
  */
-import { url } from '../lib/links';
+import { localizedUrl } from '../lib/links';
+import { ui, type Locale } from '../i18n/ui';
 
+const locale = (Astro.currentLocale ?? 'ru') as Locale;
+const t = ui[locale];
+const u = (p: string) => localizedUrl(p, locale);
 const year = new Date().getFullYear();
 
-const cols = [
-  {
-    title: 'Услуги',
-    links: [
-      { label: 'Meta Ads — ecommerce', href: '/services' },
-      { label: 'Meta Ads — lead-gen',  href: '/services' },
-      { label: 'Креатив',              href: '/services' },
-    ],
-  },
-  {
-    title: 'Компания',
-    links: [
-      { label: 'Подход',  href: '/approach' },
-      { label: 'Кейсы',   href: '/cases'    },
-      { label: 'Контакт', href: '/contact'  },
-    ],
-  },
-  {
-    title: 'Связь',
-    links: [
-      { label: 'Telegram', href: 'https://t.me/' },
-      { label: 'Email',    href: 'mailto:hello@snc-media.com' },
-    ],
-  },
+const cols = [t.footer.services, t.footer.company];
+const contact = [
+  { label: 'Telegram', href: 'https://t.me/' },
+  { label: 'Email', href: 'mailto:hello@snc-media.com' },
 ];
 ---
 
 <footer class="ftr">
   <div class="ftr-top">
-    <a class="ftr-logo" href={url('/')} aria-label="SNC Media">
+    <a class="ftr-logo" href={u('/')} aria-label="SNC Media">
       <span class="ftr-mark">S</span>
       <span class="ftr-word">SNC Media</span>
     </a>
@@ -46,20 +29,23 @@ const cols = [
         <div class="ftr-col">
           <div class="ftr-col-title">{col.title}</div>
           {col.links.map((link) => (
-            <a
-              class="ftr-link tlink"
-              href={link.href.startsWith('/') ? url(link.href) : link.href}
-            >{link.label}</a>
+            <a class="ftr-link tlink" href={u(link.path)}>{link.label}</a>
           ))}
         </div>
       ))}
+      <div class="ftr-col">
+        <div class="ftr-col-title">{t.footer.contactTitle}</div>
+        {contact.map((link) => (
+          <a class="ftr-link tlink" href={link.href}>{link.label}</a>
+        ))}
+      </div>
     </div>
   </div>
 
   <hr class="ftr-rule" />
 
   <div class="ftr-bottom">
-    <span>&copy; {year} SNC Media &middot; Riga / EU</span>
+    <span>{t.footer.rights.replace('{year}', String(year))}</span>
     <span>IBM Plex Mono &middot; #1E4D3A</span>
   </div>
 </footer>
@@ -92,11 +78,11 @@ const cols = [
   .ftr-cols { display: flex; gap: 56px; flex-wrap: wrap; }
   .ftr-col { display: flex; flex-direction: column; gap: 10px; }
   .ftr-col-title {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--sage);
     margin-bottom: 4px;
   }
-  .ftr-link { font-size: 11px; color: rgba(255, 255, 255, 0.65); }
+  .ftr-link { font-size: 12px; color: rgba(255, 255, 255, 0.7); }
   .ftr-link:hover { color: var(--white); }
 
   .ftr-rule {
@@ -106,8 +92,8 @@ const cols = [
   }
   .ftr-bottom {
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-    font-size: 9px; letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.3);
+    font-size: 10px; letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.4);
   }
 
   @media (max-width: 640px) {

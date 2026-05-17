@@ -1,0 +1,233 @@
+---
+/**
+ * Contact page — English. Faithful translation of src/pages/contact.astro.
+ * Keep structure + styles in sync with the Russian version.
+ *
+ * ⚠ SETUP: the WEB3FORMS_ACCESS_KEY placeholder must be replaced in BOTH
+ *   this file and src/pages/contact.astro with the real key from
+ *   https://web3forms.com (see ../../CLAUDE.md).
+ */
+import Base from '../../layouts/Base.astro';
+
+const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_KEY';
+
+const steps = [
+  'You leave a request — a couple of minutes.',
+  'We ask a few clarifying questions in writing — a short screening.',
+  'If we are a fit — we review your ad account and send a written report.',
+  'If we are not a fit — we say so straight away and honestly, no "selling". Where possible, we point you to someone else.',
+];
+---
+
+<Base
+  title="Contact — SNC Media | Get an audit"
+  description="Leave a request for an ad-account audit. A short screening, then a written review — if we are a fit for each other."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Contact</div>
+    <h1 class="page-hero-h1">Get an audit.</h1>
+    <p class="page-hero-lede">
+      Leave a request. We'll ask a few questions to see whether we're a fit.
+      If we are, we'll review your ad account. If not, we'll tell you straight away.
+    </p>
+  </section>
+
+  <!-- Form -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">Request</div>
+
+    <form id="audit-form" class="form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="subject" value="New audit request — SNC Media" />
+      <input type="hidden" name="from_name" value="SNC Media — website" />
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required autocomplete="name" />
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="telegram">Telegram <span class="opt">— optional</span></label>
+          <input id="telegram" name="telegram" type="text" placeholder="@username" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="company">Website or brand</label>
+        <input id="company" name="company" type="text" required placeholder="example.com" />
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="business_type">Type of business</label>
+          <select id="business_type" name="business_type" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Ecommerce">Ecommerce</option>
+            <option value="Lead-gen">Lead-gen / services</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ad_budget">Monthly ad budget</label>
+          <select id="ad_budget" name="ad_budget" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Under €1,000">Under €1,000</option>
+            <option value="€1,000 – 3,000">€1,000 – 3,000</option>
+            <option value="€3,000 – 10,000">€3,000 – 10,000</option>
+            <option value="Over €10,000">Over €10,000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Briefly about the task <span class="opt">— optional</span></label>
+        <textarea id="message" name="message" rows="4" placeholder="What is wrong with the ads now, what you want to achieve."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-on-white form-submit">Send request</button>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- What happens next -->
+  <section class="section section-warm">
+    <div class="sec-label">What happens next</div>
+    <ol class="next">
+      {steps.map((s, i) => (
+        <li class="next-item">
+          <span class="next-n">{String(i + 1).padStart(2, '0')}</span>
+          <span class="next-d muted-light">{s}</span>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Direct contact -->
+  <section class="section section-forest">
+    <div class="sec-label on-dark">Direct contact</div>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      Don't like forms — write to us directly.
+    </p>
+    <div class="direct">
+      <a class="direct-link" href="https://t.me/">Telegram &rarr;</a>
+      <a class="direct-link" href="mailto:hello@snc-media.com">hello@snc-media.com &rarr;</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .form { margin-top: 28px; max-width: 640px; }
+  .hp { position: absolute; left: -9999px; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .field { margin-bottom: 20px; display: flex; flex-direction: column; }
+  .field label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+  }
+  .opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-dim); }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--white);
+    background: #141414;
+    border: 1px solid var(--dim);
+    border-radius: 0;
+    padding: 12px 14px;
+    transition: border-color 0.15s;
+  }
+  .field textarea { resize: vertical; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none; border-color: var(--sage);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--text-dim); }
+
+  .form-submit { margin-top: 4px; cursor: pointer; }
+  .form-submit[disabled] { opacity: 0.5; cursor: default; }
+
+  .form-status {
+    margin-top: 16px; font-size: 12px; line-height: 1.6; min-height: 1em;
+  }
+  .form-status.ok  { color: var(--sage); }
+  .form-status.err { color: var(--bronze); }
+
+  .next { margin-top: 28px; max-width: 680px; }
+  .next-item {
+    display: flex; gap: 20px; align-items: baseline;
+    padding: 16px 0; border-top: 1px solid var(--dim-light);
+  }
+  .next-item:last-child { border-bottom: 1px solid var(--dim-light); }
+  .next-n { font-size: 13px; font-weight: 600; color: var(--bronze); flex-shrink: 0; }
+  .next-d { font-size: 14px; line-height: 1.7; }
+
+  .direct { margin-top: 20px; display: flex; gap: 32px; flex-wrap: wrap; }
+  .direct-link {
+    font-size: 14px; font-weight: 600; color: var(--sage);
+    border-bottom: 1px solid transparent; transition: border-color 0.15s;
+  }
+  .direct-link:hover { border-bottom-color: var(--sage); }
+
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('audit-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const submit = form?.querySelector('.form-submit') as HTMLButtonElement | null;
+
+  if (form && status && submit) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const key = (form.elements.namedItem('access_key') as HTMLInputElement)?.value;
+      if (!key || key.startsWith('REPLACE_WITH')) {
+        status.textContent =
+          'The form is not connected yet. Message us on Telegram or by email below.';
+        status.className = 'form-status err';
+        return;
+      }
+
+      status.textContent = '';
+      status.className = 'form-status';
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.reset();
+          status.textContent = 'Request sent. We will reply within one business day.';
+          status.className = 'form-status ok';
+          submit.textContent = 'Sent';
+        } else {
+          throw new Error(data.message || 'submit failed');
+        }
+      } catch {
+        status.textContent =
+          'Could not send. Please try again or message us on Telegram.';
+        status.className = 'form-status err';
+        submit.disabled = false;
+        submit.textContent = 'Send request';
+      }
+    });
+  }
+</script>
