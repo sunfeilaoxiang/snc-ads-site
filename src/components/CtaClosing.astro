@@ -1,0 +1,27 @@
+---
+/**
+ * Reusable closing CTA band — green, statement + body + audit button.
+ * `statement` may contain <br>.
+ */
+import { url } from '../lib/links';
+
+interface Props {
+  statement: string;
+  body: string;
+}
+const { statement, body } = Astro.props;
+---
+
+<section class="section section-green cta">
+  <h2 class="statement" set:html={statement}></h2>
+  <p class="cta-body">{body}</p>
+  <a class="btn btn-on-green" href={url('/contact')}>Получить аудит</a>
+</section>
+
+<style>
+  .cta-body {
+    margin-top: 20px; max-width: 520px;
+    font-size: 13px; line-height: 1.75; color: rgba(255, 255, 255, 0.7);
+  }
+  .cta .btn { margin-top: 28px; }
+</style>

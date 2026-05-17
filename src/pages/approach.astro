@@ -1,0 +1,139 @@
+---
+/**
+ * Approach page — how SNC works. Written-first model, the 4-step process.
+ * Facts per ../../snc-media-ops/00_SNC_Media_Operations_Bible.md §6.
+ */
+import Base from '../layouts/Base.astro';
+import CtaClosing from '../components/CtaClosing.astro';
+
+const steps = [
+  {
+    n: '01', t: 'Аудит',
+    d: '30 минут разговора и разбор аккаунта. Смотрим трекинг, структуру кампаний, креативы. По итогу — письменный отчёт и честный ответ: подходим друг другу или нет.',
+  },
+  {
+    n: '02', t: 'Онбординг',
+    d: 'Доступы, бриф через шаблон, согласование бюджета и KPI. Аудит и бенчмарки — в течение 7 дней. Запуск кампаний — в течение 14 дней.',
+  },
+  {
+    n: '03', t: 'Ежедневная оптимизация',
+    d: 'Тесты креативов, оптимизация бюджетов, масштабирование победителей, отсечение слабого. Без созвонов — мы работаем, а не отчитываемся в реальном времени.',
+  },
+  {
+    n: '04', t: 'Отчётность',
+    d: 'Дашборд в реальном времени с первого дня. Письменный апдейт по пятницам. Ежемесячный обзор. Стратегический созвон раз в месяц — по желанию.',
+  },
+];
+
+const asks = [
+  'Формулировать задачи письменно, по нашим шаблонам',
+  'Давать чёткие направления — куда вести бизнес и что нужно от рекламы',
+  'Понимать, что результат — функция продукта, креатива и бюджета, не только агентства',
+  'Отвечать на письменные запросы в течение 24–48 часов',
+];
+---
+
+<Base
+  title="Подход — SNC Media | Письменный формат, без театра"
+  description="Как работает SNC Media: senior-исполнение, письменный формат, асинхронный ритм. Четыре этапа работы, прозрачная отчётность, что мы просим от клиента."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Подход</div>
+    <h1 class="page-hero-h1">Письменный формат.<br />Без театра.</h1>
+    <p class="page-hero-lede">
+      Мы убрали из работы всё, что не двигает цифру: лишние созвоны, презентации,
+      «стратегические сессии». Остался senior-уровень исполнения и прозрачность.
+    </p>
+  </section>
+
+  <!-- Операционная модель -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">01 — Операционная модель</div>
+    <h2 class="statement" style="margin-top:24px;max-width:680px;">
+      Senior-исполнение. Письменный формат. Асинхронный ритм.
+    </h2>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      Вся рутинная коммуникация — в письменном виде. Один стратегический созвон в
+      месяц, по желанию. Это не «недоступность» — это осознанный ритм без
+      пожаротушения и без иллюзии «всегда на связи». Меньше времени уходит на
+      бюрократию — поэтому мы стоим меньше при том же качестве работы.
+    </p>
+  </section>
+
+  <!-- Четыре этапа -->
+  <section class="section section-light">
+    <div class="sec-label">02 — Четыре этапа</div>
+    <div class="steps">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="step-n">{s.n}</div>
+          <div class="step-main">
+            <h3 class="step-t">{s.t}</h3>
+            <p class="step-d muted-light">{s.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Прозрачность -->
+  <section class="section section-warm">
+    <div class="sec-label">03 — Прозрачность</div>
+    <h2 class="statement" style="margin-top:24px;max-width:680px;">
+      Вы видите всё. В реальном времени.
+    </h2>
+    <p class="lede muted-light" style="margin-top:20px;">
+      Дашборд с цифрами — с первого дня. Письменный апдейт каждую пятницу.
+      Ежемесячный обзор. Никаких «отфильтрованных» отчётов и метрик-пустышек.
+      Слабый месяц — пишем первыми, с причиной и планом, а не ждём, пока спросят.
+    </p>
+  </section>
+
+  <!-- Что просим от клиента -->
+  <section class="section section-forest">
+    <div class="sec-label on-dark">04 — Что мы просим взамен</div>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      Низкая цена — следствие модели. Чтобы она работала, от клиента нужно:
+    </p>
+    <div class="asks">
+      {asks.map((a) => (
+        <div class="ask"><span class="ask-mark">&rarr;</span><span>{a}</span></div>
+      ))}
+    </div>
+    <p class="asks-note muted-dark">Мы — партнёр, не нянька. Это честная сделка в обе стороны.</p>
+  </section>
+
+  <CtaClosing
+    statement="Такой формат<br />вам подходит?"
+    body="Начнём с аудита. 30 минут, письменный отчёт, честный ответ о совместимости."
+  />
+</Base>
+
+<style>
+  .steps { margin-top: 28px; }
+  .step {
+    display: flex; gap: 28px;
+    padding: 24px 0; border-top: 1px solid var(--dim-light);
+  }
+  .step:last-child { border-bottom: 1px solid var(--dim-light); }
+  .step-n {
+    font-size: 13px; font-weight: 600; color: var(--bronze);
+    letter-spacing: 0.1em; flex-shrink: 0; padding-top: 2px;
+  }
+  .step-main { max-width: 720px; }
+  .step-t { font-size: 16px; font-weight: 600; color: var(--green); }
+  .step-d { margin-top: 8px; font-size: 13px; line-height: 1.75; }
+
+  .asks { margin-top: 24px; max-width: 640px; }
+  .ask {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13px; line-height: 1.7; margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .ask-mark { color: var(--sage); flex-shrink: 0; }
+  .asks-note { margin-top: 20px; font-size: 12px; font-style: italic; }
+
+  @media (max-width: 640px) {
+    .step { gap: 16px; }
+  }
+</style>

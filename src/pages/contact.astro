@@ -1,0 +1,241 @@
+---
+/**
+ * Contact page — the audit-request form.
+ *
+ * The form posts to Web3Forms (https://web3forms.com) — a static-site form
+ * backend. It works on GitHub Pages with no server.
+ *
+ * ⚠ SETUP REQUIRED: get a free access key at https://web3forms.com
+ *   (enter an email — SNC's inbox — and a key is issued instantly), then
+ *   replace the placeholder below. Submissions then arrive in that inbox.
+ *   When the site moves to Vercel later, swap this for a serverless
+ *   function → Telegram (see ../../CLAUDE.md).
+ *
+ * The audit is qualify-gated (Operations Bible §3.4): this form is the hook,
+ * not an instant free audit. Copy reflects that — do not promise otherwise.
+ */
+import Base from '../layouts/Base.astro';
+
+const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_KEY';
+
+const steps = [
+  'Вы оставляете заявку — пару минут.',
+  'Мы задаём несколько уточняющих вопросов письменно — короткий скрининг.',
+  'Если подходим друг другу — разбираем ваш рекламный аккаунт и присылаем письменный отчёт.',
+  'Если не подходим — говорим сразу и честно, без «продаж». По возможности подскажем, к кому обратиться.',
+];
+---
+
+<Base
+  title="Контакт — SNC Media | Получить аудит"
+  description="Оставьте заявку на аудит рекламного аккаунта. Короткий скрининг, затем письменный разбор — если мы подходим друг другу."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Контакт</div>
+    <h1 class="page-hero-h1">Получить аудит.</h1>
+    <p class="page-hero-lede">
+      Оставьте заявку. Зададим несколько вопросов, чтобы понять, подходим ли друг
+      другу. Если да — разберём ваш рекламный аккаунт. Если нет — скажем сразу.
+    </p>
+  </section>
+
+  <!-- Форма -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">Заявка</div>
+
+    <form id="audit-form" class="form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="subject" value="Новая заявка на аудит — SNC Media" />
+      <input type="hidden" name="from_name" value="SNC Media — сайт" />
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+
+      <div class="field">
+        <label for="name">Имя</label>
+        <input id="name" name="name" type="text" required autocomplete="name" />
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="telegram">Telegram <span class="opt">— по желанию</span></label>
+          <input id="telegram" name="telegram" type="text" placeholder="@username" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="company">Сайт или бренд</label>
+        <input id="company" name="company" type="text" required placeholder="example.com" />
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="business_type">Тип бизнеса</label>
+          <select id="business_type" name="business_type" required>
+            <option value="" disabled selected>Выберите</option>
+            <option value="Ecommerce">Ecommerce</option>
+            <option value="Lead-gen">Lead-gen / услуги</option>
+            <option value="Другое">Другое</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ad_budget">Бюджет на рекламу в месяц</label>
+          <select id="ad_budget" name="ad_budget" required>
+            <option value="" disabled selected>Выберите</option>
+            <option value="До €1 000">До €1 000</option>
+            <option value="€1 000 – 3 000">€1 000 – 3 000</option>
+            <option value="€3 000 – 10 000">€3 000 – 10 000</option>
+            <option value="Более €10 000">Более €10 000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Коротко о задаче <span class="opt">— по желанию</span></label>
+        <textarea id="message" name="message" rows="4" placeholder="Что сейчас не так с рекламой, чего хотите достичь."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-on-white form-submit">Отправить заявку</button>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- Что дальше -->
+  <section class="section section-warm">
+    <div class="sec-label">Что дальше</div>
+    <ol class="next">
+      {steps.map((s, i) => (
+        <li class="next-item">
+          <span class="next-n">{String(i + 1).padStart(2, '0')}</span>
+          <span class="next-d muted-light">{s}</span>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Альтернатива -->
+  <section class="section section-forest">
+    <div class="sec-label on-dark">Прямая связь</div>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      Не любите формы — напишите напрямую.
+    </p>
+    <div class="direct">
+      <a class="direct-link" href="https://t.me/">Telegram &rarr;</a>
+      <a class="direct-link" href="mailto:hello@snc-media.com">hello@snc-media.com &rarr;</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .form { margin-top: 28px; max-width: 640px; }
+  .hp { position: absolute; left: -9999px; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .field { margin-bottom: 20px; display: flex; flex-direction: column; }
+  .field label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+  }
+  .opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-dim); }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--white);
+    background: #141414;
+    border: 1px solid var(--dim);
+    border-radius: 0;
+    padding: 12px 14px;
+    transition: border-color 0.15s;
+  }
+  .field textarea { resize: vertical; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none; border-color: var(--sage);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--text-dim); }
+
+  .form-submit { margin-top: 4px; cursor: pointer; }
+  .form-submit[disabled] { opacity: 0.5; cursor: default; }
+
+  .form-status {
+    margin-top: 16px; font-size: 12px; line-height: 1.6; min-height: 1em;
+  }
+  .form-status.ok  { color: var(--sage); }
+  .form-status.err { color: var(--bronze); }
+
+  .next { margin-top: 28px; max-width: 680px; }
+  .next-item {
+    display: flex; gap: 20px; align-items: baseline;
+    padding: 16px 0; border-top: 1px solid var(--dim-light);
+  }
+  .next-item:last-child { border-bottom: 1px solid var(--dim-light); }
+  .next-n { font-size: 12px; font-weight: 600; color: var(--bronze); flex-shrink: 0; }
+  .next-d { font-size: 13px; line-height: 1.7; }
+
+  .direct { margin-top: 20px; display: flex; gap: 32px; flex-wrap: wrap; }
+  .direct-link {
+    font-size: 14px; font-weight: 600; color: var(--sage);
+    border-bottom: 1px solid transparent; transition: border-color 0.15s;
+  }
+  .direct-link:hover { border-bottom-color: var(--sage); }
+
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('audit-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const submit = form?.querySelector('.form-submit') as HTMLButtonElement | null;
+
+  if (form && status && submit) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const key = (form.elements.namedItem('access_key') as HTMLInputElement)?.value;
+      if (!key || key.startsWith('REPLACE_WITH')) {
+        status.textContent =
+          'Форма ещё не подключена. Напишите нам в Telegram или на email ниже.';
+        status.className = 'form-status err';
+        return;
+      }
+
+      status.textContent = '';
+      status.className = 'form-status';
+      submit.disabled = true;
+      submit.textContent = 'Отправляем…';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.reset();
+          status.textContent =
+            'Заявка отправлена. Ответим в течение одного рабочего дня.';
+          status.className = 'form-status ok';
+          submit.textContent = 'Отправлено';
+        } else {
+          throw new Error(data.message || 'submit failed');
+        }
+      } catch {
+        status.textContent =
+          'Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram.';
+        status.className = 'form-status err';
+        submit.disabled = false;
+        submit.textContent = 'Отправить заявку';
+      }
+    });
+  }
+</script>

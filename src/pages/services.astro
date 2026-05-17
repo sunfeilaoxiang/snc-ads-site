@@ -1,0 +1,196 @@
+---
+/**
+ * Services page. Meta paid media — the only Phase 1 service.
+ * Facts per ../../snc-media-ops/00_SNC_Media_Operations_Bible.md §2.
+ */
+import Base from '../layouts/Base.astro';
+import CtaClosing from '../components/CtaClosing.astro';
+
+const included = [
+  { t: 'Аудит аккаунта',            d: 'Трекинг, структура, креативы. Где бюджет утекает впустую.' },
+  { t: 'Настройка кампаний',        d: 'Структура аккаунта, Pixel/CAPI, каталоги и фиды.' },
+  { t: 'Тестирование креативов',    d: 'Бриф, ротация, итерации. Решения по данным, не по вкусу.' },
+  { t: 'Ежедневная оптимизация',    d: 'Бюджеты, ставки, масштабирование победителей, отсечение слабого.' },
+  { t: 'Еженедельный апдейт',       d: 'Письменный отчёт по пятницам. Что сделано, что дальше.' },
+  { t: 'Ежемесячный отчёт',         d: 'P&L рекламы. Что сработало, что нет, план на месяц.' },
+  { t: 'Стратегический созвон',     d: 'Раз в месяц, 30 минут, по желанию клиента.' },
+];
+
+const lines = [
+  {
+    name: 'Ecommerce',
+    body: 'Каталоги, фиды, Advantage+ Shopping, ретаргет. Целевой ROAS выводим из вашей маржи, AOV, конверсии и окна окупаемости — ROAS в отрыве от этих цифр не значит ничего.',
+  },
+  {
+    name: 'Lead-gen',
+    body: 'Кампании на заявки для сервисных бизнесов. Цель — стоимость и качество лида, не клики. Что происходит после лида — конверсия в продажу — частично ваша зона. Говорим об этом прямо.',
+  },
+];
+
+const promise = [
+  'Письменный апдейт по пятницам',
+  'Доступ к дашборду с первого дня',
+  'Аудит и бенчмарки за 7 дней после старта',
+  'Ежемесячный созвон — опционально, 30 минут',
+  'Расторжение с уведомлением за 30 дней',
+];
+
+const noPromise = [
+  'Гарантированный ROAS',
+  'Гарантированные сроки («результат за 14 дней»)',
+  'Конкретное число лидов или продаж до анализа аккаунта',
+  'Поддержку 24/7 и ответы в тот же день',
+  'Бесплатные триалы и возврат денег',
+];
+---
+
+<Base
+  title="Услуги — SNC Media | Meta-реклама для ecommerce"
+  description="Meta paid media для ecommerce и lead-gen. Один канал, отлаженный глубоко. Что входит, две линии работы, что мы обещаем и чего не обещаем."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Услуги</div>
+    <h1 class="page-hero-h1">Meta-реклама.<br />Один канал, глубоко.</h1>
+    <p class="page-hero-lede">
+      Мы делаем одно и делаем это на senior-уровне. Никакого full-service-меню —
+      Meta paid media, отлаженная как операционная система.
+    </p>
+  </section>
+
+  <!-- Что входит -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">01 — Что входит</div>
+    <div class="incl-grid">
+      {included.map((i) => (
+        <div class="incl">
+          <h3 class="incl-t">{i.t}</h3>
+          <p class="incl-d muted-dark">{i.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Две линии -->
+  <section class="section section-warm">
+    <div class="sec-label">02 — Две линии работы</div>
+    <p class="lede muted-light" style="margin-top:16px;">
+      Цена зависит от сложности. Ecommerce обычно требует больше работы, чем lead-gen,
+      и стоит дороже. Конкретную цифру называем после короткого разговора — на сайте
+      её нет намеренно.
+    </p>
+    <div class="lines-grid">
+      {lines.map((l) => (
+        <div class="line">
+          <h3 class="line-name">{l.name}</h3>
+          <p class="line-body muted-light">{l.body}</p>
+        </div>
+      ))}
+    </div>
+    <div class="creative">
+      <h3 class="line-name">Креатив — опционально</h3>
+      <p class="line-body muted-light">
+        Бриф под платформу и координация с фрилансерами. Продакшн оплачивается
+        клиентом отдельно — не входит в ретейнер.
+      </p>
+    </div>
+  </section>
+
+  <!-- Чего не делаем -->
+  <section class="section section-forest">
+    <div class="sec-label on-dark">03 — Чего мы не делаем</div>
+    <h2 class="statement" style="margin-top:24px;max-width:680px;">
+      Google Ads, TikTok, SEO, Amazon, инфлюенсеры — пока нет.
+    </h2>
+    <p class="lede muted-dark" style="margin-top:20px;">
+      Один канал, отлаженный глубоко, бьёт пять каналов на среднем уровне. Новые
+      услуги добавим, когда Meta-процесс полностью отлажен — и только как доп.
+      направление для текущих клиентов, не для всех подряд.
+    </p>
+  </section>
+
+  <!-- Обещаем / не обещаем -->
+  <section class="section section-dark">
+    <div class="sec-label on-dark">04 — Честно об ожиданиях</div>
+    <div class="promise-grid">
+      <div class="promise-col">
+        <div class="promise-head promise-head-yes">Обещаем</div>
+        {promise.map((p) => (
+          <div class="promise-row"><span class="pm pm-yes">&rarr;</span><span>{p}</span></div>
+        ))}
+      </div>
+      <div class="promise-col">
+        <div class="promise-head promise-head-no">Не обещаем</div>
+        {noPromise.map((p) => (
+          <div class="promise-row muted-dark"><span class="pm pm-no">&times;</span><span>{p}</span></div>
+        ))}
+      </div>
+    </div>
+    <p class="promise-note muted-dark">
+      Мы гарантируем то, что контролируем: качество настройки, объём тестов,
+      еженедельную оптимизацию, прозрачную отчётность. Цель по результату ставим
+      совместно, с окном оценки 60–90 дней.
+    </p>
+  </section>
+
+  <CtaClosing
+    statement="Подходим ли мы<br />вашему бизнесу?"
+    body="Оставьте заявку — посмотрим аккаунт и дадим честный ответ. Если не подходим, скажем сразу."
+  />
+</Base>
+
+<style>
+  .incl-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--dim); border: 1px solid var(--dim);
+  }
+  .incl { background: var(--nearblack); padding: 24px 22px; }
+  .incl-t { font-size: 13px; font-weight: 600; color: var(--sage); }
+  .incl-d { margin-top: 8px; font-size: 12px; line-height: 1.7; }
+
+  .lines-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--dim-light); border: 1px solid var(--dim-light);
+  }
+  .line { background: var(--offwhite); padding: 28px 24px; }
+  .line-name { font-size: 15px; font-weight: 600; color: var(--green); }
+  .line-body { margin-top: 12px; font-size: 12px; line-height: 1.75; }
+  .creative {
+    margin-top: 1px; background: var(--offwhite);
+    border: 1px solid var(--dim-light); padding: 28px 24px;
+  }
+
+  .promise-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .promise-col { padding: 0 32px; }
+  .promise-col:first-child { border-right: 1px solid var(--dim); padding-left: 0; }
+  .promise-head {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  .promise-head-yes { color: var(--sage); }
+  .promise-head-no  { color: var(--bronze); }
+  .promise-row {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13px; line-height: 1.7; margin-bottom: 12px;
+  }
+  .pm { flex-shrink: 0; }
+  .pm-yes { color: var(--sage); }
+  .pm-no  { color: var(--bronze); }
+  .promise-note {
+    margin-top: 28px; max-width: 640px;
+    font-size: 12px; line-height: 1.8;
+  }
+
+  @media (max-width: 760px) {
+    .incl-grid, .lines-grid { grid-template-columns: 1fr; }
+    .promise-grid { grid-template-columns: 1fr; gap: 28px; }
+    .promise-col { padding: 0; }
+    .promise-col:first-child {
+      border-right: 0; border-bottom: 1px solid var(--dim); padding-bottom: 24px;
+    }
+  }
+</style>
