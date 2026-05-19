@@ -5,18 +5,17 @@
  * The form posts to Web3Forms (https://web3forms.com) — a static-site form
  * backend. It works on GitHub Pages with no server.
  *
- * ⚠ SETUP REQUIRED: get a free access key at https://web3forms.com
- *   (enter an email — SNC's inbox — and a key is issued instantly), then
- *   replace the placeholder below. Submissions then arrive in that inbox.
- *   When the site moves to Vercel later, swap this for a serverless
- *   function → Telegram (see ../../CLAUDE.md).
+ * Web3Forms key is wired (2026-05-19). Submissions arrive at the email
+ * registered with the Web3Forms account (demetrius.sokolovs@gmail.com).
+ * To rotate the key, replace it below AND in src/pages/en/contact.astro —
+ * both pages must carry the same key.
  *
  * The audit is qualify-gated (Operations Bible §3.4): this form is the hook,
  * not an instant free audit. Copy reflects that — do not promise otherwise.
  */
 import Base from '../layouts/Base.astro';
 
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_KEY';
+const WEB3FORMS_ACCESS_KEY = 'acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7';
 
 const steps = [
   'Вы оставляете заявку — пару минут.',
@@ -113,6 +112,29 @@ const steps = [
         </li>
       ))}
     </ol>
+  </section>
+
+  <!-- Звонок напрямую -->
+  <section class="section section-light">
+    <div class="sec-label">Звонок напрямую</div>
+    <h2 class="statement" style="margin-top:20px;max-width:640px;">
+      Уже знаете, что хотите обсудить?
+    </h2>
+    <p class="lede muted-light" style="margin-top:16px;">
+      Забронируйте 30 минут напрямую — разберём аккаунт и ответим на вопросы.
+      Удобно, если вы уже на стадии принятия решения.
+    </p>
+    <div
+      class="calendly-inline-widget"
+      data-url="https://calendly.com/dmitrijs-sncads/30min?hide_gdpr_banner=1&primary_color=1e4d3a"
+      style="min-width:320px;height:700px;margin-top:28px;"
+    >
+    </div>
+    <script
+      is:inline
+      src="https://assets.calendly.com/assets/external/widget.js"
+      async
+    ></script>
   </section>
 
   <!-- Альтернатива -->

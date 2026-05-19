@@ -3,12 +3,12 @@
  * Contact page — English. Adapted for English-speaking founders.
  * Keep structure + styles in sync with src/pages/contact.astro.
  *
- * ⚠ SETUP: replace WEB3FORMS_ACCESS_KEY in BOTH this file and
- *   src/pages/contact.astro with the real key from https://web3forms.com.
+ * Web3Forms key is wired (2026-05-19). To rotate it, replace the key below
+ *   AND in src/pages/contact.astro — both pages must carry the same key.
  */
 import Base from '../../layouts/Base.astro';
 
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_KEY';
+const WEB3FORMS_ACCESS_KEY = 'acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7';
 
 const steps = [
   'You send the request — takes a couple of minutes.',
@@ -105,6 +105,29 @@ const steps = [
         </li>
       ))}
     </ol>
+  </section>
+
+  <!-- Book a call -->
+  <section class="section section-light">
+    <div class="sec-label">Book a call</div>
+    <h2 class="statement" style="margin-top:20px;max-width:640px;">
+      Already know what you want to discuss?
+    </h2>
+    <p class="lede muted-light" style="margin-top:16px;">
+      Book 30 minutes directly — we'll review the account and answer your
+      questions. Best if you're already at the decision stage.
+    </p>
+    <div
+      class="calendly-inline-widget"
+      data-url="https://calendly.com/dmitrijs-sncads/30min?hide_gdpr_banner=1&primary_color=1e4d3a"
+      style="min-width:320px;height:700px;margin-top:28px;"
+    >
+    </div>
+    <script
+      is:inline
+      src="https://assets.calendly.com/assets/external/widget.js"
+      async
+    ></script>
   </section>
 
   <!-- Direct contact -->
