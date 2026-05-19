@@ -1,4 +1,4 @@
-# SNC Media — Sitemap
+# SNC Advertising — Sitemap
 
 Launch MVP = 5 pages. Phase 2 = +3 pages. Everything else later.
 
@@ -32,14 +32,14 @@ Launch MVP = 5 pages. Phase 2 = +3 pages. Everything else later.
 ## Common elements (built once, used everywhere)
 
 - **Header:** Logo (mark + wordmark) left, nav center (Услуги · Подход · Кейсы · Контакт), CTA right ("Получить аудит" — green button)
-- **Footer:** Logo, nav repeat, Telegram link, email, year, "SNC Media · Riga / EU" (or wherever you're domiciled)
+- **Footer:** Logo, nav repeat, Telegram link, email, year, "SNC Advertising · Riga / EU" (or wherever you're domiciled)
 - **Cookie/GDPR banner:** required for EU traffic. Tilda has a built-in block.
 
 ## URL & SEO conventions
 
 - Lowercase, hyphenated slugs.
 - One H1 per page.
-- Meta title pattern: `[Page] — SNC Media | Performance marketing for ecommerce`
+- Meta title pattern: `[Page] — SNC Advertising | Performance marketing for ecommerce`
 - Meta description: 140–160 chars, action-led, no clichés.
 - OG image: page-specific where possible; brand cover (green + SNC mark) as fallback.
 - All Russian pages also need an English version under `/en/...` (Phase 2 — not at launch).

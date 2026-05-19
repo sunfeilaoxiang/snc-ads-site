@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNC Advertising — Website Verdict</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1E4D3A; --bronze:#BF9340; --forest:#0F2A20; --sage:#7FA898;
+    --offwhite:#F5F3EF; --nearblack:#0C0C0C; --graphite:#3C3C3C;
+    --white:#FFFFFF; --gray:#808080; --dim:#E2DFD8;
+    --font:'IBM Plex Mono','Courier New',monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font); background:var(--offwhite); color:var(--nearblack);
+    font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:0 32px;}
+
+  /* ── Cover ─────────────────────────────── */
+  .cover{
+    background:var(--green); color:var(--white);
+    padding:64px 0 56px; margin-bottom:0;
+  }
+  .cover .wrap{display:flex; flex-direction:column; gap:28px;}
+  .cover-top{display:flex; align-items:center; gap:12px;}
+  .mark{
+    width:34px; height:34px; border:2px solid var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; font-weight:600;
+  }
+  .brand{font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase;}
+  .brand span{font-weight:400; color:rgba(255,255,255,0.55); letter-spacing:0.32em;}
+  .cover h1{
+    font-size:clamp(34px,6vw,60px); font-weight:600; line-height:1.05;
+    letter-spacing:0.01em;
+  }
+  .cover-meta{
+    font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;
+    border-top:1px solid rgba(255,255,255,0.15); padding-top:18px; max-width:620px;
+  }
+  .verdict-line{
+    font-size:13px; color:var(--sage); letter-spacing:0.04em;
+  }
+
+  /* ── Body ──────────────────────────────── */
+  main{padding:56px 0 72px;}
+  section{margin-bottom:48px;}
+  .sec-num{
+    font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--green); margin-bottom:10px;
+  }
+  h2{
+    font-size:clamp(20px,3vw,26px); font-weight:600; line-height:1.25;
+    color:var(--nearblack); margin-bottom:18px; letter-spacing:0.01em;
+  }
+  h3{
+    font-size:14px; font-weight:600; color:var(--green);
+    margin:24px 0 8px;
+  }
+  p{margin-bottom:14px;}
+  strong{font-weight:600;}
+  em{font-style:normal; color:var(--green); font-weight:600;}
+  code{
+    background:#E8E5DE; padding:1px 5px; font-size:13px; color:var(--graphite);
+  }
+  a{color:var(--green);}
+
+  ul,ol{margin:0 0 16px 0; padding-left:0; list-style:none;}
+  li{
+    margin-bottom:10px; padding-left:26px; position:relative;
+  }
+  ul li::before{
+    content:'—'; position:absolute; left:0; color:var(--bronze);
+  }
+  ol{counter-reset:item;}
+  ol li{counter-increment:item;}
+  ol li::before{
+    content:counter(item,decimal-leading-zero); position:absolute; left:0;
+    color:var(--bronze); font-weight:600; font-size:12px;
+  }
+
+  .rule{height:1px; background:var(--dim); border:0; margin:40px 0;}
+
+  /* ── Tables ────────────────────────────── */
+  table{
+    width:100%; border-collapse:collapse; margin:18px 0; font-size:13px;
+  }
+  th,td{
+    text-align:left; padding:11px 12px; border-bottom:1px solid var(--dim);
+    vertical-align:top; line-height:1.6;
+  }
+  thead th{
+    font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--green); border-bottom:1px solid var(--green);
+  }
+  td.snc{font-weight:600; color:var(--nearblack);}
+  .zero{color:#A33; font-weight:600;}
+
+  /* ── Callouts ──────────────────────────── */
+  .callout{
+    background:var(--white); border-left:3px solid var(--green);
+    padding:20px 24px; margin:20px 0; font-size:14px;
+  }
+  .callout.warn{border-left-color:var(--bronze);}
+  .callout-label{
+    font-size:9px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--green); margin-bottom:8px; display:block;
+  }
+  .callout.warn .callout-label{color:var(--bronze);}
+
+  /* ── Ratings ───────────────────────────── */
+  .ratings{
+    display:grid; grid-template-columns:1fr; gap:3px;
+    background:var(--dim); border:1px solid var(--dim); margin:20px 0;
+  }
+  .rrow{
+    background:var(--white); padding:16px 20px;
+    display:flex; justify-content:space-between; align-items:baseline; gap:20px;
+  }
+  .rrow.total{background:var(--green); color:var(--white);}
+  .rlabel{font-size:13px;}
+  .rscore{font-size:20px; font-weight:600; color:var(--green); white-space:nowrap;}
+  .rrow.total .rscore{color:var(--white);}
+  .rnote{font-size:11px; color:var(--gray); display:block; margin-top:2px;}
+  .rrow.total .rnote{color:rgba(255,255,255,0.6);}
+
+  /* ── Footer ────────────────────────────── */
+  footer{
+    background:var(--forest); color:rgba(255,255,255,0.5);
+    padding:28px 0; font-size:10px; letter-spacing:0.06em;
+  }
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media(max-width:640px){
+    .wrap{padding:0 20px;}
+    .rrow{flex-direction:column; gap:4px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-top">
+      <div class="mark">S</div>
+      <div class="brand">SNC <span>Media</span></div>
+    </div>
+    <h1>Final Verdict —<br>Website Review</h1>
+    <div class="verdict-line">A well-designed website and an unconvincing one — the same site.</div>
+    <div class="cover-meta">
+      Prepared 2026-05-18. Based on: building the site, two design critiques
+      (6/10 &rarr; 8/10), reviewing it rendered in both languages and on mobile,
+      and rendering both competitor sites — 94n.digital and johngalt-finance.com.
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 1 -->
+  <section>
+    <div class="sec-num">01 — The bottom line</div>
+    <h2>A well-designed site and an unconvincing one are the same site</h2>
+    <p><strong>SNC Advertising has a genuinely well-designed website and a genuinely
+    unconvincing one — and those are the same site.</strong> The craft is real:
+    a distinctive brand system, disciplined execution, bilingual, mobile-correct,
+    fast. The problem is not how it looks. It is that it contains <em>no evidence
+    that the agency can do the job</em> — no case studies, no client names, no
+    testimonials, no numbers, no faces. It is a beautifully built empty room.</p>
+    <p>Against the two benchmarks: SNC <strong>out-designs</strong> 94n and
+    <strong>matches</strong> John Galt on craft — and <strong>loses to both,
+    decisively, on proof.</strong></p>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <div class="sec-num">02 — What the site is today</div>
+    <h2>A complete, shippable brochure site</h2>
+    <p>Five pages, two languages (RU primary, EN adapted), live on GitHub Pages,
+    auto-deploying on every push:</p>
+    <ul>
+      <li>Home, Services, Approach, Cases, Contact — all five, both languages</li>
+      <li>Working language switcher, working mobile navigation, fast static delivery</li>
+      <li>A coherent IBM Plex Mono / Money-Green brand system carried faithfully from the brand book</li>
+      <li>Honest copy in a real voice: "no agency theatre," the who's-a-fit / who-isn't
+      qualification block, "we don't borrow other people's logos or results"</li>
+    </ul>
+    <p>That is a complete, shippable brochure site. Nine of ten brand-new agencies
+    launch with something visibly worse.</p>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <div class="sec-num">03 — Design verdict · 8 / 10</div>
+    <h2>The brand system is the strongest asset — and it is genuinely strong</h2>
+    <p>Monospace-everything, the green/bronze/forest palette, hard left-alignment,
+    hairline rules, the exhibit-style section numbering — it is <em>disciplined</em>
+    and <em>distinctive</em>. Rendered side by side: <strong>SNC's visual identity
+    is more characterful and more controlled than the direct competitor's.</strong>
+    94n's site is a competent but generic light-agency template — hexagon clip-art,
+    magenta accent, and a live <code>€0m Client Revenue</code> bug on their homepage.</p>
+    <p>What still caps SNC's design at 8, not 9:</p>
+    <ul>
+      <li><strong>Zero imagery or motion.</strong> A pure-type site for a creative
+      agency is a bold stance that also forfeits visual proof.</li>
+      <li><strong>All-monospace</strong> still taxes sustained reading, even at the
+      bumped 14–15px.</li>
+      <li><strong>The hero over-dominates</strong> desktop — the 116px headline eats
+      the first viewport whole.</li>
+      <li><strong>Founder monograms, not faces.</strong></li>
+    </ul>
+    <p>None of these are defects. They are the ceiling of an austere, deliberate
+    aesthetic. The design work is essentially <em>done</em>.</p>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <div class="sec-num">04 — Conversion verdict · ~5 / 10</div>
+    <h2>On the elements that actually close deals, SNC scores near zero</h2>
+    <p>A website's job is not to be admired; it is to move a prospect from
+    interested to booked. On the elements that do that, the picture is stark.</p>
+    <table>
+      <thead>
+        <tr><th>Conversion element</th><th>94n</th><th>John Galt</th><th>SNC</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Case studies with hard numbers</td><td>3</td><td>10</td><td class="snc zero">0</td></tr>
+        <tr><td>Named testimonials</td><td>4</td><td>3</td><td class="snc zero">0</td></tr>
+        <tr><td>Client logos / scale proof</td><td>"120+ brands"</td><td>"30+ clients"</td><td class="snc zero">0</td></tr>
+        <tr><td>Human faces</td><td>team photo + case photography</td><td>founder photo in hero</td><td class="snc zero">0 — monogram letters</td></tr>
+        <tr><td>Third-party validation</td><td>6 award badges, Clutch</td><td>awards, Trustpilot</td><td class="snc zero">0</td></tr>
+        <tr><td>Lead magnet</td><td>free audit</td><td>free financial model</td><td class="snc">audit only</td></tr>
+        <tr><td>A working contact form</td><td>yes</td><td>yes</td><td class="snc zero">not wired</td></tr>
+      </tbody>
+    </table>
+    <p>The site asks to be believed. The competitors <em>show</em>. That gap is the
+    whole verdict.</p>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <div class="sec-num">05 — Competitive standing</div>
+    <h2>Head to head</h2>
+    <h3>vs 94n — the direct competitor</h3>
+    <p>SNC wins on brand, discipline, copy sharpness and honesty — and 94n has a live
+    bug on its homepage. But 94n will out-convert SNC today, because a founder
+    comparing the two tabs sees award badges, real client logos, three quantified
+    case studies, a team photo and star-rated reviews on one side — and a beautiful,
+    faceless, proof-less site on the other. <strong>Better brand, weaker pitch.</strong></p>
+    <h3>vs John Galt — the in-house benchmark</h3>
+    <p>John Galt's site is the same aesthetic <em>family</em> as SNC — dark,
+    restrained, confident — but it has a real founder's face in the hero, ten case
+    studies, a team of thirteen, named credentials, pricing, a lead magnet. It proves
+    the dark-and-disciplined look <strong>works once it is populated with reality.</strong>
+    SNC is not a different class of site. It is the same class, <strong>empty.</strong></p>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <div class="sec-num">06 — The honest gaps, ranked</div>
+    <h2>What is missing, in order of impact</h2>
+    <ol>
+      <li><strong>No case studies.</strong> The single highest-impact missing asset.
+      <code>/cases</code> is currently an essay about how you would measure a result
+      you have never been shown to produce.</li>
+      <li><strong>No founder proof.</strong> Nikita has a real four-year track record
+      at a real, named agency, with real results. The site hides all of it behind
+      "at an agency" and the letter "N." That is free credibility already owned and
+      not used.</li>
+      <li><strong>No human faces.</strong> Both competitors lead with people. People
+      are what a service buyer actually buys.</li>
+      <li><strong>Contact form not wired.</strong> A functional dead end — the one
+      purely mechanical failure on the site. Needs the Web3Forms key, in both
+      <code>contact.astro</code> files.</li>
+      <li><strong>No lead magnet.</strong> Nothing captures the prospect who is not
+      ready to talk yet.</li>
+      <li><strong><code>/cases</code> will underwhelm by design</strong> until real
+      cases exist — correctly demoted from the nav, but still a thin page.</li>
+    </ol>
+    <div class="callout warn">
+      <span class="callout-label">Fair caveat</span>
+      A 2026-launched agency cannot have six awards or 120 clients. That is
+      "can't yet," and nobody will hold it against you. But items 2, 4 and 5 are
+      <strong>"could do now and aren't"</strong> — and that distinction is the
+      real indictment.
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <div class="sec-num">07 — The strategic reframe</div>
+    <h2>The site's real Phase-1 job is "don't lose the warm lead"</h2>
+    <p>Per the SNC Operations Bible, Phase-1 leads come from <strong>warm
+    introductions and Telegram founder communities</strong> — not cold inbound. That
+    changes the website's job. It is <em>not</em> the cold-acquisition engine yet. It
+    is the <strong>credibility-check destination</strong>: someone gets a warm intro
+    to SNC, then opens the site to decide if you are real.</p>
+    <div class="callout">
+      <span class="callout-label">Why this matters</span>
+      For that job, proof matters <strong>more</strong>, not less. A warm lead arrives
+      already half-sold — and an empty, faceless site <strong>deflates</strong> them.
+      The site's Phase-1 job is simply: do not lose the warm lead. Right now it can
+      lose one, by looking like a concept rather than a company.
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <div class="sec-num">08 — What it would take to win</div>
+    <h2>Not more design. Content.</h2>
+    <ol>
+      <li><strong>One or two anonymized case studies</strong> from Nikita's prior work
+      — real numbers, real timeframe, anonymized client ("Beauty DTC, EU — &euro;X
+      &rarr; &euro;Y in 90 days"). The Operations Bible's Day-30 plan already calls
+      for exactly this. Build <code>/cases</code> to hold them properly.</li>
+      <li><strong>Real founder photos + named credentials.</strong> Faces in the
+      founders section; name the agency Nikita came from; state real numbers.</li>
+      <li><strong>Wire the contact form</strong> — 2 minutes once the Web3Forms key exists.</li>
+      <li><strong>One real visual</strong> — a redacted ad-account dashboard. Breaks
+      the austerity, adds proof, stays on-brand.</li>
+      <li><strong>A lead magnet</strong> — a free Meta-audit checklist or a teardown PDF.</li>
+    </ol>
+    <p>Items 2–4 are doable this week and need only founder input. Item 1 needs a
+    conversation with Nikita. Item 5 is a half-day.</p>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <div class="sec-num">09 — Final ratings</div>
+    <h2>The scorecard</h2>
+    <div class="ratings">
+      <div class="rrow">
+        <span class="rlabel">Design &amp; craft<span class="rnote">distinctive, disciplined, done</span></span>
+        <span class="rscore">8 / 10</span>
+      </div>
+      <div class="rrow">
+        <span class="rlabel">Conversion readiness<span class="rnote">no proof, form not wired</span></span>
+        <span class="rscore">5 / 10</span>
+      </div>
+      <div class="rrow">
+        <span class="rlabel">Competitive standing today<span class="rnote">better-built, less convincing</span></span>
+        <span class="rscore">Loses to both</span>
+      </div>
+      <div class="rrow total">
+        <span class="rlabel">Overall as a launch asset<span class="rnote">finished as design, unfinished as business</span></span>
+        <span class="rscore">~6.5 / 10</span>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout-label">The verdict in one sentence</span>
+      The website is finished as a piece of design and unfinished as a piece of
+      business — and the remaining work is not design, it is feeding the site reality.
+    </div>
+    <div class="callout warn">
+      <span class="callout-label">Recommendation</span>
+      Stop all design polish — it is done. Do not point outreach at this site until
+      it has, at minimum, <strong>one real case study, founder photos, and a working
+      form.</strong> Get those three, and the site moves from "a beautiful concept"
+      to "a real firm you would hire" — at which point it genuinely beats 94n,
+      because you will have their proof and a better brand.
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 10 -->
+  <section>
+    <div class="sec-num">10 — What is already right</div>
+    <h2>Protect these through any future changes</h2>
+    <ul>
+      <li>The positioning — "performance marketing, no agency theatre" — and the
+      who's-a-fit / who-isn't qualification block.</li>
+      <li>The honesty. SNC does not fake proof; "cases in progress" is true.</li>
+      <li>The brand system — monospace, the palette, the discipline.</li>
+      <li>Bilingual structure, working mobile navigation, fast static delivery.</li>
+      <li>The native-English adaptation — not a literal translation.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>SNC Advertising · Website Verdict · 2026-05-18</span>
+    <span>IBM Plex Mono · #1E4D3A</span>
+  </div>
+</footer>
+
+</body>
+</html>

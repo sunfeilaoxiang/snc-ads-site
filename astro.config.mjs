@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 // `site` + `base` produce correct canonical URLs, asset paths, and links.
 //
 // When a custom domain is connected later:
-//   - set `site` to the domain (e.g. 'https://snc-media.com')
+//   - set `site` to the domain (e.g. 'https://snc-ads.com')
 //   - set `base` to '/'
 // The url() helper in src/lib/links.ts adjusts every internal link automatically.
 export default defineConfig({

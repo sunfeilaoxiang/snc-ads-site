@@ -60,7 +60,7 @@ export const ui: Record<Locale, UiStrings> = {
         ],
       },
       contactTitle: 'Связь',
-      rights: '© {year} SNC Media · Riga / EU',
+      rights: '© {year} SNC Advertising · Riga / EU',
     },
   },
   en: {
@@ -95,7 +95,7 @@ export const ui: Record<Locale, UiStrings> = {
         ],
       },
       contactTitle: 'Contact',
-      rights: '© {year} SNC Media · Riga / EU',
+      rights: '© {year} SNC Advertising · Riga / EU',
     },
   },
 };

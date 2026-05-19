@@ -1,4 +1,4 @@
-# SNC Media — Brand Context (condensed for page-building)
+# SNC Advertising — Brand Context (condensed for page-building)
 
 Canonical brand book: `outputs/snc-brand-book.html` and `outputs/snc-logo-book.html`.
 This file is the working summary Claude reads when building pages.
