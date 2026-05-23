@@ -248,6 +248,9 @@ const steps = [
         const data = await res.json();
         if (data.success) {
           form.reset();
+          // Conversion events — only fire if analytics loaded (consent given)
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          if ((window as any).gtag) (window as any).gtag('event', 'generate_lead');
           status.textContent = "Request sent. We'll get back to you within one business day.";
           status.className = 'form-status ok';
           submit.textContent = 'Sent';

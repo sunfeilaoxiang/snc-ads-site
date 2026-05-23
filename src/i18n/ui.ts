@@ -19,6 +19,7 @@ interface UiStrings {
   mobileNavAria: string;
   langLabel: string;
   langAria: string;
+  consent: { text: string; accept: string; decline: string };
   footer: {
     services: FooterCol;
     company: FooterCol;
@@ -42,6 +43,11 @@ export const ui: Record<Locale, UiStrings> = {
     mobileNavAria: 'Мобильная навигация',
     langLabel: 'EN',
     langAria: 'Switch to English',
+    consent: {
+      text: 'Мы используем аналитические cookie, чтобы видеть, что работает на сайте. Без них сайт работает так же.',
+      accept: 'Принять',
+      decline: 'Отклонить',
+    },
     footer: {
       services: {
         title: 'Услуги',
@@ -77,6 +83,11 @@ export const ui: Record<Locale, UiStrings> = {
     mobileNavAria: 'Mobile navigation',
     langLabel: 'RU',
     langAria: 'Переключить на русский',
+    consent: {
+      text: 'We use analytics cookies to see what works on the site. Everything works without them, too.',
+      accept: 'Accept',
+      decline: 'Decline',
+    },
     footer: {
       services: {
         title: 'Services',
