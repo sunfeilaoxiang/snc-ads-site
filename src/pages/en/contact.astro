@@ -7,8 +7,10 @@
  *   AND in src/pages/contact.astro — both pages must carry the same key.
  */
 import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
 
 const WEB3FORMS_ACCESS_KEY = 'acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7';
+const thankYouUrl = new URL(localizedUrl('/thank-you', 'en'), Astro.site).href;
 
 const steps = [
   'You send the request — takes a couple of minutes.',
@@ -35,8 +37,9 @@ const steps = [
   <section class="section section-dark">
     <div class="sec-label on-dark">Request</div>
 
-    <form id="audit-form" class="form" action="https://api.web3forms.com/submit" method="POST">
+    <form id="audit-form" class="form" action="https://api.web3forms.com/submit" method="POST" data-redirect={thankYouUrl}>
       <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="redirect" value={thankYouUrl} />
       <input type="hidden" name="subject" value="New audit request — SNC Advertising" />
       <input type="hidden" name="from_name" value="SNC Advertising — website" />
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
@@ -247,10 +250,9 @@ const steps = [
         });
         const data = await res.json();
         if (data.success) {
-          form.reset();
-          // Conversion events — only fire if analytics loaded (consent given)
-          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
-          if ((window as any).gtag) (window as any).gtag('event', 'generate_lead');
+          // Redirect to the thank-you page (which fires the Lead conversion).
+          const redirect = form.dataset.redirect;
+          if (redirect) { window.location.href = redirect; return; }
           status.textContent = "Request sent. We'll get back to you within one business day.";
           status.className = 'form-status ok';
           submit.textContent = 'Sent';

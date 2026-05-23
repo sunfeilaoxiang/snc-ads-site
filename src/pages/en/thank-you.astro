@@ -1,0 +1,65 @@
+---
+/**
+ * Thank-you page (EN) — the contact form redirects here on a successful submit.
+ * Keep structure + styles in sync with src/pages/thank-you.astro.
+ * The Lead conversion event fires here (only if analytics loaded / consent given).
+ */
+import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
+---
+
+<Base
+  title="Thank you — SNC Advertising"
+  description="Request received. We'll get back to you within one business day."
+>
+  <section class="ty">
+    <div class="ty-inner">
+      <div class="ty-label">Request received</div>
+      <h1 class="ty-h1">Thank you.<br />We've got it.</h1>
+      <p class="ty-lede">
+        We'll get back to you within one business day — either with a couple of
+        qualifying questions or with the review itself. Check your inbox, spam
+        folder included.
+      </p>
+      <div class="ty-cta">
+        <a class="btn btn-on-green" href={localizedUrl('/', 'en')}>Back to home</a>
+        <a class="ty-link tlink" href={localizedUrl('/approach', 'en')}>How we work &rarr;</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  /* Lead conversion — fires only if analytics is loaded (consent given). */
+  if (window.fbq) window.fbq('track', 'Lead');
+  if (window.gtag) window.gtag('event', 'generate_lead');
+</script>
+
+<style>
+  .ty {
+    background: var(--green);
+    min-height: calc(100vh - 56px);
+    display: flex; align-items: center;
+    padding: 64px var(--pad-x);
+  }
+  .ty-inner { max-width: 680px; }
+  .ty-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+  }
+  .ty-h1 {
+    margin-top: 18px;
+    font-size: clamp(36px, 6vw, 72px); font-weight: 600;
+    line-height: 1.05; letter-spacing: 0.01em;
+  }
+  .ty-lede {
+    margin-top: 24px; max-width: 520px;
+    font-size: 15px; line-height: 1.8; color: rgba(255, 255, 255, 0.78);
+  }
+  .ty-cta {
+    margin-top: 36px; display: flex; align-items: center;
+    gap: 28px; flex-wrap: wrap;
+  }
+  .ty-link { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+  .ty-link:hover { color: var(--white); }
+</style>

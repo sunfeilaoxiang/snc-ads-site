@@ -14,8 +14,10 @@
  * not an instant free audit. Copy reflects that — do not promise otherwise.
  */
 import Base from '../layouts/Base.astro';
+import { url } from '../lib/links';
 
 const WEB3FORMS_ACCESS_KEY = 'acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7';
+const thankYouUrl = new URL(url('/thank-you'), Astro.site).href;
 
 const steps = [
   'Вы оставляете заявку — пару минут.',
@@ -42,8 +44,9 @@ const steps = [
   <section class="section section-dark">
     <div class="sec-label on-dark">Заявка</div>
 
-    <form id="audit-form" class="form" action="https://api.web3forms.com/submit" method="POST">
+    <form id="audit-form" class="form" action="https://api.web3forms.com/submit" method="POST" data-redirect={thankYouUrl}>
       <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="redirect" value={thankYouUrl} />
       <input type="hidden" name="subject" value="Новая заявка на аудит — SNC Advertising" />
       <input type="hidden" name="from_name" value="SNC Advertising — сайт" />
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
@@ -254,10 +257,9 @@ const steps = [
         });
         const data = await res.json();
         if (data.success) {
-          form.reset();
-          // Conversion events — only fire if analytics loaded (consent given)
-          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
-          if ((window as any).gtag) (window as any).gtag('event', 'generate_lead');
+          // Redirect to the thank-you page (which fires the Lead conversion).
+          const redirect = form.dataset.redirect;
+          if (redirect) { window.location.href = redirect; return; }
           status.textContent =
             'Заявка отправлена. Ответим в течение одного рабочего дня.';
           status.className = 'form-status ok';
