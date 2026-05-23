@@ -6,8 +6,9 @@ This file is the working summary Claude reads when building pages.
 > **Name:** formal name is **SNC Advertising**. Short form is **SNC Ads**
 > (conversational use, the Calendly handle `dmitrijs-sncads`, etc.). The logo
 > lockup is "SNC" + the tracked sub-word "ADVERTISING". Renamed from "SNC Media"
-> on 2026-05-20. Note: the repo/folder slug stays `snc-media-site` (deliberate —
-> infrastructure identifier only, not user-facing).
+> on 2026-05-20. **Repo + live URL renamed to `snc-ads-site` on 2026-05-23**; the
+> local folder slug stays `snc-media-site` (cosmetic — doesn't affect the deploy).
+> Custom domain `sncad.com` to follow.
 
 > **Source of truth for agency facts** (pricing, services, ICP, founder details,
 > audit mechanics) is `../snc-media-ops/00_SNC_Media_Operations_Bible.md`. If this

@@ -1,7 +1,7 @@
 /**
  * URL helpers — base-path aware and locale aware.
  *
- * The site is served from a subpath on GitHub Pages (/snc-media-site/) and is
+ * The site is served from a subpath on GitHub Pages (/snc-ads-site/) and is
  * bilingual: Russian at the root, English under /en/.
  *
  * - `url(path)`          — base-prefixed path, no locale (Russian default).
