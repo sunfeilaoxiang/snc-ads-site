@@ -1,16 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// Deployed to GitHub Pages at https://sunfeilaoxiang.github.io/snc-ads-site/
-// `site` + `base` produce correct canonical URLs, asset paths, and links.
+// Deployed to Vercel at https://sncads.com/ (custom domain, 2026-05-25 cutover).
+// `site` drives canonical URLs and OG tags; with no `base` option the default
+// `/` keeps asset paths and internal links at the root.
 //
-// When a custom domain is connected later:
-//   - set `site` to the domain (e.g. 'https://snc-ads.com')
-//   - set `base` to '/'
-// The url() helper in src/lib/links.ts adjusts every internal link automatically.
+// The url() helper in src/lib/links.ts adjusts every internal link automatically
+// from `import.meta.env.BASE_URL`, so no app code needs to change when base changes.
 export default defineConfig({
-  site: 'https://sunfeilaoxiang.github.io',
-  base: '/snc-ads-site',
+  site: 'https://sncads.com',
   // Bilingual: Russian at root (/), English under /en/.
   i18n: {
     defaultLocale: 'ru',
