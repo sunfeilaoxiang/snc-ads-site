@@ -30,9 +30,38 @@ import { localizedUrl } from '../../lib/links';
 </Base>
 
 <script is:inline>
-  /* Lead conversion — fires only if analytics is loaded (consent given). */
-  if (window.fbq) window.fbq('track', 'Lead');
-  if (window.gtag) window.gtag('event', 'generate_lead');
+  /* Lead conversion — fires only if analytics is loaded (consent given).
+   *
+   * Browser Pixel + server-side CAPI both report the same Lead event with a
+   * shared `event_id` so Meta deduplicates. CAPI is fire-and-forget — failure
+   * doesn't degrade the user experience. */
+  (function () {
+    function uuid() {
+      if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0;
+        var v = c === 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      });
+    }
+
+    if (window.gtag) window.gtag('event', 'generate_lead');
+
+    if (window.fbq) {
+      var eventId = uuid();
+      window.fbq('track', 'Lead', {}, { eventID: eventId });
+      // Mirror via CAPI (server-side); deduped against the browser event by event_id.
+      fetch('/api/meta-capi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_id: eventId,
+          event_source_url: window.location.href,
+        }),
+        keepalive: true,
+      }).catch(function () { /* fire and forget */ });
+    }
+  })();
 </script>
 
 <style>
