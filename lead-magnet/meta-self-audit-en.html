@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Meta Self-Audit — SNC Advertising</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* ====================================================
+     The Meta Self-Audit — printable lead magnet
+     A4 portrait, IBM Plex Mono, SNC palette.
+     Print: Ctrl+P → Save as PDF, no headers/footers,
+     margins None (this stylesheet draws them).
+     ==================================================== */
+
+  :root{
+    --green:#1E4D3A; --bronze:#BF9340; --forest:#0F2A20; --sage:#7FA898;
+    --offwhite:#F5F3EF; --nearblack:#0C0C0C; --graphite:#3C3C3C;
+    --white:#FFFFFF; --gray:#808080; --dim:#D8D5CE;
+    --font:'IBM Plex Mono','Courier New',monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+  @page{ size: A4 portrait; margin: 0; }
+  html,body{ background:var(--offwhite); }
+  body{
+    font-family:var(--font); color:var(--nearblack);
+    font-size:11pt; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Each .page is one A4 sheet */
+  .page{
+    width: 210mm; min-height: 297mm;
+    padding: 18mm 20mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .page:last-child{ page-break-after: auto; }
+
+  /* ============ COVER ============ */
+  .cover{
+    background: var(--green); color: var(--white);
+    padding: 24mm 20mm;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cover-top{ display:flex; justify-content: space-between; align-items: flex-start; }
+  .mark-box{
+    width:34px; height:34px; border:2px solid var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18pt; font-weight:600; line-height:1;
+  }
+  .brand{
+    font-size:10pt; font-weight:600; letter-spacing:0.16em;
+    text-transform:uppercase;
+  }
+  .brand .sub{ font-weight:400; color:rgba(255,255,255,0.5); letter-spacing:0.32em; margin-left:6px; }
+  .cover-eyebrow{
+    font-size:8pt; letter-spacing:0.25em; text-transform:uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .cover-center{ margin-top: 18mm; }
+  .cover h1{
+    font-size: 36pt; font-weight:600; line-height: 0.98;
+    letter-spacing: 0.01em;
+  }
+  .cover-sub{
+    margin-top: 8mm;
+    font-size: 13pt; line-height: 1.45; color: rgba(255,255,255,0.85);
+    max-width: 150mm;
+  }
+  .cover-meta{
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    padding-top: 6mm;
+    display: flex; justify-content: space-between;
+    font-size: 8pt; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ OPENING ============ */
+  .opening-num{
+    font-size:8pt; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+    color: var(--green);
+  }
+  .opening h2{
+    margin-top: 6mm;
+    font-size: 22pt; font-weight: 600; line-height: 1.15;
+    max-width: 150mm;
+  }
+  .opening p{
+    margin-top: 8mm; max-width: 145mm;
+    font-size: 11pt; line-height: 1.75;
+  }
+  .opening p + p{ margin-top: 4mm; }
+
+  /* ============ SECTIONS ============ */
+  .section-head{
+    margin-top: 10mm;
+    padding-bottom: 3mm;
+    border-bottom: 1px solid var(--green);
+  }
+  .section-num{
+    font-size:8pt; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+    color: var(--green);
+  }
+  .section-title{
+    margin-top: 2mm;
+    font-size: 16pt; font-weight: 600; line-height: 1.2;
+  }
+  .section-lede{
+    margin-top: 2mm;
+    font-size: 10pt; font-style: italic; color: var(--graphite);
+  }
+
+  /* ============ ITEMS ============ */
+  .item{
+    margin-top: 7mm;
+    page-break-inside: avoid;
+  }
+  .item-head{
+    display: flex; gap: 6mm; align-items: baseline;
+  }
+  .item-n{
+    font-size: 11pt; font-weight: 600; color: var(--bronze);
+    letter-spacing: 0.08em; flex-shrink: 0; min-width: 8mm;
+  }
+  .item-t{
+    font-size: 12pt; font-weight: 600; color: var(--green); line-height: 1.3;
+  }
+  .item-body{
+    margin-top: 2mm; padding-left: 14mm;
+    font-size: 10.5pt; line-height: 1.65;
+  }
+  .item-body p + p{ margin-top: 2mm; }
+  .signal{ font-size: 10pt; color: var(--graphite); margin-top: 2mm; }
+  .signal strong{ color: var(--green); font-weight: 600; }
+  .signal strong.bad{ color: var(--bronze); }
+
+  .note{
+    margin-top: 3mm;
+    padding: 3mm 5mm;
+    background: rgba(30,77,58,0.06);
+    border-left: 2px solid var(--green);
+    font-size: 10pt; line-height: 1.6;
+    color: var(--graphite);
+  }
+
+  /* ============ CLOSING ============ */
+  .closing{
+    margin-top: 12mm;
+    padding-top: 8mm;
+    border-top: 1px solid var(--dim);
+  }
+  .closing-num{
+    font-size:8pt; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+    color: var(--bronze);
+  }
+  .closing h3{
+    margin-top: 4mm;
+    font-size: 18pt; font-weight: 600; line-height: 1.2;
+  }
+  .closing p{
+    margin-top: 5mm; max-width: 150mm;
+    font-size: 11pt; line-height: 1.75;
+  }
+  .cta-row{
+    margin-top: 9mm; display: flex; align-items: center; gap: 8mm;
+  }
+  .cta-btn{
+    display: inline-block;
+    background: var(--green); color: var(--white);
+    padding: 4mm 8mm;
+    font-size: 10pt; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+  }
+  .cta-url{
+    font-size: 10pt; color: var(--graphite);
+  }
+
+  .colophon{
+    margin-top: 14mm;
+    border-top: 1px solid var(--dim);
+    padding-top: 5mm;
+    font-size: 8.5pt; color: var(--gray); line-height: 1.6;
+  }
+
+  /* ============ PRINT TWEAKS ============ */
+  @media print{
+    body{ background: var(--offwhite); }
+    .page{ box-shadow: none; }
+  }
+  /* screen preview cosmetics */
+  @media screen{
+    body{ background: #ddd; padding: 24px 0; }
+    .page{
+      background: var(--offwhite);
+      margin: 0 auto 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    }
+    .cover{ background: var(--green); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER PAGE ════════════════ -->
+<section class="page cover">
+  <div class="cover-top">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="mark-box">S</div>
+      <span class="brand">SNC <span class="sub">Advertising</span></span>
+    </div>
+    <span class="cover-eyebrow">Free Resource · 2026</span>
+  </div>
+
+  <div class="cover-center">
+    <h1>The Meta<br>Self-Audit.</h1>
+    <p class="cover-sub">
+      12 checks. 15 minutes. The list we run before quoting an audit on a new
+      ecommerce account.
+    </p>
+  </div>
+
+  <div class="cover-meta">
+    <span>SNC ADVERTISING · RIGA / EU</span>
+    <span>FOR ECOMMERCE FOUNDERS SPENDING €1K+/MO ON META</span>
+  </div>
+</section>
+
+<!-- ════════════════ OPENING + § 1 ════════════════ -->
+<section class="page opening">
+  <div class="opening-num">00 — How to use this</div>
+  <h2>If you spend €1k+/month on Meta, you should walk through this list and not flinch.</h2>
+  <p>
+    It's the exact sequence we run before we quote an audit on a new ecommerce
+    account. Twelve checks. Five layers. About fifteen minutes if you know
+    Ads Manager.
+  </p>
+  <p>
+    Don't worry about getting them all right. The point is to know which ones
+    you <em>can't answer</em>. That's where the money is.
+  </p>
+
+  <!-- § 1 -->
+  <div class="section-head">
+    <div class="section-num">§ 1 — Tracking &amp; attribution</div>
+    <div class="section-title">If you can't see it, you can't optimize it.</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">01</span>
+      <span class="item-t">Conversions API installed and de-duplicating with the Pixel.</span>
+    </div>
+    <div class="item-body">
+      <p>Open Events Manager → your dataset → confirm events come from
+      <strong>both Browser and Server</strong>, with deduplication on.
+      Browser-only Pixels miss iOS users and anyone behind a cookie banner —
+      often 30–50% of real conversions.</p>
+      <p class="signal"><strong>Good:</strong> the device split in Ads Manager
+      roughly matches your real iOS/Android customer mix.
+      <strong class="bad">Bad:</strong> heavy Android skew = CAPI missing or broken.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">02</span>
+      <span class="item-t">UTM parameters on every ad URL.</span>
+    </div>
+    <div class="item-body">
+      <p>Without them, Meta-driven sales land in Shopify as "Direct" or "Organic"
+      and your reported ROAS under-reads — sometimes by a lot.</p>
+      <p class="signal"><strong>Good:</strong>
+      <code>?utm_source=meta&amp;utm_medium=cpc&amp;utm_campaign=…&amp;utm_content=…</code> on every ad URL.
+      <strong class="bad">Bad:</strong> clean URLs with no parameters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ § 2 — STRUCTURE ════════════════ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">§ 2 — Account structure</div>
+    <div class="section-title">Let the system learn before you judge it.</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">03</span>
+      <span class="item-t">One or two active conversion campaigns — not eight.</span>
+    </div>
+    <div class="item-body">
+      <p>Multiple campaigns targeting the same audience cause <em>auction
+      overlap</em>: your own ads bid against each other and inflate your own
+      CPM. The system also can't build a coherent buyer model if you keep
+      splitting it.</p>
+      <p class="signal"><strong>Good:</strong> 1–2 conversion campaigns running
+      simultaneously. <strong class="bad">Bad:</strong> 5+ active, all on the
+      same placement and audience.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">04</span>
+      <span class="item-t">Campaigns get a 7-day learning window before kill or scale.</span>
+    </div>
+    <div class="item-body">
+      <p>Meta's learning phase needs ~50 conversion events. Killing a campaign
+      at 2–3 days means it never finished learning — you're judging it before
+      it had a chance. If you're nervous, <em>lower the daily budget</em>.
+      Don't shorten the runtime.</p>
+      <p class="signal"><strong>Good:</strong> every campaign runs a full
+      learning phase before judgement. <strong class="bad">Bad:</strong>
+      panic-kills at 48 hours; same campaign rebuilt the next week.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">05</span>
+      <span class="item-t">Conversion event = Purchase.</span>
+    </div>
+    <div class="item-body">
+      <p>If you optimize for "Initiate Checkout" or "Add to Cart," Meta will
+      find cart-adders who don't buy. The system gives you exactly what you ask
+      for.</p>
+      <p class="signal"><strong>Good:</strong> Purchase.
+      <strong class="bad">Bad:</strong> InitiateCheckout, AddToCart, ViewContent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ § 3 — CREATIVE ════════════════ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">§ 3 — Creative &amp; placement</div>
+    <div class="section-title">This is the #1 lever in 2026. Not targeting. Creative.</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">06</span>
+      <span class="item-t">Separate 9:16 and 1:1 creatives — never one file in all placements.</span>
+    </div>
+    <div class="item-body">
+      <p>Vertical video shoved into Feed gets heads cropped. Square video
+      shoved into Stories/Reels cuts text and looks cheap. Meta's "auto-crop"
+      routinely centres the wrong thing.</p>
+      <p class="signal"><strong>Good:</strong> dedicated 9:16 file for
+      Stories/Reels, dedicated 1:1 or 4:5 for Feed/Marketplace — each in its
+      own ad set with <strong>placement controls locked to its format</strong>.
+      <strong class="bad">Bad:</strong> one file, all placements, "let Meta
+      auto-crop it."</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">07</span>
+      <span class="item-t">All Advantage+ Creative enhancements OFF (except "Relevant comments").</span>
+    </div>
+    <div class="item-body">
+      <p>Meta can rewrite your copy, crop your video unpredictably, swap your
+      CTA, even drop stock music over your ad. There is no upside for a brand
+      you actually care about.</p>
+      <p class="signal"><strong>Good:</strong> every enhancement toggle off.
+      <strong class="bad">Bad:</strong> anything at default — and default is
+      <em>on</em> for most of them.</p>
+      <div class="note">
+        <strong>Specifically toggle off:</strong> Video touch-ups · Text improvements ·
+        Visual touch-ups · Show summaries · Enhance CTA · Add video effects ·
+        Optimize Website Destination · Browser add-ons. <strong>Keep on:</strong>
+        Relevant comments only.
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">08</span>
+      <span class="item-t">Catalog / Advantage+ Shopping campaign running and funded.</span>
+    </div>
+    <div class="item-body">
+      <p>For ecommerce, catalog ads are systematically cheaper per acquisition
+      than static or video — Meta picks the right product per viewer. They
+      should be ~30–50% of monthly Meta spend, not zero. And: catalog-ad clicks
+      must land on the <strong>product page</strong>, not the homepage.
+      Otherwise half the click bounces hunting for what they saw.</p>
+      <p class="signal"><strong>Good:</strong> catalog sales campaign live,
+      well-funded, deep-linked to PDPs. <strong class="bad">Bad:</strong> no
+      catalog at all, or catalog ads pointing at the homepage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ § 4 — AUDIENCE ════════════════ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">§ 4 — Audience</div>
+    <div class="section-title">Where money is quietly wasted.</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">09</span>
+      <span class="item-t">Age range tightened to your real ICP.</span>
+    </div>
+    <div class="item-body">
+      <p>Default 18-65+ is a trap. 55+ users have some of the highest
+      click-through rates on Meta because they click everything — but they
+      don't buy. Open Breakdowns → Age and look at cost-per-purchase per
+      bracket.</p>
+      <p class="signal"><strong>Good:</strong> &lt;10% of monthly spend on 55+
+      unless 55+ is your actual ICP. <strong class="bad">Bad:</strong> 40% of
+      spend on 55+, one purchase, €200+ CPA.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">10</span>
+      <span class="item-t">Retargeting custom audiences are live and funded.</span>
+    </div>
+    <div class="item-body">
+      <p>Site visitors, cart abandoners, past purchasers should see different
+      messaging at lower CPA. If 100% of your budget is cold prospecting,
+      you're skipping the cheapest conversions in the funnel.</p>
+      <p class="signal"><strong>Good:</strong> 5–15% of monthly budget on warm
+      retargeting, with creative tailored to the audience stage.
+      <strong class="bad">Bad:</strong> 100% prospecting; no retargeting
+      audiences at all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ § 5 — NUMBERS + CLOSING ════════════════ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">§ 5 — Numbers</div>
+    <div class="section-title">The honest part.</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">11</span>
+      <span class="item-t">Your reported ROAS reconciles with Shopify revenue.</span>
+    </div>
+    <div class="item-body">
+      <p>Post-iOS14, Meta-reported ROAS is inflated by attribution overlap and
+      platform self-reporting. What actually matters is <strong>blended
+      ROAS</strong>: total revenue ÷ total ad spend, across all channels. Take
+      last month's Shopify revenue, divide by your total Meta + Google spend.
+      The agency's number should be in the same ballpark — not 2× it.</p>
+      <p class="signal"><strong>Good:</strong> the agency reports both
+      Meta-attributed and blended, and reconciles to your bank.
+      <strong class="bad">Bad:</strong> the only number you ever see is "Meta
+      dashboard says 4×."</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-head">
+      <span class="item-n">12</span>
+      <span class="item-t">You know your target ROAS — derived from unit economics, not vibes.</span>
+    </div>
+    <div class="item-body">
+      <p>Your minimum viable ROAS = <strong>1 ÷ gross-margin %</strong>,
+      adjusted for the payback window your business can afford. Below it,
+      every "sale" loses money.</p>
+      <p class="signal"><strong>Good:</strong> you can name your number, and
+      you know what changes it (margin, AOV, return rate, payback window).
+      <strong class="bad">Bad:</strong> "we aim for 4 because it sounds healthy."</p>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="closing-num">If 4 or more are red flags…</div>
+    <h3>You're not paying for media. You're paying for inefficiency.</h3>
+    <p>
+      The fix isn't more spend — it's the layer underneath. Want a second pair
+      of eyes? We'll run this same audit on your account, in writing, and tell
+      you straight what we'd change.
+    </p>
+    <div class="cta-row">
+      <a class="cta-btn" href="https://sncads.com/contact">Request an audit →</a>
+      <span class="cta-url">sncads.com/contact</span>
+    </div>
+
+    <div class="colophon">
+      <strong>SNC Advertising</strong> — senior-led Meta paid media for
+      ecommerce brands in Central &amp; Western Europe. One channel, run
+      deeply. Written-first reporting, no agency theatre. Founded 2026, Riga /
+      EU. &nbsp;·&nbsp; The 12 checks above are drawn from the actual audit
+      protocol used on live client accounts. Nothing on this list is
+      hypothetical.
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

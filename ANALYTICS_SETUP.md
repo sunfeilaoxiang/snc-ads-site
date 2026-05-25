@@ -1,106 +1,74 @@
-# Analytics & Pixel Setup — SNC Advertising
+# Analytics setup — SNC Advertising site
 
-Step-by-step for DS to obtain the two IDs needed to instrument the site.
-Once you have them, send both to Claude — installation into the code is ~10 minutes.
+**Status (2026-05-23) — ✅ INSTALLED (consent-gated)**
+- **GA4 `G-C480L71EX6`** + **Meta Pixel `1857063391638735`** are installed in
+  `src/layouts/Base.astro`, loaded **only after** the visitor accepts the GDPR
+  consent banner. `Lead` / `generate_lead` conversion events fire on a successful
+  contact-form submit. Verified live: nothing tracks before consent; both tags
+  load on Accept; banner is locale-aware (RU/EN).
+- **CAPI** (server-side conversions) still pending — needs a backend, waits for
+  the move off GitHub Pages (TASKS.md D2.d).
+- **To verify in Meta:** open the live site, click **Accept** on the banner, then
+  check Events Manager → Test Events. The Pixel only fires after consent, so you
+  must Accept first.
+- **GA4 data-stream URL:** ✅ updated to `https://sunfeilaoxiang.github.io/snc-ads-site/`
+  (2026-05-23). Realtime confirmed receiving events.
 
-**What you need to end up with:**
-1. A **GA4 Measurement ID** — looks like `G-XXXXXXXXXX`
-2. A **Meta Pixel ID** — a 15–16-digit number, e.g. `1145573963482550`
-
-**Skip GTM.** For a code-managed site (Claude edits the files), Google Tag Manager
-adds an indirection layer with no benefit. GA4 + Meta Pixel go in as direct
-snippets. If a non-technical teammate ever needs to manage tags without code, add
-GTM then — not now.
-
----
-
-## PART 1 — Google Analytics 4 (GA4)
-
-**Goal:** a Measurement ID `G-XXXXXXXXXX`.
-
-1. Go to **analytics.google.com**. Sign in with the Google account you want to own
-   SNC's analytics (ideally a dedicated SNC Google account, not a personal one).
-2. If it's a fresh account you'll see "Start measuring". Otherwise: click the
-   **gear icon (Admin)**, bottom-left → **+ Create** → **Account**.
-3. **Account setup:**
-   - Account name: `SNC Advertising`
-   - Leave the data-sharing checkboxes at defaults → **Next**.
-4. **Property setup:**
-   - Property name: `SNC Advertising Website`
-   - Reporting time zone: your zone (e.g. Latvia / GMT+2)
-   - Currency: **EUR** → **Next**.
-5. **Business details:** industry category → "Jobs & Education" isn't it — pick
-   **"Business & Industrial Markets"** or **"Online Communities"**, whichever fits;
-   it's not critical. Business size: smallest. → **Next**.
-6. **Business objectives:** tick **"Generate leads"** and **"Examine user
-   behaviour"** → **Create** → accept the GA4 Terms of Service.
-7. **Set up a data stream:** choose **Web**.
-   - Website URL: `https://sunfeilaoxiang.github.io/snc-media-site/`
-   - Stream name: `SNC Website`
-   - Leave **Enhanced measurement ON** (it auto-tracks scrolls, outbound clicks,
-     form interactions — useful, free).
-   - Click **Create stream**.
-8. The stream detail page now shows your **Measurement ID** at the top right:
-   **`G-XXXXXXXXXX`**. ← **This is what Claude needs.**
-
-You do NOT need to copy the "Google tag" install snippet — Claude writes that into
-the code from the ID.
+Live site (new URL after the 2026-05-23 rename):
+**https://sunfeilaoxiang.github.io/snc-ads-site/**
 
 ---
 
-## PART 2 — Meta Pixel
+## 1. GA4 (Google Analytics 4) — you already have the ID
 
-**Goal:** a Pixel ID (15–16-digit number).
+`G-C480L71EX6` is ready to install. Two notes:
+- A GA4 tag tracks whatever page it's placed on, so it works on the new URL.
+- Its **data stream was registered against the OLD `/snc-media-site/` URL**. The
+  tag still tracks fine, but to keep reporting clean, update the stream URL:
+  → analytics.google.com → **Admin** (gear, bottom-left) → **Data streams** →
+  click the "SNC Website" stream → edit **Stream URL** →
+  `https://sunfeilaoxiang.github.io/snc-ads-site/`
 
-1. Go to **business.facebook.com**. Sign in with the Facebook account that should
-   administer SNC's ad/tracking assets.
-2. **Business Portfolio:** if SNC already has a Business Portfolio (Business
-   Manager), use it. If not, create one:
-   - business.facebook.com → **Create a business portfolio** → business name
-     `SNC Advertising`, your name, a business email → finish.
-   - ⚠ Use **SNC's own** portfolio — never a client's, never personal assets.
-3. Open **Events Manager**: go to **business.facebook.com/events_manager**.
-4. Click **Connect data sources** (or the **+** ) → choose **Web** → **Connect**.
-5. **Name the dataset:** `SNC Advertising Website`. (Meta now calls a Pixel a "dataset" —
-   same thing.) Enter the website URL `https://sunfeilaoxiang.github.io/snc-media-site/`
-   → **Create**.
-6. When asked how to set it up, choose **"Install code manually"** /
-   **"Do it yourself"**. Meta shows the base pixel code. You only need the number:
-   it appears as the **Dataset / Pixel ID** at the top, and inside the code as
-   `fbq('init', 'XXXXXXXXXXXXXXX')`. ← **That number is what Claude needs.**
-7. Skip "Conversions API" for now — it needs a server; the site is static on
-   GitHub Pages. (Revisit when the site moves to a real domain + Vercel.)
+**If you ever need a fresh Measurement ID:**
+1. analytics.google.com → **Admin** → (create a Property if needed) →
+   **Data streams** → **Add stream** → **Web**
+2. Enter the site URL, name it, **Create stream**
+3. The **Measurement ID** (`G-XXXXXXXXXX`) is at the top-right of the stream details.
+
+## 2. Meta Pixel (now called a "Dataset" in Events Manager) — needs creating
+
+1. Go to **business.facebook.com/events_manager** (log in with the Facebook
+   account that has access to your ad account).
+2. Top-left: pick the right **Business Portfolio**. Ideally the **agency's
+   Business Manager** — check with **Nikita** first, since he runs Meta delivery
+   and the Conversions API / events should live in his BM. (If SNC has no
+   Business Manager yet, create one at business.facebook.com — that's a
+   prerequisite.)
+3. Click **Connect data sources** (or the **+ / Add**). Choose **Web** → **Connect**.
+4. Name it **SNC Advertising Website**. Enter URL
+   `https://sunfeilaoxiang.github.io/snc-ads-site/`.
+5. When it asks how to install the code — choose **"Install code manually"** (or
+   just close the wizard). **You don't paste anything** — Claude wires the code.
+6. The **Dataset / Pixel ID** is the **15–16-digit number** at the top of the
+   dataset (e.g. `1234567890123456`). Copy it → send it to Claude.
+
+> Conversions API (CAPI) is a later step — it needs a server, so it waits until
+> the site moves off GitHub Pages (D2.d). The browser-side Pixel alone tracks
+> page views, leads, and purchases for now.
+
+## 3. One decision before install — GDPR consent
+
+EU traffic + GA4/Pixel both set cookies. Pick one:
+- **Minimal consent banner** — tags fire only after the visitor clicks "Accept."
+  Recommended for EU compliance.
+- **Ship without** for now, add a banner later.
+
+Tell Claude which; the banner is a small addition to `Base.astro`.
 
 ---
 
-## Important notes
-
-### Domain verification — defer it
-Meta will suggest "verify your domain." You **cannot** verify `github.io` — it's
-not your domain. The Pixel still fires PageView and standard events fine without
-verification. Do domain verification later, once SNC has its own custom domain.
-Same applies to GA4 — it works on the github.io subpath with no extra step.
-
-### GDPR / cookie consent — a real gap to close
-The site targets EU founders. Running GA4 + Meta Pixel on EU visitors **without a
-cookie-consent banner is not GDPR-compliant.** Options when Claude installs the
-pixels:
-- **(Recommended)** Add a lightweight consent banner — pixels load only after
-  consent. Claude can build a minimal on-brand one (~1 hour).
-- Or use Google Consent Mode v2 + Meta limited-data-use (more setup, partial data).
-Flag your preference. Do not ship pixels to an EU audience with no banner.
-
-### What to send Claude
-Once you have both:
-```
-GA4 Measurement ID:  G-XXXXXXXXXX
-Meta Pixel ID:       XXXXXXXXXXXXXXX
-```
-Claude installs them into `src/layouts/Base.astro` (the analytics slots already
-exist there), builds, and deploys. ~10 minutes.
-
-### Why this matters for SNC specifically
-SNC is a Meta-ads agency. Its own site currently has **no Meta Pixel** — while
-competitor 94n pixels its own site three ways. An ads agency that doesn't
-instrument its own funnel fails its own pitch. This closes that gap, and the Pixel
-also lets SNC retarget the warm leads who visit the site.
+## Parked notes (unrelated to analytics — moved here so they're not lost)
+- **Nikita:** dislikes the contact-form dropdowns at `/contact/` — wants them
+  more minimalistic. (Now tracked as TASKS.md **D3.j**.)
+- **"Prepare FMS case"** — relates to Case Study #1 (TASKS.md **C2 / D3.f**),
+  using the delivered audit report as raw material.
