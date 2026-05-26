@@ -1,0 +1,77 @@
+---
+/**
+ * 404 — Page not found.
+ * Vercel + Astro static will serve this for any URL that doesn't match a route.
+ * Russian by default (matches site default locale); doesn't try to detect
+ * locale because we don't know what the user was looking for.
+ */
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/links';
+---
+
+<Base
+  title="404 — страница не найдена | SNC Advertising"
+  description="Такой страницы нет. Возможно, ссылка устарела."
+>
+  <section class="nf">
+    <div class="nf-inner">
+      <div class="nf-label">404</div>
+      <h1 class="nf-h1">Страница<br />не найдена.</h1>
+      <p class="nf-lede">
+        Возможно, ссылка устарела или адрес введён неверно. Главная и аудит —
+        ниже. Если думаете, что это наша ошибка — напишите в Telegram, поправим.
+      </p>
+      <div class="nf-cta">
+        <a class="btn btn-on-green" href={url('/')}>На главную</a>
+        <a class="nf-link tlink" href={url('/contact')}>Получить аудит &rarr;</a>
+      </div>
+      <div class="nf-other">
+        <a class="nf-other-link tlink" href={url('/services')}>Услуги</a>
+        <a class="nf-other-link tlink" href={url('/approach')}>Подход</a>
+        <a class="nf-other-link tlink" href={url('/cases')}>Кейсы</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    background: var(--green);
+    min-height: calc(100vh - 56px);
+    display: flex; align-items: center;
+    padding: 64px var(--pad-x);
+  }
+  .nf-inner { max-width: 680px; }
+  .nf-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .nf-h1 {
+    margin-top: 18px;
+    font-size: clamp(36px, 6vw, 72px); font-weight: 600;
+    line-height: 1.05; letter-spacing: 0.01em;
+  }
+  .nf-lede {
+    margin-top: 24px; max-width: 540px;
+    font-size: 15px; line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .nf-cta {
+    margin-top: 36px;
+    display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+  }
+  .nf-link { font-size: 12px; color: rgba(255, 255, 255, 0.85); }
+  .nf-link:hover { color: var(--white); }
+  .nf-other {
+    margin-top: 48px;
+    display: flex; gap: 22px; flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .nf-other-link {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .nf-other-link:hover { color: var(--white); }
+</style>

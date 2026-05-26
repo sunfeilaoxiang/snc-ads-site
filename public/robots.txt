@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Don't crawl the server-side API endpoint or the post-submit landing.
+Disallow: /api/
+Disallow: /thank-you/
+Disallow: /en/thank-you/
+
+Sitemap: https://sncads.com/sitemap-index.xml
