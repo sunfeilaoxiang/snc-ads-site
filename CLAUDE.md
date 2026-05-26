@@ -5,31 +5,34 @@ Project context for any future Claude session working on the SNC Advertising web
 ## What this is
 
 The SNC Advertising marketing website, built as a **code project** — Astro, plain CSS,
-**bilingual (RU + EN), live on GitHub Pages**. **Not Tilda.** (Tilda was evaluated
-and dropped: its API is read-only, you cannot deploy code to it.)
+**bilingual (RU + EN), live on Vercel at sncads.com**. **Not Tilda.** (Tilda was
+evaluated and dropped: its API is read-only, you cannot deploy code to it.)
 
-- **Live:** https://sunfeilaoxiang.github.io/snc-ads-site/ (RU) and `/en/` (EN)
+- **Live:** https://sncads.com/ (RU) and `/en/` (EN). `www.sncads.com` 308 → apex.
 - **Repo:** github.com/sunfeilaoxiang/snc-ads-site (public, account `sunfeilaoxiang`)
-- **Deploy:** GitHub Actions workflow (`.github/workflows/deploy.yml`) auto-builds
-  and deploys on every push to `main`. Astro action; ~1 min.
+- **Hosting:** Vercel (scope `sunfeilaoxiang's projects`, Hobby plan as of 2026-05-25).
+- **Deploy:** Vercel auto-deploys on every push to `main` (~45-60s). The old
+  `.github/workflows/deploy.yml` for GitHub Pages was removed 2026-05-25.
 
 > **Naming:** the brand is **SNC Advertising** (formal) / **SNC Ads** (short form,
 > e.g. Calendly handle `dmitrijs-sncads`). Renamed from "SNC Media" on 2026-05-20.
-> **Repo + live URL renamed to `snc-ads-site` on 2026-05-23** — base path is now
-> `/snc-ads-site` (live at `sunfeilaoxiang.github.io/snc-ads-site/`). The **local
-> folder is still `snc-media-site`** — kept deliberately to avoid breaking the many
-> doc/path references; it's cosmetic and does not affect the deploy. A real custom
-> domain (`sncad.com`) will replace the github.io path later. **Never write
-> "SNC Media" in copy or new files.**
+> Repo renamed `snc-media-site` → `snc-ads-site` on 2026-05-23; custom domain
+> `sncads.com` cut over to Vercel on 2026-05-25 (GitHub Pages sunset). The **local
+> folder is still `snc-media-site`** — kept deliberately to avoid breaking the
+> many doc/path references; it's cosmetic and does not affect the deploy.
+> **Never write "SNC Media" in copy or new files.**
 
 ## Stack
 
-- **Astro 5** — static site generator. Zero JS shipped by default.
+- **Astro 5** with `output: 'static'`. All pages pre-render at build time; one
+  serverless function (`/api/meta-capi`) ships via `@astrojs/vercel` adapter by
+  exporting `prerender = false`. Zero client JS shipped by default.
 - **Plain CSS** — no Tailwind. Design system in `src/styles/global.css` mirrors the
   brand book directly.
 - **IBM Plex Mono** — the only typeface, loaded from Google Fonts in `Base.astro`.
 - **Astro i18n** — RU at `/`, EN at `/en/` (`prefixDefaultLocale: false`).
-- **GitHub Pages** — hosting. `base: '/snc-ads-site'` in `astro.config.mjs`.
+- **Vercel** — hosting at `sncads.com` (root, no base path). Env vars
+  `META_PIXEL_ID` and `META_CAPI_TOKEN` configured in project settings.
 
 ## Structure
 
@@ -46,11 +49,13 @@ src/
   pages/
     index.astro services.astro approach.astro cases.astro contact.astro   — RU
     en/index.astro en/services.astro en/approach.astro en/cases.astro en/contact.astro — EN
-public/favicon.svg
+    thank-you.astro en/thank-you.astro          — post-form-submit; fires Lead pixel + CAPI
+    api/meta-capi.ts                            — server-side CAPI mirror (Vercel function)
+public/favicon.svg  og-default.png
 pages/                       OLD Tilda build specs — kept ONLY as copy reference
 brand.md  sitemap.md          brand context + page plan
 WEBSITE_VERDICT.md / .html    senior UX verdict (2026-05-18)
-ANALYTICS_SETUP.md            DS-facing guide: how to get GA4 + Meta Pixel IDs
+ANALYTICS_SETUP.md            installation history for GA4 + Meta Pixel + CAPI
 lead-magnet/
   meta-self-audit-en.md           Content (12-item Meta Self-Audit, EN)
   meta-self-audit-en.html         Printable A4 designed HTML (Ctrl+P → PDF)
@@ -91,51 +96,49 @@ lead-magnet/
 - **Tone:** ascetic, short sentences, numbers over adjectives, no exclamation
   marks, no emojis, no marketing jargon.
 
-## Status (2026-05-20)
+## Status (2026-05-26)
 
-**Done since the 2026-05-18 verdict:**
-- ✅ Rebrand SNC Media → SNC Advertising across the site + all PCFO docs
-  (47 files, 129 replacements; logo sub-word now "Advertising"; placeholder
-  email `hello@snc-ads.com`).
-- ✅ Contact form wired with Web3Forms key `acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7`
-  in BOTH `src/pages/contact.astro` and `src/pages/en/contact.astro`.
-  Submissions land at the email registered with Web3Forms.
-- ✅ Calendly inline widget embedded on both contact pages —
-  `calendly.com/dmitrijs-sncads/30min`, themed to brand green via URL params.
-- ✅ Lead magnet **content** drafted: "The Meta Self-Audit" — 12 items in 5
-  sections, synthesised from Nikita's actual audit of Feel My Skin. See
-  `lead-magnet/`. Designed printable HTML ships immediately via Ctrl+P → PDF;
-  a Claude Design brief is also written for a polished v2.
+**Infrastructure — done:**
+- ✅ Rebrand SNC Media → SNC Advertising (47 files, 129 replacements in the May 20 pass).
+- ✅ Web3Forms contact form (key `acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7`, both locales).
+- ✅ Calendly inline widget on both contact pages — `calendly.com/dmitrijs-sncads/30min`.
+- ✅ GA4 `G-C480L71EX6` + Meta Pixel `1857063391638735` live in `Base.astro`,
+  consent-gated via a small GDPR banner. Lead/`generate_lead` events fire on
+  `/thank-you/`. GA4 data-stream URL updated to `https://sncads.com/`.
+- ✅ `og-default.png` shipped in `public/` (1200×630 brand-green wordmark).
+- ✅ Vercel cutover 2026-05-25 — repo imported, custom domain `sncads.com`
+  configured (apex A record + `www` CNAME at GoDaddy → Vercel), SSL auto-issued.
+- ✅ Meta Conversions API live — `/api/meta-capi` POSTs `Lead` to Graph API
+  mirroring the browser Pixel (shared `event_id` → Meta dedupes). Round-trip
+  smoke-tested via curl; one synthetic event accepted.
+- ✅ `sncads.com` added to Meta Events Manager traffic allow list.
 
-**Still open — needs DS / founder input (not design work):**
-1. **GA4 + Meta Pixel IDs** — DS to follow `ANALYTICS_SETUP.md` to create
-   accounts and send Claude the two IDs. Slots are ready in `Base.astro`.
-   GDPR-consent banner decision pending alongside install.
-2. **Lead magnet — publish step.** Content is done. Still to do: Nikita signs
-   off on the 12 items; PDF saved to `public/downloads/`; build the
-   `/audit-checklist` landing page with email-capture form (uses Web3Forms);
-   add homepage CTA strip; translate to RU.
-3. **No case studies.** `/cases` is methodology-only. Highest-impact gap. Needs
+**Still open (non-infrastructure):**
+1. **Lead magnet — publish step.** Content done. Still to do: Nikita signs off
+   on the 12 items; PDF saved to `public/downloads/`; build `/audit-checklist`
+   landing page with email-capture form (uses Web3Forms); add homepage CTA strip;
+   translate to RU.
+2. **No case studies.** `/cases` is methodology-only. Highest-impact gap. Needs
    1–2 anonymized cases from Nikita's prior work (real numbers, anonymized).
-4. **Founder section** — monogram letters (Н/Г, N/G), not photos. Needs real
+3. **Founder section** — monogram letters (Н/Г, N/G), not photos. Needs real
    photos + named credentials.
-5. **Test the wired form** — DS to submit once and confirm the email arrives.
-6. Real domain — still on the `github.io` subpath.
-7. `og-default.png` — referenced but does not exist yet.
-
-**Verdict (still 2026-05-18 baseline; not re-rated):** design 8/10,
-conversion-readiness was 5/10 — moving up as items 1, 2, 5 ship.
-The site is finished as design; the remaining work is content/proof + analytics
-plumbing, not design.
+4. **End-to-end dedup verify** — incognito submit → confirm `Test Events` shows
+   one event with Browser + Server source and the deduplicated badge.
+5. **Phase 5b — email-hash match quality** — server-side hash user email/phone
+   from the contact form for better CAPI attribution. Currently uses IP + UA +
+   `_fbc`/`_fbp` cookies only.
+6. **Titan email DNS** — MX/SPF/DKIM/DMARC at GoDaddy. The mailbox already
+   receives mail at `dmitrijs@sncads.com`; outbound deliverability is the gap.
 
 ## Analytics & ads
 
-Pixels are NOT a platform feature — they're snippets that go in `Base.astro`'s
-marked head/body slots: GA4, Meta Pixel + CAPI, TikTok Pixel, Yandex Metrica.
-Empty until DS provides IDs (see `ANALYTICS_SETUP.md`). The inquiry form posts
-to **Web3Forms** (static-site form backend — works on GitHub Pages, no server).
-When the site moves to a real domain/Vercel, the form can be swapped for a
-serverless function → Telegram.
+Pixels are direct snippets in `Base.astro` (no GTM): GA4 + Meta Pixel both load
+**only after the visitor accepts the GDPR consent banner**. The contact form
+posts to **Web3Forms** (third-party form backend; submissions arrive at the
+registered email). On a successful submit the user redirects to `/thank-you/`,
+which fires `fbq('track', 'Lead', {}, {eventID})` and `gtag('event',
+'generate_lead')`, then POSTs to `/api/meta-capi` with the same `event_id` for
+server-side mirroring. Meta dedupes within a few minutes via the shared id.
 
 ## Funnel infrastructure already wired
 
@@ -143,4 +146,4 @@ serverless function → Telegram.
   BOTH files if you change it.
 - **Booking:** Calendly inline embed, `calendly.com/dmitrijs-sncads/30min`.
 - **Lead magnet:** content + designed HTML ready in `lead-magnet/`.
-- **Analytics:** slots ready in `Base.astro`, IDs pending.
+- **Analytics:** GA4 + Meta Pixel + CAPI all live, consent-gated.

@@ -11,11 +11,11 @@
 - **To verify in Meta:** open the live site, click **Accept** on the banner, then
   check Events Manager → Test Events. The Pixel only fires after consent, so you
   must Accept first.
-- **GA4 data-stream URL:** ✅ updated to `https://sunfeilaoxiang.github.io/snc-ads-site/`
+- **GA4 data-stream URL:** ✅ updated to `https://sncads.com/`
   (2026-05-23). Realtime confirmed receiving events.
 
 Live site (new URL after the 2026-05-23 rename):
-**https://sunfeilaoxiang.github.io/snc-ads-site/**
+**https://sncads.com/**
 
 ---
 
@@ -27,7 +27,7 @@ Live site (new URL after the 2026-05-23 rename):
   tag still tracks fine, but to keep reporting clean, update the stream URL:
   → analytics.google.com → **Admin** (gear, bottom-left) → **Data streams** →
   click the "SNC Website" stream → edit **Stream URL** →
-  `https://sunfeilaoxiang.github.io/snc-ads-site/`
+  `https://sncads.com/`
 
 **If you ever need a fresh Measurement ID:**
 1. analytics.google.com → **Admin** → (create a Property if needed) →
@@ -46,7 +46,7 @@ Live site (new URL after the 2026-05-23 rename):
    prerequisite.)
 3. Click **Connect data sources** (or the **+ / Add**). Choose **Web** → **Connect**.
 4. Name it **SNC Advertising Website**. Enter URL
-   `https://sunfeilaoxiang.github.io/snc-ads-site/`.
+   `https://sncads.com/`.
 5. When it asks how to install the code — choose **"Install code manually"** (or
    just close the wizard). **You don't paste anything** — Claude wires the code.
 6. The **Dataset / Pixel ID** is the **15–16-digit number** at the top of the

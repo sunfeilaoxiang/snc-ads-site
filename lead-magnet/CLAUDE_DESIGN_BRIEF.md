@@ -71,7 +71,7 @@ signals. Never on body text.
 The visual identity is documented in the brand book at
 `outputs_design/snc-brand-book.html` and the logo system at
 `outputs_design/snc-logo-book.html`. If conflicts arise, the website at
-`https://sunfeilaoxiang.github.io/snc-media-site/` is the canonical
+`https://sncads.com/` is the canonical
 implementation — match its discipline.
 
 ---
@@ -176,7 +176,7 @@ Body:
 
 CTA:
 > **[Request an audit →]** (green button, white text, no radius)
-> `sunfeilaoxiang.github.io/snc-media-site/contact`
+> `sncads.com/contact`
 
 ### Colophon (tiny, page-bottom of last page)
 
