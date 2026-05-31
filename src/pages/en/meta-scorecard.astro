@@ -1,0 +1,111 @@
+---
+/**
+ * Meta Account Scorecard — EN.
+ *
+ * Native English adaptation of the RU canonical (src/pages/meta-scorecard.astro).
+ * Same structure; thin wrapper around the MetaScorecard island with locale="en".
+ */
+import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
+import MetaScorecard from '../../components/MetaScorecard.tsx';
+
+const faq = [
+  {
+    q: 'What does this scorecard show?',
+    a: 'The twelve checks we run before taking on a Meta ad account: tracking, structure, creative, audience, and numbers. You get a 0–100 score, a per-layer breakdown, and a list of your own red flags — each with one concrete fix.',
+  },
+  {
+    q: 'How is the score calculated?',
+    a: 'Each of the 12 questions scores 0, 1, or 2 points. The sum is mapped to a 0–100 scale. Four or more "no / don\'t know" answers automatically drop you into the lowest band, even if the points say otherwise.',
+  },
+  {
+    q: 'Do I have to give my email?',
+    a: 'No. The result shows instantly, no signup. You can leave your email if you want the full 12-item checklist sent over.',
+  },
+  {
+    q: 'Is this the audit?',
+    a: 'No. This is a fast self-check. The full audit is done by hand, in writing, for accounts that are a fit — and it starts with a short call.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base
+  title="Score your Meta account — SNC Advertising"
+  description="The 12 checks we run before taking on an account. Answer honestly — get a 0–100 score, a per-layer breakdown, and a list of your own red flags. No signup."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Tool</div>
+    <h1 class="page-hero-h1">Score your<br />Meta account.</h1>
+    <p class="page-hero-lede">
+      The 12 checks we run before taking on an account. Answer honestly — the
+      point is not to max the score, it is to see which questions you can not
+      answer. That is where the money is.
+    </p>
+  </section>
+
+  <MetaScorecard
+    client:visible
+    locale="en"
+    contactHref={localizedUrl('/contact', 'en')}
+    crossHref={localizedUrl('/roas-calculator', 'en')}
+  />
+
+  <!-- Method + FAQ — for classic SEO and AI-answer citation -->
+  <section class="section section-warm">
+    <div class="sec-label">How it is scored</div>
+    <p class="lede muted-light" style="margin-top:16px;max-width:640px;">
+      Twelve questions across five layers: tracking, structure, creative,
+      audience, and numbers. Each answer is worth 0, 1, or 2 points
+      ("no / don't know", "partly", "yes"). The sum maps to a 0–100 scale.
+    </p>
+    <p class="lede muted-light" style="margin-top:16px;max-width:640px;">
+      Red flags are counted separately — the questions you answered "no / don't
+      know". Four or more red flags drop the account into the lowest band
+      regardless of the final score: even with a clean structure, a few gaps in
+      tracking or numbers mean the budget is running blind.
+    </p>
+    <p class="lede muted-light" style="margin-top:16px;max-width:640px;">
+      Not sure of the target ROAS from the last two questions — work it out in
+      the <a href={localizedUrl('/roas-calculator', 'en')} class="inline-link">ROAS calculator</a>.
+    </p>
+  </section>
+
+  <section class="section section-light">
+    <div class="sec-label">Frequently asked</div>
+    <div class="faq">
+      {faq.map((f) => (
+        <div class="faq-item">
+          <h3 class="faq-q">{f.q}</h3>
+          <p class="faq-a muted-light">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+</Base>
+
+<style>
+  .inline-link {
+    color: var(--green);
+    border-bottom: 1px solid var(--green);
+  }
+  .faq { margin-top: 28px; max-width: 720px; }
+  .faq-item {
+    padding: 22px 0;
+    border-top: 1px solid var(--dim-light);
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--dim-light); }
+  .faq-q { font-size: 15px; font-weight: 600; color: var(--green); }
+  .faq-a { margin-top: 10px; font-size: 14px; line-height: 1.75; }
+</style>

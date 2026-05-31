@@ -1,0 +1,108 @@
+---
+/**
+ * Tools index — EN. Native adaptation of src/pages/tools.astro.
+ */
+import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
+
+const tools = [
+  {
+    n: '01',
+    name: 'True ROAS Calculator',
+    desc: 'Meta reports one ROAS. After COGS, shipping, returns, and fees, the real one is different. Work out your break-even ROAS and the real profit your ads make — in a minute.',
+    href: localizedUrl('/roas-calculator', 'en'),
+    cta: 'Open the calculator →',
+  },
+  {
+    n: '02',
+    name: 'Meta Account Scorecard',
+    desc: 'The 12 checks we run before taking on an account. Answer honestly — get a 0–100 score, a per-layer breakdown, and a list of your own red flags.',
+    href: localizedUrl('/meta-scorecard', 'en'),
+    cta: 'Take the scorecard →',
+  },
+];
+---
+
+<Base
+  title="Tools — SNC Advertising"
+  description="Free tools for ecommerce owners: a True ROAS Calculator and a Meta Account Scorecard. No signup, instant results."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Tools</div>
+    <h1 class="page-hero-h1">Free tools.</h1>
+    <p class="page-hero-lede">
+      Two fast checks for ecommerce owners. No signup, results on the spot. If
+      you want it, we audit the account by hand.
+    </p>
+  </section>
+
+  <section class="section section-dark">
+    <div class="tools-grid">
+      {
+        tools.map((t) => (
+          <a class="tool-card" href={t.href}>
+            <span class="tool-n">{t.n}</span>
+            <h2 class="tool-name">{t.name}</h2>
+            <p class="tool-desc">{t.desc}</p>
+            <span class="tool-cta">{t.cta}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tools-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border: 1px solid var(--dim);
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .tool-card:hover {
+    border-color: var(--sage);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .tool-n {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--sage);
+  }
+  .tool-name {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--white);
+  }
+  .tool-desc {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    flex: 1;
+  }
+  .tool-cta {
+    margin-top: 22px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  @media (max-width: 640px) {
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

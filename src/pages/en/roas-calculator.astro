@@ -1,0 +1,110 @@
+---
+/**
+ * True ROAS Calculator — Tool 1 (EN adaptation).
+ *
+ * Mirrors src/pages/roas-calculator.astro. EN is a native adaptation, not a
+ * literal translation. Keep both in sync. Imports resolve from /en/ depth.
+ */
+import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
+import RoasCalculator from '../../components/RoasCalculator.tsx';
+
+const faqs = [
+  {
+    q: 'How is true ROAS different from the ROAS Meta reports?',
+    a: 'Meta shows conversion revenue divided by spend — before COGS, shipping, returns, and fees. True contribution ROAS is what is left after all of those come out. The dashboard can show 2.8× while the real cushion sits near one.',
+  },
+  {
+    q: 'What counts as a breakeven ROAS?',
+    a: 'Breakeven ROAS is roughly one divided by your effective contribution margin. If 39% of revenue survives COGS, shipping, returns, and fees, breakeven lands near 2.6×. Below that, every euro of spend loses money.',
+  },
+  {
+    q: 'How are returns handled?',
+    a: 'A returned order is treated as zero contribution: the product came back, but you already paid shipping and fees on it. So the return rate cuts your effective contribution margin harder than it first appears.',
+  },
+  {
+    q: 'What is included, and what is not?',
+    a: 'The calculation shows contribution before fixed costs: rent, salaries, subscriptions. It is the same back-of-envelope we run before taking on an account. A full profit picture also needs your fixed costs.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base
+  title="True ROAS Calculator — SNC Advertising"
+  description="Meta reports one ROAS. After COGS, shipping, returns, and fees, another one is left. Find your breakeven ROAS and the real profit your ads make."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Tool</div>
+    <h1 class="page-hero-h1">True ROAS Calculator.</h1>
+    <p class="page-hero-lede">
+      Meta reports one ROAS. After COGS, shipping, returns, and fees, another
+      one is left. Work out the ROAS where you break even — and whether the ads
+      actually make money.
+    </p>
+  </section>
+
+  <RoasCalculator
+    client:visible
+    locale="en"
+    contactHref={localizedUrl('/contact', 'en')}
+    crossHref={localizedUrl('/meta-scorecard', 'en')}
+  />
+
+  <!-- How it is calculated -->
+  <section class="section section-warm">
+    <div class="sec-label">How it is calculated</div>
+    <p class="lede muted-light" style="margin-top:16px;max-width:680px;">
+      The ROAS in the Meta dashboard is conversion revenue divided by spend. It
+      knows nothing about your cost of goods. To see whether you make money, you
+      walk from revenue down to contribution: subtract COGS, shipping per order,
+      and fees, then take the haircut for returns.
+    </p>
+    <p class="lede muted-light" style="margin-top:16px;max-width:680px;">
+      That gives the effective contribution margin. One divided by it is the
+      breakeven ROAS — the line below which ads lose money. The reported ROAS
+      times that margin is your true contribution ROAS. On the default example
+      the dashboard shows 2.8×, but the real cushion is near 1.08×: one bad
+      returns month from zero.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-light">
+    <div class="sec-label">Common questions</div>
+    <div class="faq">
+      {faqs.map((f) => (
+        <div class="faq-item">
+          <h3 class="faq-q">{f.q}</h3>
+          <p class="faq-a muted-light">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+</Base>
+
+<style>
+  .faq { margin-top: 28px; max-width: 720px; }
+  .faq-item {
+    padding: 20px 0;
+    border-top: 1px solid var(--dim-light);
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--dim-light); }
+  .faq-q { font-size: 15px; font-weight: 600; line-height: 1.4; }
+  .faq-a { margin-top: 10px; font-size: 14px; line-height: 1.7; }
+</style>

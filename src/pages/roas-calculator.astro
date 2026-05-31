@@ -1,0 +1,111 @@
+---
+/**
+ * True ROAS Calculator — Tool 1 (RU, canonical).
+ *
+ * Thin wrapper: Base layout + page hero + the RoasCalculator island, then an
+ * explainer + FAQ block in prose (SEO + AI-citation). The island carries all
+ * interactive logic and copy. EN twin: src/pages/en/roas-calculator.astro.
+ */
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/links';
+import RoasCalculator from '../components/RoasCalculator.tsx';
+
+const faqs = [
+  {
+    q: 'Чем настоящий ROAS отличается от ROAS в кабинете Meta?',
+    a: 'Meta показывает выручку по конверсиям, делённую на расход. Это до себестоимости, доставки, возвратов и комиссий. Настоящий ROAS по прибыли — это то, что остаётся после всех этих вычетов. Кабинет может показывать 2.8×, а реальная подушка быть около единицы.',
+  },
+  {
+    q: 'Какой ROAS считается безубыточным?',
+    a: 'Безубыточный ROAS примерно равен единице, делённой на эффективную маржу вклада. Если после себестоимости, доставки, возвратов и комиссий у вас остаётся 39% от выручки, безубыточность наступает около 2.6×. Ниже этого каждый евро расхода теряет деньги.',
+  },
+  {
+    q: 'Как учитываются возвраты?',
+    a: 'Возврат считается как ноль вклада: товар вернулся, но доставку и комиссии по этому заказу вы уже оплатили. Поэтому доля возвратов снижает эффективную маржу вклада сильнее, чем кажется на первый взгляд.',
+  },
+  {
+    q: 'Что входит в расчёт, а что нет?',
+    a: 'Расчёт показывает вклад до постоянных расходов: аренды, зарплат, подписок. Это та же прикидка, что мы делаем перед тем, как взяться за аккаунт. Точная картина прибыли требует учёта и постоянных расходов.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base
+  title="Калькулятор настоящего ROAS — SNC Advertising"
+  description="Meta показывает один ROAS. После себестоимости, доставки, возвратов и комиссий остаётся другой. Посчитайте безубыточный ROAS и реальную прибыль с рекламы."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Инструмент</div>
+    <h1 class="page-hero-h1">Калькулятор настоящего ROAS.</h1>
+    <p class="page-hero-lede">
+      Meta показывает один ROAS. После себестоимости, доставки, возвратов и
+      комиссий остаётся другой. Посчитайте, при каком ROAS вы выходите в ноль —
+      и зарабатываете ли вы на самом деле.
+    </p>
+  </section>
+
+  <RoasCalculator
+    client:visible
+    locale="ru"
+    contactHref={url('/contact')}
+    crossHref={url('/meta-scorecard')}
+  />
+
+  <!-- Как это считается -->
+  <section class="section section-warm">
+    <div class="sec-label">Как это считается</div>
+    <p class="lede muted-light" style="margin-top:16px;max-width:680px;">
+      ROAS в кабинете Meta — это выручка по конверсиям, делённая на расход. Он
+      не знает вашей себестоимости. Чтобы понять, зарабатываете ли вы, нужно
+      пройти от выручки до вклада: вычесть себестоимость, доставку на заказ и
+      комиссии, а затем срезать долю возвратов.
+    </p>
+    <p class="lede muted-light" style="margin-top:16px;max-width:680px;">
+      Получается эффективная маржа вклада. Единица, делённая на неё, — это
+      безубыточный ROAS: порог, ниже которого реклама теряет деньги. ROAS из
+      кабинета, умноженный на эту маржу, — ваш настоящий ROAS по прибыли. На
+      примере по умолчанию кабинет показывает 2.8×, а реальная подушка — около
+      1.08×: один плохой месяц по возвратам до нуля.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-light">
+    <div class="sec-label">Частые вопросы</div>
+    <div class="faq">
+      {faqs.map((f) => (
+        <div class="faq-item">
+          <h3 class="faq-q">{f.q}</h3>
+          <p class="faq-a muted-light">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
+</Base>
+
+<style>
+  .faq { margin-top: 28px; max-width: 720px; }
+  .faq-item {
+    padding: 20px 0;
+    border-top: 1px solid var(--dim-light);
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--dim-light); }
+  .faq-q { font-size: 15px; font-weight: 600; line-height: 1.4; }
+  .faq-a { margin-top: 10px; font-size: 14px; line-height: 1.7; }
+</style>

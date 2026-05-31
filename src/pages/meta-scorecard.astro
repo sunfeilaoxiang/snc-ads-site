@@ -1,0 +1,114 @@
+---
+/**
+ * Meta Account Scorecard — RU (canonical).
+ *
+ * Thin Astro wrapper around the MetaScorecard React island. The island holds
+ * all interactive logic + bilingual copy; this page supplies the hero, the
+ * SEO explainer/FAQ prose, and the FAQPage structured data.
+ *
+ * EN twin: src/pages/en/meta-scorecard.astro — keep structure in sync.
+ */
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/links';
+import MetaScorecard from '../components/MetaScorecard.tsx';
+
+const faq = [
+  {
+    q: 'Что показывает этот скоринг?',
+    a: 'Двенадцать проверок, которые мы проходим перед тем, как взяться за рекламный аккаунт в Meta: трекинг, структуру, креатив, аудиторию и цифры. Вы получаете оценку от 0 до 100, разбивку по слоям и список своих красных флагов с конкретным действием по каждому.',
+  },
+  {
+    q: 'Как считается оценка?',
+    a: 'Каждый из 12 вопросов даёт 0, 1 или 2 балла. Сумма приводится к шкале 0–100. Четыре и более ответа «нет / не знаю» автоматически опускают вас в нижнюю полосу — даже если по баллам выходит больше.',
+  },
+  {
+    q: 'Нужно ли оставлять почту?',
+    a: 'Нет. Результат виден сразу, без регистрации. Почту можно оставить по желанию — пришлём полный чек-лист из 12 проверок.',
+  },
+  {
+    q: 'Это и есть аудит?',
+    a: 'Нет. Это быстрая самопроверка. Полный разбор мы делаем вручную, в письменном виде, для подходящих проектов — и начинаем с короткого созвона.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base
+  title="Скоринг вашего Meta-аккаунта — SNC Advertising"
+  description="12 проверок, которые мы проходим перед тем, как взяться за аккаунт. Ответьте честно — получите оценку от 0 до 100, разбивку по слоям и список своих красных флагов. Без регистрации."
+>
+  <section class="page-hero">
+    <div class="page-hero-label">Инструмент</div>
+    <h1 class="page-hero-h1">Скоринг вашего<br />Meta-аккаунта.</h1>
+    <p class="page-hero-lede">
+      12 проверок, которые мы проводим перед тем, как взяться за аккаунт.
+      Ответьте честно — смысл не в том, чтобы набрать максимум, а в том, чтобы
+      увидеть, на какие вопросы вы не можете ответить. Там и деньги.
+    </p>
+  </section>
+
+  <MetaScorecard
+    client:visible
+    locale="ru"
+    contactHref={url('/contact')}
+    crossHref={url('/roas-calculator')}
+  />
+
+  <!-- Метод + FAQ — для классического SEO и цитирования в AI-ответах -->
+  <section class="section section-warm">
+    <div class="sec-label">Как это считается</div>
+    <p class="lede muted-light" style="margin-top:16px;max-width:640px;">
+      Двенадцать вопросов разбиты на пять слоёв: трекинг, структура, креатив,
+      аудитория и цифры. Каждый ответ — это 0, 1 или 2 балла («нет / не знаю»,
+      «частично», «да»). Сумма приводится к шкале от 0 до 100.
+    </p>
+    <p class="lede muted-light" style="margin-top:16px;max-width:640px;">
+      Отдельно считаются красные флаги — вопросы, где вы ответили «нет / не
+      знаю». Четыре и более красных флага опускают аккаунт в нижнюю полосу
+      независимо от итогового балла: даже при хорошей структуре несколько
+      пробелов в трекинге или цифрах означают, что бюджет уходит вслепую.
+    </p>
+    <p class="lede muted-light" style="margin-top:16px;max-width:640px;">
+      Не уверены в целевом ROAS из последних двух вопросов — посчитайте его в
+      <a href={url('/roas-calculator')} class="inline-link">калькуляторе ROAS</a>.
+    </p>
+  </section>
+
+  <section class="section section-light">
+    <div class="sec-label">Частые вопросы</div>
+    <div class="faq">
+      {faq.map((f) => (
+        <div class="faq-item">
+          <h3 class="faq-q">{f.q}</h3>
+          <p class="faq-a muted-light">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+</Base>
+
+<style>
+  .inline-link {
+    color: var(--green);
+    border-bottom: 1px solid var(--green);
+  }
+  .faq { margin-top: 28px; max-width: 720px; }
+  .faq-item {
+    padding: 22px 0;
+    border-top: 1px solid var(--dim-light);
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--dim-light); }
+  .faq-q { font-size: 15px; font-weight: 600; color: var(--green); }
+  .faq-a { margin-top: 10px; font-size: 14px; line-height: 1.75; }
+</style>
