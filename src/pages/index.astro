@@ -173,15 +173,200 @@ const founders = [
     </div>
   </section>
 
-  <!-- ══ 07 · CASES ═════════════════════════════════════ -->
-  <section class="section cases">
-    <div class="sec-label on-dark">04 — Кейсы</div>
-    <p class="cases-statement">
-      Кейсы — в работе. Анонимизированные результаты появятся здесь по мере
-      выхода клиентов из NDA.
-    </p>
-    <p class="cases-sub">Можем поделиться кейсами лично на аудите — присылайте запрос.</p>
-    <a class="cases-cta tlink" href={url('/contact')}>Запросить кейсы &rarr;</a>
+  <!-- ══ 07 · РАЗБОР АККАУНТА (anonymized audit teardown) ══ -->
+  <section class="section razbor" aria-labelledby="razbor-heading">
+    <div class="sec-label on-dark">04 — Разбор</div>
+
+    <h2 id="razbor-heading" class="razbor-lede">
+      Анонимизированный аудит одного аккаунта.<br />
+      <span class="razbor-lede-sub">EU&nbsp;косметика премиум · мульти-SKU Shopify · €8 тыс. в Meta · 4,5 месяца 2026.</span>
+    </h2>
+
+    <div class="razbor-hero">
+      <div class="razbor-num" aria-label="43 процента">43<span class="razbor-num-pct">%</span></div>
+      <div class="razbor-sub">продающего бюджета — впустую</div>
+    </div>
+
+    <div class="razbor-stats">
+      <div class="razbor-stat">
+        <div class="razbor-stat-n">0.33×</div>
+        <div class="razbor-stat-t">Истинный ROAS</div>
+        <div class="razbor-stat-d">vs&nbsp;1.09×, который показывал кабинет Meta. Безубыточность — 2.2×.</div>
+      </div>
+      <div class="razbor-stat">
+        <div class="razbor-stat-n">6</div>
+        <div class="razbor-stat-t">Мёртвых регионов</div>
+        <div class="razbor-stat-d">ROAS&nbsp;≤&nbsp;0.12×. €2 тыс. потрачено — €184 вернулось.</div>
+      </div>
+      <div class="razbor-stat">
+        <div class="razbor-stat-n">50<span class="razbor-stat-pct">%</span></div>
+        <div class="razbor-stat-t">Появлений креатива — сломаны</div>
+        <div class="razbor-stat-d">Одно видео во всех плейсментах. В&nbsp;ленте — обрезанные головы. В&nbsp;Stories — пустые поля.</div>
+      </div>
+    </div>
+
+    <button
+      class="razbor-toggle"
+      type="button"
+      id="razbor-toggle"
+      aria-expanded="false"
+      aria-controls="razbor-content"
+    >
+      <span class="razbor-toggle-label">Развернуть разбор полностью</span>
+      <span class="razbor-toggle-arrow" aria-hidden="true">↓</span>
+    </button>
+
+    <div id="razbor-content" class="razbor-content" hidden>
+
+      <!-- 01 · Где деньги исчезают -->
+      <div class="razbor-block">
+        <div class="razbor-block-head">
+          <span class="razbor-block-n">01</span>
+          <h3 class="razbor-block-t">Где деньги исчезают</h3>
+        </div>
+        <p class="razbor-block-lede">Из €8 218 потраченных в Meta за период бюджет дробится на три потока:</p>
+        <div class="razbor-bars">
+          <div class="razbor-bar">
+            <div class="razbor-bar-label">
+              <span class="razbor-bar-amount">€3 991 · 49%</span>
+              <span class="razbor-bar-name">Продающие кампании с заказами</span>
+            </div>
+            <div class="razbor-bar-track"><div class="razbor-bar-fill" style="width:49%;background:var(--sage);"></div></div>
+            <div class="razbor-bar-note">49 заказов на €2 720</div>
+          </div>
+          <div class="razbor-bar razbor-bar-bad">
+            <div class="razbor-bar-label">
+              <span class="razbor-bar-amount">€2 968 · 36%</span>
+              <span class="razbor-bar-name">Продающие кампании · 0 заказов</span>
+            </div>
+            <div class="razbor-bar-track"><div class="razbor-bar-fill" style="width:36%;background:var(--bronze);"></div></div>
+            <div class="razbor-bar-note">Главная утечка бюджета · крупнейший резерв роста</div>
+          </div>
+          <div class="razbor-bar">
+            <div class="razbor-bar-label">
+              <span class="razbor-bar-amount">€1 259 · 15%</span>
+              <span class="razbor-bar-name">Охватные кампании · офлайн-магазины</span>
+            </div>
+            <div class="razbor-bar-track"><div class="razbor-bar-fill" style="width:15%;background:rgba(255,255,255,0.4);"></div></div>
+            <div class="razbor-bar-note">Офлайн-события не настроены — эффект не измеряется</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · Два табло -->
+      <div class="razbor-block">
+        <div class="razbor-block-head">
+          <span class="razbor-block-n">02</span>
+          <h3 class="razbor-block-t">Два табло. Реальность — между ними.</h3>
+        </div>
+        <p class="razbor-block-lede">Meta показывает свой ROAS. Shopify показывает свой. Оба ниже порога безубыточности.</p>
+        <div class="razbor-boards">
+          <div class="razbor-board">
+            <div class="razbor-board-label">Что говорит Meta</div>
+            <div class="razbor-board-n">1.09×</div>
+            <div class="razbor-board-detail">118 заказов · €8 995 ценности конверсий</div>
+          </div>
+          <div class="razbor-board razbor-board-real">
+            <div class="razbor-board-label">Что подтверждает Shopify</div>
+            <div class="razbor-board-n">0.33×</div>
+            <div class="razbor-board-detail">49 заказов · €2 720 выручки</div>
+          </div>
+        </div>
+        <p class="razbor-block-conclusion">ROAS рос два месяца, достиг пика 1.31× в марте и с тех пор снижается до 0.79× в мае. Усталость креатива — наиболее вероятная причина.</p>
+      </div>
+
+      <!-- 03 · Аудитория -->
+      <div class="razbor-block">
+        <div class="razbor-block-head">
+          <span class="razbor-block-n">03</span>
+          <h3 class="razbor-block-t">Остановка 1 · Аудитория</h3>
+        </div>
+        <p class="razbor-block-lede">Meta сам распределяет бюджет по возрасту. Решает не клик, а превращение корзины в покупку.</p>
+        <div class="razbor-table-wrap">
+          <table class="razbor-table">
+            <thead>
+              <tr><th>Возраст</th><th class="num">Бюджет</th><th class="num">CTR</th><th class="num">ROAS</th><th>Вывод</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>18–24</td><td class="num">€1 445</td><td class="num">5.4%</td><td class="num">1.17×</td><td>Минимизировать</td></tr>
+              <tr><td>25–34</td><td class="num">€1 827</td><td class="num">5.3%</td><td class="num">1.27×</td><td>Сохранить</td></tr>
+              <tr class="razbor-row-bad"><td>35–44</td><td class="num">€2 422</td><td class="num">6.3%</td><td class="num">0.85×</td><td>Диагностировать — 715 корзин, 3.2% конверсия</td></tr>
+              <tr class="razbor-row-good"><td>45–54</td><td class="num">€2 263</td><td class="num">5.3%</td><td class="num">1.81×</td><td>Усилить — скрытый чемпион</td></tr>
+              <tr><td>55–64</td><td class="num">€951</td><td class="num">3.7%</td><td class="num">0.60×</td><td>Отключить</td></tr>
+              <tr><td>65+</td><td class="num">€588</td><td class="num">3.2%</td><td class="num">0.35×</td><td>Отключить</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="razbor-block-conclusion">€926 на мужскую аудиторию: CTR 0.21%, около 9 покупок. Исключение мужчин — действие в один клик, возвращает почти весь бюджет.</p>
+      </div>
+
+      <!-- 04 · География -->
+      <div class="razbor-block">
+        <div class="razbor-block-head">
+          <span class="razbor-block-n">04</span>
+          <h3 class="razbor-block-t">Остановка 2 · География</h3>
+        </div>
+        <p class="razbor-block-lede">Шесть регионов с ROAS&nbsp;≤&nbsp;0.12× получили €2 021 — вернули €184. Один регион в плюсе.</p>
+        <div class="razbor-table-wrap">
+          <table class="razbor-table">
+            <thead>
+              <tr><th>Регион</th><th class="num">Расход</th><th class="num">Возврат</th><th class="num">ROAS</th><th>Вывод</th></tr>
+            </thead>
+            <tbody>
+              <tr class="razbor-row-good"><td>Регион в плюсе</td><td class="num">€179</td><td class="num">€300</td><td class="num">1.68×</td><td>Масштабировать</td></tr>
+              <tr><td>Столица</td><td class="num">€4 803</td><td class="num">€1 385</td><td class="num">0.29×</td><td>Таргетировать прицельно (видимый ROAS занижен — охватные кампании здесь)</td></tr>
+              <tr class="razbor-row-bad"><td>6 мёртвых регионов</td><td class="num">€2 021</td><td class="num">€184</td><td class="num">≤0.12×</td><td>Отключить · перенести бюджет в столицу</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 05 · Креатив -->
+      <div class="razbor-block">
+        <div class="razbor-block-head">
+          <span class="razbor-block-n">05</span>
+          <h3 class="razbor-block-t">Остановка 3 · Креатив</h3>
+        </div>
+        <p class="razbor-block-lede">Одно видео крутится во всех плейсментах сразу — у ленты и Stories разные пропорции. Один ассет не может выглядеть правильно везде.</p>
+        <ul class="razbor-list">
+          <li><strong>50% появлений в ленте — с дефектом.</strong> Обрезанные головы в Facebook Feed, пустые поля по бокам в Stories.</li>
+          <li><strong>Карусель ведёт на главную.</strong> Клик по конкретному товару открывает не его, а главную страницу. Часть посетителей уходит — клик оплачен, продажа потеряна.</li>
+          <li><strong>AI-улучшения Meta включены.</strong> Функции, которые непредсказуемо меняют готовый креатив. Для бренд-контента отключают.</li>
+          <li class="razbor-list-good"><strong>Эталон уже в аккаунте.</strong> Одно объявление: 13 покупок · ROAS 1.81× · CTR 3.01%. Формат Advantage+ Shopping, один товар-герой. Норма, на которую нужно равняться.</li>
+        </ul>
+      </div>
+
+      <!-- 06 · План -->
+      <div class="razbor-block razbor-block-plan">
+        <div class="razbor-block-head">
+          <span class="razbor-block-n">06</span>
+          <h3 class="razbor-block-t">План · Этап 1 · в рамках того же бюджета</h3>
+        </div>
+        <ol class="razbor-plan">
+          <li>UTM-метки на всю рекламу Meta — половина продаж снова станет видимой</li>
+          <li>Отключить 65+, 55–64 и мужчин; группу 18–24 минимизировать</li>
+          <li>Сфокусироваться на столице; шесть мёртвых регионов отключить</li>
+          <li>Видео в двух форматах (квадрат + вертикаль); отключить AI-улучшения</li>
+          <li>Меньше кампаний, дольше срок жизни, адекватный дневной бюджет</li>
+          <li>Перевести оптимизацию с «Initiate Checkout» на «Purchase»</li>
+          <li>Карусель: каждая карточка ведёт на страницу своего товара</li>
+          <li>Пилот каталожной рекламы — самый дешёвый формат для e-commerce</li>
+        </ol>
+        <p class="razbor-block-conclusion">Перераспределение не сделает Meta прибыльной мгновенно: порог безубыточности 2.2×, лучший сегмент сейчас 1.81×. Этап 1 останавливает потери и концентрирует бюджет; полная прибыльность канала потребует работы над конверсией сайта и средним чеком.</p>
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="razbor-disclaimer">
+        Имя бренда и продуктов скрыто с разрешения клиента. Числа округлены минимально, чтобы сохранить структурную точность. Период: январь — май 2026.
+      </p>
+
+      <!-- CTA -->
+      <div class="razbor-cta">
+        <p class="razbor-cta-text">Хотите такой же разбор для вашего аккаунта?</p>
+        <a class="btn razbor-cta-btn" href={url('/contact')}>Получить аудит &rarr;</a>
+      </div>
+
+    </div>
   </section>
 
   <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
@@ -356,19 +541,324 @@ const founders = [
   .fit-mark-yes { color: var(--sage); }
   .fit-mark-no  { color: var(--bronze); }
 
-  /* ── 07 CASES ─────────────────────────────── */
-  .cases { background: var(--nearblack); }
-  .cases-statement {
-    margin-top: 28px; max-width: 640px;
-    font-size: clamp(20px, 3vw, 28px); font-weight: 600; line-height: 1.3;
+  /* ── 07 РАЗБОР ────────────────────────────────
+     Embedded anonymized audit teardown. Pattern B (collapsible inline).
+     a11y notes:
+       - <button> + aria-expanded + aria-controls drive the disclosure
+       - hero number has explicit aria-label so screen readers say "43 процента"
+       - all text contrast ≥4.5:1 on near-black
+       - reduced-motion = instant reveal (no max-height transition)
+  */
+  .razbor { background: var(--nearblack); }
+
+  .razbor-lede {
+    margin-top: 28px; max-width: 720px;
+    font-size: clamp(20px, 2.6vw, 28px); font-weight: 600;
+    line-height: 1.35; letter-spacing: 0.005em;
+    color: var(--white);
   }
-  .cases-sub {
-    margin-top: 16px; font-size: 13px; color: rgba(255, 255, 255, 0.6);
-    max-width: 480px; line-height: 1.7;
+  .razbor-lede-sub {
+    display: block; margin-top: 14px;
+    font-size: clamp(12px, 1.2vw, 13px); font-weight: 400;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
   }
-  .cases-cta {
-    display: inline-block; margin-top: 18px;
-    font-size: 11px; font-weight: 600; color: var(--sage);
+
+  /* Hero number — the killer fact */
+  .razbor-hero {
+    margin-top: 48px;
+    padding: 32px 0;
+    border-top: 1px solid var(--dim);
+    border-bottom: 1px solid var(--dim);
+  }
+  .razbor-num {
+    font-size: clamp(72px, 14vw, 168px);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--sage);
+    font-variant-numeric: tabular-nums;
+  }
+  .razbor-num-pct {
+    font-size: 0.55em;
+    color: rgba(127, 168, 152, 0.7);
+    margin-left: 4px;
+  }
+  .razbor-sub {
+    margin-top: 12px;
+    font-size: clamp(13px, 1.3vw, 15px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 480px;
+  }
+
+  /* Three stat cards */
+  .razbor-stats {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .razbor-stat {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--dim);
+  }
+  .razbor-stat-n {
+    font-size: clamp(28px, 3.2vw, 36px);
+    font-weight: 600; line-height: 1;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+  }
+  .razbor-stat-pct { font-size: 0.7em; color: rgba(255, 255, 255, 0.7); }
+  .razbor-stat-t {
+    margin-top: 14px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage);
+  }
+  .razbor-stat-d {
+    margin-top: 12px;
+    font-size: 13px; line-height: 1.65;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  /* Expand button */
+  .razbor-toggle {
+    margin-top: 36px;
+    display: inline-flex; align-items: center; gap: 14px;
+    min-height: 56px;
+    padding: 18px 28px;
+    font-family: var(--font);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--sage);
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .razbor-toggle:hover { background: var(--sage); color: var(--nearblack); }
+  .razbor-toggle:active { transform: scale(0.98); }
+  .razbor-toggle:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+  .razbor-toggle-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease-out;
+  }
+  .razbor-toggle[aria-expanded="true"] .razbor-toggle-arrow {
+    transform: rotate(180deg);
+  }
+  .razbor-toggle[aria-expanded="true"] .razbor-toggle-label::after {
+    content: " · скрыть";
+  }
+
+  /* Expanded content */
+  .razbor-content {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--dim);
+  }
+  .razbor-content[hidden] { display: none; }
+
+  .razbor-block { margin-top: 48px; max-width: 880px; }
+  .razbor-block:first-child { margin-top: 0; }
+
+  .razbor-block-head {
+    display: flex; align-items: baseline; gap: 16px;
+    padding-bottom: 18px; margin-bottom: 20px;
+    border-bottom: 1px solid var(--dim);
+  }
+  .razbor-block-n {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; color: var(--sage);
+    font-variant-numeric: tabular-nums;
+  }
+  .razbor-block-t {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 600; line-height: 1.3;
+    color: var(--white);
+  }
+  .razbor-block-lede {
+    font-size: 14px; line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 640px;
+  }
+  .razbor-block-conclusion {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: rgba(127, 168, 152, 0.08);
+    border-left: 2px solid var(--sage);
+    font-size: 13px; line-height: 1.7;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  /* Block 01 — budget bars */
+  .razbor-bars { margin-top: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .razbor-bar { display: flex; flex-direction: column; gap: 8px; }
+  .razbor-bar-label {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px;
+  }
+  .razbor-bar-amount {
+    font-size: 14px; font-weight: 600; color: var(--white);
+    font-variant-numeric: tabular-nums;
+  }
+  .razbor-bar-name { font-size: 13px; color: rgba(255, 255, 255, 0.7); }
+  .razbor-bar-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+  }
+  .razbor-bar-fill { height: 100%; }
+  .razbor-bar-note {
+    font-size: 12px; color: rgba(255, 255, 255, 0.55);
+  }
+  .razbor-bar-bad .razbor-bar-name { color: var(--bronze); }
+
+  /* Block 02 — two scoreboards */
+  .razbor-boards {
+    margin-top: 24px;
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  .razbor-board {
+    padding: 24px;
+    border: 1px solid var(--dim);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .razbor-board-real { border-color: var(--sage); background: rgba(127, 168, 152, 0.06); }
+  .razbor-board-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .razbor-board-n {
+    margin-top: 12px;
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 600; line-height: 1;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+  }
+  .razbor-board-real .razbor-board-n { color: var(--sage); }
+  .razbor-board-detail {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Blocks 03 + 04 — tables */
+  .razbor-table-wrap {
+    margin-top: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .razbor-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .razbor-table thead th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid var(--dim);
+  }
+  .razbor-table thead th.num { text-align: right; }
+  .razbor-table tbody td {
+    padding: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    line-height: 1.5;
+  }
+  .razbor-table tbody td.num { text-align: right; white-space: nowrap; }
+  .razbor-table tbody tr:last-child td { border-bottom: 0; }
+  .razbor-row-bad td { color: var(--bronze); }
+  .razbor-row-bad td:last-child { color: rgba(191, 147, 64, 0.85); }
+  .razbor-row-good td { color: var(--sage); }
+  .razbor-row-good td:last-child { color: rgba(127, 168, 152, 0.85); }
+
+  /* Block 05 — creative list */
+  .razbor-list {
+    margin-top: 20px;
+    list-style: none; padding: 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .razbor-list li {
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.025);
+    border-left: 2px solid var(--dim);
+    font-size: 13px; line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .razbor-list li strong { color: var(--white); font-weight: 600; }
+  .razbor-list-good { border-left-color: var(--sage) !important; background: rgba(127, 168, 152, 0.06) !important; }
+
+  /* Block 06 — plan */
+  .razbor-plan {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    counter-reset: plan;
+    display: grid; grid-template-columns: 1fr; gap: 10px;
+  }
+  .razbor-plan li {
+    counter-increment: plan;
+    padding: 16px 18px 16px 56px;
+    background: rgba(255, 255, 255, 0.025);
+    font-size: 13px; line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+    position: relative;
+  }
+  .razbor-plan li::before {
+    content: counter(plan, decimal-leading-zero);
+    position: absolute; left: 18px; top: 16px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Disclaimer + CTA */
+  .razbor-disclaimer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--dim);
+    font-size: 11px; line-height: 1.7;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 640px;
+  }
+  .razbor-cta {
+    margin-top: 36px;
+    padding: 32px;
+    background: var(--green);
+  }
+  .razbor-cta-text {
+    font-size: clamp(16px, 1.6vw, 18px); font-weight: 600;
+    color: var(--white); max-width: 460px; line-height: 1.4;
+  }
+  .razbor-cta-btn {
+    margin-top: 20px;
+    background: var(--white); color: var(--green); border-color: var(--white);
+  }
+  .razbor-cta-btn:hover { background: transparent; color: var(--white); }
+
+  /* Responsive: 3-col stats + 2-col scoreboards from 640px up */
+  @media (min-width: 640px) {
+    .razbor-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .razbor-boards { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+
+  /* Reduced motion: kill transitions so expand is instant */
+  @media (prefers-reduced-motion: reduce) {
+    .razbor-toggle,
+    .razbor-toggle-arrow,
+    .razbor-toggle:active {
+      transition: none !important;
+      transform: none !important;
+    }
   }
 
   /* ── 08 FOUNDERS ──────────────────────────── */
@@ -429,3 +919,34 @@ const founders = [
     .how-grid { grid-template-columns: 1fr; }
   }
 </style>
+
+<script is:inline>
+  /* Audit-teardown disclosure toggle.
+     Native <button> + aria-expanded; vanilla JS only.
+     Animation handled in CSS (transform on arrow, scale on press).
+     Reduced-motion respected by the CSS layer.
+  */
+  (function () {
+    var toggle = document.getElementById('razbor-toggle');
+    var content = document.getElementById('razbor-content');
+    if (!toggle || !content) return;
+
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      var next = !open;
+      toggle.setAttribute('aria-expanded', next ? 'true' : 'false');
+      if (next) {
+        content.hidden = false;
+        // Move focus into the revealed region for keyboard users (first heading).
+        var firstHeading = content.querySelector('h3');
+        if (firstHeading) {
+          firstHeading.setAttribute('tabindex', '-1');
+          firstHeading.focus({ preventScroll: false });
+        }
+      } else {
+        content.hidden = true;
+        toggle.focus();
+      }
+    });
+  })();
+</script>
