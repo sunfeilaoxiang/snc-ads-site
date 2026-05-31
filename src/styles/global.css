@@ -111,9 +111,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img, svg { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
+/* These element resets also live in @layer base for the same reason as the
+   reset above: an unlayered `a { color: inherit }` beats Tailwind's text-color
+   utilities (@layer utilities), so island anchors using text-green/text-sage
+   inherited the wrong colour (e.g. the teardown CTA rendered white-on-white).
+   Inside @layer base, utilities win; unlayered component CSS (.btn, .tlink,
+   .hdr-*) still overrides these. */
+@layer base {
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+}
 
 /* Visible keyboard focus — required for accessibility */
 a:focus-visible,

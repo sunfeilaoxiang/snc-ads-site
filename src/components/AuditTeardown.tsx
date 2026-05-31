@@ -31,12 +31,12 @@ const STRINGS = {
   ru: {
     label: '04 — Разбор',
     ledeTitle: 'Анонимизированный аудит одного аккаунта.',
-    ledeSub: 'EU косметика премиум · мульти-SKU Shopify · €8 тыс. в Meta · 4,5 месяца 2026.',
+    ledeSub: 'EU косметика премиум · мульти-SKU Shopify · €8 тыс. в Meta · 4,5 месяца данных.',
     heroSub: 'продающего бюджета — впустую',
     stats: [
       { n: '0.33×', t: 'Истинный ROAS', d: 'vs 1.09×, который показывал кабинет Meta. Безубыточность — 2.2×.' },
       { n: '6', t: 'Мёртвых регионов', d: 'ROAS ≤ 0.12×. €2 тыс. потрачено — €184 вернулось.' },
-      { n: '50%', t: 'Появлений креатива — сломаны', d: 'Одно видео во всех плейсментах. В ленте — обрезанные головы. В Stories — пустые поля.' },
+      { n: '50%', t: 'Появлений креатива — неправильные', d: 'Одно видео во всех плейсментах. В ленте — обрезанные головы. В Stories — пустые поля.' },
     ],
     expand: 'Развернуть разбор полностью',
     collapse: 'Свернуть разбор',
@@ -51,9 +51,9 @@ const STRINGS = {
       lede: 'Meta показывает свой ROAS. Shopify показывает свой. Оба ниже порога безубыточности.',
       metaLabel: 'Что говорит Meta', metaDetail: '118 заказов · €8 995 ценности конверсий',
       shopLabel: 'Что подтверждает Shopify', shopDetail: '49 заказов · €2 720 выручки',
-      months: ['Янв', 'Фев', 'Мар', 'Апр', 'Май'],
-      sparkAria: 'ROAS по месяцам: пик 1.31× в марте, спад до 0.79× в мае',
-      conclusion: 'ROAS рос два месяца, достиг пика 1.31× в марте и с тех пор снижается до 0.79× в мае. Усталость креатива — наиболее вероятная причина.',
+      months: ['Месяц 1', 'Месяц 2', 'Месяц 3', 'Месяц 4', 'Месяц 5'],
+      sparkAria: 'ROAS по месяцам: пик 1.31× на третьем месяце, спад до 0.79× на пятом',
+      conclusion: 'ROAS рос два месяца, достиг пика 1.31× на третьем месяце и с тех пор снижается до 0.79× к пятому. Усталость креатива — наиболее вероятная причина.',
     },
     b3: {
       t: 'Остановка 1 · Аудитория',
@@ -81,7 +81,7 @@ const STRINGS = {
     },
     b5: {
       t: 'Остановка 3 · Креатив',
-      lede: 'Одно видео крутится во всех плейсментах сразу — у ленты и Stories разные пропорции. Один ассет не может выглядеть правильно везде.',
+      lede: 'Одно видео крутится во всех плейсментах сразу — у ленты и Stories разные пропорции. Один креатив не может выглядеть правильно везде.',
       items: [
         { good: false, strong: '50% появлений в ленте — с дефектом.', rest: ' Обрезанные головы в Facebook Feed, пустые поля по бокам в Stories.' },
         { good: false, strong: 'Карусель ведёт на главную.', rest: ' Клик по конкретному товару открывает не его, а главную страницу. Часть посетителей уходит — клик оплачен, продажа потеряна.' },
@@ -91,19 +91,10 @@ const STRINGS = {
     },
     b6: {
       t: 'План · Этап 1 · в рамках того же бюджета',
-      items: [
-        'UTM-метки на всю рекламу Meta — половина продаж снова станет видимой',
-        'Отключить 65+, 55–64 и мужчин; группу 18–24 минимизировать',
-        'Сфокусироваться на столице; шесть мёртвых регионов отключить',
-        'Видео в двух форматах (квадрат + вертикаль); отключить AI-улучшения',
-        'Меньше кампаний, дольше срок жизни, адекватный дневной бюджет',
-        'Перевести оптимизацию с «Initiate Checkout» на «Purchase»',
-        'Карусель: каждая карточка ведёт на страницу своего товара',
-        'Пилот каталожной рекламы — самый дешёвый формат для e-commerce',
-      ],
+      brief: 'По этому аккаунту мы бы работали с тем, что уже видно в разборе: вернули бы видимость продаж через корректную сквозную аналитику, перенесли бюджет с убыточных сегментов и регионов на прибыльные, перевели оптимизацию на покупки и привели креативы к правильному формату под каждый плейсмент. Точный список шагов и приоритеты фиксируем после доступа к аккаунту.',
       conclusion: 'Перераспределение не сделает Meta прибыльной мгновенно: порог безубыточности 2.2×, лучший сегмент сейчас 1.81×. Этап 1 останавливает потери и концентрирует бюджет; полная прибыльность канала потребует работы над конверсией сайта и средним чеком.',
     },
-    disclaimer: 'Имя бренда и продуктов скрыто с разрешения клиента. Числа округлены минимально, чтобы сохранить структурную точность. Период: январь — май 2026.',
+    disclaimer: 'Имя бренда и продуктов скрыто с разрешения клиента. Числа округлены минимально, чтобы сохранить структурную точность. Период: 5 месяцев.',
     ctaText: 'Хотите такой же разбор для вашего аккаунта?',
     ctaBtn: 'Получить аудит →',
     inlineCta: 'Разобрать мой аккаунт →',
@@ -111,12 +102,12 @@ const STRINGS = {
   en: {
     label: '04 — Teardown',
     ledeTitle: 'Anonymized audit of a single account.',
-    ledeSub: 'EU premium cosmetics · multi-SKU Shopify · €8K in Meta · 4.5 months, 2026.',
+    ledeSub: 'EU premium cosmetics · multi-SKU Shopify · €8K in Meta · 4.5 months of data.',
     heroSub: 'of the selling budget — wasted',
     stats: [
       { n: '0.33×', t: 'True ROAS', d: 'vs 1.09× shown in the Meta dashboard. Break-even is 2.2×.' },
       { n: '6', t: 'Dead regions', d: 'ROAS ≤ 0.12×. €2K spent — €184 returned.' },
-      { n: '50%', t: 'Of creative impressions — broken', d: 'One video across every placement. Cropped heads in feed. Empty bars in Stories.' },
+      { n: '50%', t: 'Of creative impressions — incorrect', d: 'One video across every placement. Cropped heads in feed. Empty bars in Stories.' },
     ],
     expand: 'Expand the full teardown',
     collapse: 'Collapse',
@@ -131,9 +122,9 @@ const STRINGS = {
       lede: 'Meta reports one ROAS. Shopify reports another. Both are below break-even.',
       metaLabel: 'What Meta claims', metaDetail: '118 orders · €8,995 conversion value',
       shopLabel: 'What Shopify confirms', shopDetail: '49 orders · €2,720 revenue',
-      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-      sparkAria: 'ROAS by month: peak 1.31× in March, declining to 0.79× in May',
-      conclusion: 'ROAS climbed for two months, peaked at 1.31× in March, and has slid to 0.79× by May. Creative fatigue is the likeliest cause.',
+      months: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5'],
+      sparkAria: 'ROAS by month: peak 1.31× in month 3, declining to 0.79× in month 5',
+      conclusion: 'ROAS climbed for two months, peaked at 1.31× in month 3, and has slid to 0.79× by month 5. Creative fatigue is the likeliest cause.',
     },
     b3: {
       t: 'Stop 1 · Audience',
@@ -161,7 +152,7 @@ const STRINGS = {
     },
     b5: {
       t: 'Stop 3 · Creative',
-      lede: "One video runs across every placement at once — feed and Stories have different proportions. One asset can't look right everywhere.",
+      lede: "One video runs across every placement at once — feed and Stories have different proportions. One creative can't look right everywhere.",
       items: [
         { good: false, strong: '50% of feed impressions are defective.', rest: ' Cropped heads in the Facebook feed, empty side bars in Stories.' },
         { good: false, strong: 'The carousel links to the homepage.', rest: ' Clicking a specific product opens the homepage instead. Some visitors leave — the click is paid for, the sale is lost.' },
@@ -171,16 +162,7 @@ const STRINGS = {
     },
     b6: {
       t: 'Plan · Phase 1 · within the same budget',
-      items: [
-        'UTM tags on all Meta ads — half the sales become visible again',
-        'Turn off 65+, 55–64, and men; minimize the 18–24 group',
-        'Focus on the capital; turn off the six dead regions',
-        'Video in two formats (square + vertical); turn off AI enhancements',
-        'Fewer campaigns, longer lifespans, an adequate daily budget',
-        'Switch optimization from Initiate Checkout to Purchase',
-        'Carousel: each card links to its own product page',
-        'Pilot catalog ads — the cheapest format for e-commerce',
-      ],
+      brief: "For this account, we'd work from what the teardown already shows: restore sales visibility with proper end-to-end tracking, move budget off the losing segments and regions onto the profitable ones, switch optimization to purchases, and bring creative into the right format for each placement. The exact steps and priorities are set once we have account access.",
       conclusion: "Reallocation won't make Meta profitable overnight: break-even is 2.2×, the best segment is 1.81× today. Phase 1 stops the losses and concentrates the budget; full channel profitability will need work on site conversion and average order value.",
     },
     disclaimer: "Brand and product names hidden with the client's permission. Numbers rounded minimally to preserve structural accuracy. Period: January — May 2026.",
@@ -234,7 +216,7 @@ function RoasSparkline({ expanded, months, aria }: { expanded: boolean; months: 
 
   return (
     <div className="mt-4">
-      <svg viewBox={`0 0 ${W} ${H + 24}`} className="w-full max-w-[480px] h-auto" role="img" aria-label={aria}>
+      <svg viewBox={`-30 0 ${W + 60} ${H + 24}`} className="w-full max-w-[480px] h-auto" role="img" aria-label={aria}>
         <motion.path
           d={path} fill="none" stroke="var(--color-sage)" strokeWidth="1.5"
           initial={reduced ? false : { pathLength: 0 }}
@@ -452,14 +434,7 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
               </Block>
 
               <Block n="06" title={s.b6.t}>
-                <ol className="mt-5 p-0 list-none grid grid-cols-1 gap-2.5">
-                  {s.b6.items.map((line, i) => (
-                    <li key={i} className="p-4.5 pl-14 bg-white/[0.025] text-[13px] leading-[1.6] text-white/88 relative">
-                      <span aria-hidden="true" className="absolute left-4.5 top-4.5 text-[12px] font-semibold tracking-[0.1em] text-sage tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                      {line}
-                    </li>
-                  ))}
-                </ol>
+                <p className="mt-5 text-[14px] leading-[1.7] text-white/82 max-w-[640px]">{s.b6.brief}</p>
                 <Conclusion>{s.b6.conclusion}</Conclusion>
               </Block>
 
