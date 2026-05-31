@@ -252,7 +252,7 @@ function RoasSparkline({ expanded, months, aria }: { expanded: boolean; months: 
           />
         ))}
         {months.map((m, i) => (
-          <text key={m} x={xs[i]} y={H + 18} textAnchor="middle" className="fill-white/50" style={{ fontSize: 10, fontFamily: 'inherit' }}>{m}</text>
+          <text key={m} x={xs[i]} y={H + 18} textAnchor="middle" className="fill-white/70" style={{ fontSize: 11, fontFamily: 'inherit' }}>{m}</text>
         ))}
         <text x={xs[peakIdx]} y={ys[peakIdx] - 10} textAnchor="middle" className="fill-sage" style={{ fontSize: 10, fontFamily: 'inherit', fontWeight: 600 }}>1.31×</text>
       </svg>
@@ -303,7 +303,7 @@ function Conclusion({ children }: { children: React.ReactNode }) {
 }
 
 function Th({ children, num }: { children: React.ReactNode; num?: boolean }) {
-  return <th className={`p-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50 border-b border-dim ${num ? 'text-right' : 'text-left'}`}>{children}</th>;
+  return <th scope="col" className={`p-3 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70 border-b border-dim ${num ? 'text-right' : 'text-left'}`}>{children}</th>;
 }
 
 function DataTable({ head, rows }: { head: string[]; rows: { tone: string; c: string[] }[] }) {
@@ -311,7 +311,7 @@ function DataTable({ head, rows }: { head: string[]; rows: { tone: string; c: st
   const lastToneClass = (tone: string) => (tone === 'bad' ? 'text-bronze/85' : tone === 'good' ? 'text-sage/85' : '');
   return (
     <div className="mt-5 overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
-      <table className="w-full text-[13px] tabular-nums border-collapse">
+      <table className="w-full min-w-[520px] sm:min-w-0 text-[13px] tabular-nums border-collapse">
         <thead>
           <tr>{head.map((h, i) => <Th key={h} num={i > 0 && i < head.length - 1}>{h}</Th>)}</tr>
         </thead>
@@ -321,7 +321,7 @@ function DataTable({ head, rows }: { head: string[]; rows: { tone: string; c: st
               {r.c.map((cell, ci) => {
                 const isNum = ci > 0 && ci < r.c.length - 1;
                 const isLast = ci === r.c.length - 1;
-                return <td key={ci} className={`${isNum ? 'text-right' : ''} ${isLast ? lastToneClass(r.tone) : ''}`}>{cell}</td>;
+                return <td key={ci} className={`${isNum ? 'text-right whitespace-nowrap' : ''} ${isLast ? lastToneClass(r.tone) : ''}`}>{cell}</td>;
               })}
             </tr>
           ))}
@@ -370,7 +370,7 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
         </button>
         <a
           href={contactHref}
-          className="text-[12px] font-semibold uppercase tracking-[0.1em] text-sage border-b border-transparent hover:border-sage transition-colors focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-[3px]"
+          className="inline-flex items-center min-h-[44px] text-[12px] font-semibold uppercase tracking-[0.1em] text-sage border-b border-transparent hover:border-sage transition-colors focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-[3px]"
         >
           {s.inlineCta}
         </a>
@@ -405,7 +405,7 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
                           transition={{ duration: 0.9, delay: i * 0.15, ease: [0.2, 0.65, 0.3, 0.95] }}
                         />
                       </div>
-                      <div className="text-[12px] text-white/55">{bar.note}</div>
+                      <div className="text-[12px] text-white/70">{bar.note}</div>
                     </div>
                   ))}
                 </div>
@@ -415,12 +415,12 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
                 <p className="text-[14px] leading-[1.7] text-white/82 max-w-[640px]">{s.b2.lede}</p>
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div className="p-6 border border-dim bg-white/[0.02]">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">{s.b2.metaLabel}</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">{s.b2.metaLabel}</div>
                     <div className="mt-3 text-[clamp(36px,4.5vw,56px)] font-semibold leading-none text-white tabular-nums">1.09×</div>
                     <div className="mt-3.5 text-[12px] text-white/70 tabular-nums">{s.b2.metaDetail}</div>
                   </div>
                   <div className="p-6 border border-sage bg-sage/[0.06]">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">{s.b2.shopLabel}</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">{s.b2.shopLabel}</div>
                     <div className="mt-3 text-[clamp(36px,4.5vw,56px)] font-semibold leading-none text-sage tabular-nums">0.33×</div>
                     <div className="mt-3.5 text-[12px] text-white/70 tabular-nums">{s.b2.shopDetail}</div>
                   </div>
@@ -463,7 +463,7 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
                 <Conclusion>{s.b6.conclusion}</Conclusion>
               </Block>
 
-              <p className="mt-14 pt-6 border-t border-dim text-[11px] leading-[1.7] text-white/50 max-w-[640px]">{s.disclaimer}</p>
+              <p className="mt-14 pt-6 border-t border-dim text-[12px] leading-[1.7] text-white/70 max-w-[640px]">{s.disclaimer}</p>
 
               <div className="mt-9 p-8 bg-green">
                 <p className="text-[clamp(16px,1.6vw,18px)] font-semibold text-white max-w-[460px] leading-[1.4]">{s.ctaText}</p>

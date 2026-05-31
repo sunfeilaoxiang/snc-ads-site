@@ -90,7 +90,14 @@
   --sidebar-ring:     oklch(0.708 0 0);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Base reset — MUST live in @layer base so Tailwind v4 utilities (px-*, py-*,
+   mt-*, etc., which live in @layer utilities) win over it inside React islands.
+   An unlayered `* { padding:0; margin:0 }` beats all layered rules regardless of
+   specificity, which silently zeroed every padding/margin utility in the
+   teardown island. Unlayered component CSS (.section, .btn) still overrides this. */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+}
 
 html { scroll-behavior: smooth; }
 
