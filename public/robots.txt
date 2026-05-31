@@ -1,9 +1,14 @@
 User-agent: *
 Allow: /
 
+# AI search crawlers (GPTBot, ChatGPT-User, ClaudeBot, anthropic-ai,
+# PerplexityBot, Google-Extended, Bingbot) are intentionally allowed via the
+# wildcard above — we want SNC cited in AI-generated answers.
+
 # Don't crawl the server-side API endpoint or the post-submit landing.
 Disallow: /api/
 Disallow: /thank-you/
 Disallow: /en/thank-you/
 
+# AI context file: https://sncads.com/llms.txt
 Sitemap: https://sncads.com/sitemap-index.xml

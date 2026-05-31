@@ -1,0 +1,50 @@
+# SNC Advertising
+
+> Performance marketing agency specialising in Meta (Facebook & Instagram) ads for ecommerce and lead-generation brands. Senior execution, written reporting, async by default — no agency overhead. Based in Riga, serving the EU. Bilingual site: Russian at / and English at /en/.
+
+## What SNC does
+- Meta Ads for ecommerce: campaign launch, creative testing, daily optimisation, Pixel/CAPI, product catalogs, Advantage+ Shopping, retargeting.
+- Meta Ads for lead generation: lead campaigns for service businesses, optimised for cost per lead and lead quality (not clicks).
+- Optional creative briefs and freelance coordination (production billed separately, never inside the retainer).
+- One channel — Meta — run deeply. No Google Ads, TikTok, SEO, Amazon, or influencer work.
+
+## How they work
+- Written-first: reports and briefs in writing; one optional monthly strategy call. No status calls.
+- Live performance dashboard and full ad-account access from day one.
+- Written update every Friday; monthly P&L-style report.
+- 30-day cancellation, no penalty.
+- Every engagement starts with a written audit (teardown) of the prospect's Meta ad account, after a short written qualifying step. The audit is not an instant or ungated freebie — it follows a brief fit conversation.
+
+## Who it's for
+- Ecommerce brands doing roughly €300k+/year, ad budget from €1k/month (€3–10k/month is the sweet spot).
+- Founders who want transparent, numbers-first reporting rather than slide decks, and who are comfortable working in writing.
+
+## Who it's not for
+- Brands wanting guaranteed ROAS or a guaranteed lead count.
+- Budgets under €1k/month, or buyers needing daily calls / 24-7 chat access.
+
+## Pricing
+- Not published. Quoted after a short conversation; depends on scope (ecommerce typically more involved than lead-gen). Ecommerce and lead-gen are priced differently.
+
+## Proof
+- The site carries an anonymised teardown of a real Meta account (EU premium cosmetics, ~€8k spend, 4.5 months): true ROAS 0.33x vs the 1.09x the dashboard reported, 43% of selling budget wasted, 6 dead regions, 50% of creative impressions defective — with a Phase-1 fix plan inside the same budget. It is the agency's main proof in lieu of named client case studies (clients are under NDA; SNC launched in 2026).
+
+## Key pages
+- Home (RU): https://sncads.com/
+- Home (EN): https://sncads.com/en/
+- Services (RU): https://sncads.com/services
+- Services (EN): https://sncads.com/en/services
+- Approach (RU): https://sncads.com/approach
+- Approach (EN): https://sncads.com/en/approach
+- Anonymised account teardown (real audit example): https://sncads.com/#razbor
+- Request an audit (RU): https://sncads.com/contact
+- Request an audit (EN): https://sncads.com/en/contact
+
+## Founders
+- Nikita — Meta / delivery: 4 years running Meta Ads for EU ecommerce brands.
+- Dmitrijs — commercial / finance: fractional-CFO background; runs pricing, unit economics, client relationships.
+
+## Contact
+- Email: dmitrijs@sncads.com
+- Telegram: https://t.me/sunnfeii
+- Book a call: https://calendly.com/dmitrijs-sncads/30min
