@@ -45,22 +45,34 @@ import { localizedUrl } from '../../lib/links';
       });
     }
 
-    if (window.gtag) window.gtag('event', 'generate_lead');
+    // Fire once per submission — a refresh / back-nav to /thank-you must not
+    // re-fire Lead (a new event_id each time would not dedupe -> inflated count).
+    try { if (sessionStorage.getItem('snc_lead_fired')) return; } catch (e) {}
 
-    if (window.fbq) {
-      var eventId = uuid();
-      window.fbq('track', 'Lead', {}, { eventID: eventId });
-      // Mirror via CAPI (server-side); deduped against the browser event by event_id.
-      fetch('/api/meta-capi', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          event_id: eventId,
-          event_source_url: window.location.href,
-        }),
-        keepalive: true,
-      }).catch(function () { /* fire and forget */ });
-    }
+    // GDPR gate: only fire if the visitor accepted analytics consent. CAPI sends
+    // IP + user-agent, so it must not run for someone who declined.
+    var consented = window.sncConsent && window.sncConsent.state() === 'accepted';
+    if (!consented) return;
+
+    try { sessionStorage.setItem('snc_lead_fired', '1'); } catch (e) {}
+
+    var eventId = uuid();
+    if (window.gtag) window.gtag('event', 'generate_lead');
+    if (window.fbq) window.fbq('track', 'Lead', {}, { eventID: eventId });
+
+    // Server-side mirror — fires even when the browser Pixel is blocked
+    // (ad blocker / iOS / content-blocking DNS). That coverage is the whole
+    // point of CAPI. Deduped against the browser event by event_id when both
+    // reach Meta.
+    fetch('/api/meta-capi', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event_id: eventId,
+        event_source_url: window.location.href,
+      }),
+      keepalive: true,
+    }).catch(function () { /* fire and forget */ });
   })();
 </script>
 
