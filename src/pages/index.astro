@@ -4,71 +4,84 @@
  * Content source: ../../pages/01-home.md (the canonical copy reference).
  * Facts reconciled with ../../snc-media-ops/00_SNC_Media_Operations_Bible.md.
  */
-import Base from '../layouts/Base.astro';
-import { url } from '../lib/links';
-import AuditTeardown from '../components/AuditTeardown.tsx';
+import Base from "../layouts/Base.astro";
+import { url } from "../lib/links";
+import AuditTeardown from "../components/AuditTeardown.tsx";
 
 /* A "what you get" strip — deliberate differentiators, not vanity metrics.
    Replaces the old stats strip, which quietly signalled "small and new". */
 const principles = [
-  { k: 'Meta',       v: 'один канал, отлаженный глубоко' },
-  { k: 'Письменно',  v: 'отчётность и брифы — без лишних созвонов' },
-  { k: 'С 1-го дня', v: 'живой дашборд и полный доступ к данным' },
-  { k: '30 дней',    v: 'расторжение без штрафов и без вопросов' },
+  { k: "Meta", v: "один канал, отлаженный глубоко" },
+  { k: "Письменно", v: "отчётность и брифы — без лишних созвонов" },
+  { k: "С 1-го дня", v: "живой дашборд и полный доступ к данным" },
+  { k: "30 дней", v: "расторжение без штрафов и без вопросов" },
 ];
 
 const services = [
   {
-    name: 'Meta Ads — ecommerce',
-    body: 'Запуск, тестирование креативов, оптимизация. Pixel/CAPI, каталоги, Advantage+ Shopping, ретаргет. Еженедельный письменный апдейт.',
+    name: "Meta Ads — ecommerce",
+    body: "Запуск, тестирование креативов, оптимизация. Pixel/CAPI, каталоги, Advantage+ Shopping, ретаргет. Еженедельный письменный апдейт.",
   },
   {
-    name: 'Meta Ads — lead-gen',
-    body: 'Кампании на заявки для сервисных бизнесов. Цель — стоимость и качество лида, не клики. Прозрачная воронка от показа до заявки.',
+    name: "Meta Ads — lead-gen",
+    body: "Кампании на заявки для сервисных бизнесов. Цель — стоимость и качество лида, не клики. Прозрачная воронка от показа до заявки.",
   },
   {
-    name: 'Креатив (опционально)',
-    body: 'Бриф креативов под платформу. Координация с фрилансерами. Продакшн оплачивается клиентом отдельно, не входит в ретейнер.',
+    name: "Креатив (опционально)",
+    body: "Бриф креативов под платформу. Координация с фрилансерами. Продакшн оплачивается клиентом отдельно, не входит в ретейнер.",
   },
 ];
 
 const steps = [
-  { n: '01', t: 'Аудит',                  d: '30 минут. Смотрим аккаунт, трекинг, креативы. По итогу — письменный отчёт и честный ответ: подходим друг другу или нет.' },
-  { n: '02', t: 'Онбординг',              d: 'Доступы, бриф через шаблон, согласование бюджета и KPI. Запуск — в течение 14 дней.' },
-  { n: '03', t: 'Ежедневная оптимизация', d: 'Тесты креативов, оптимизация бюджетов, масштабирование победителей. Без созвонов.' },
-  { n: '04', t: 'Отчётность',             d: 'Дашборд в реальном времени. Письменный апдейт по пятницам. Стратегический созвон раз в месяц — по желанию клиента.' },
+  {
+    n: "01",
+    t: "Аудит",
+    d: "30 минут. Смотрим аккаунт, трекинг, креативы. По итогу — письменный отчёт и честный ответ: подходим друг другу или нет.",
+  },
+  {
+    n: "02",
+    t: "Онбординг",
+    d: "Доступы, бриф через шаблон, согласование бюджета и KPI. Запуск — в течение 14 дней.",
+  },
+  {
+    n: "03",
+    t: "Ежедневная оптимизация",
+    d: "Тесты креативов, оптимизация бюджетов, масштабирование победителей. Без созвонов.",
+  },
+  {
+    n: "04",
+    t: "Отчётность",
+    d: "Дашборд в реальном времени. Письменные апдейты по пятницам. Стратегический созвон раз в месяц — по желанию клиента.",
+  },
 ];
 
 const fitYes = [
-  'Ecommerce-бренд с годовым оборотом от €300k',
-  'Бюджет на рекламу от €1k/мес, комфортный коридор — €3–10k/мес',
-  'Готовы работать письменно, по шаблонам',
-  'Хотят прозрачную отчётность с цифрами, не презентации',
-  'Понимают, что результаты — функция качества продукта, креатива и бюджета, а не только агентства',
+  "Ecommerce-бренд с годовым оборотом от €300k",
+  "Бюджет на рекламу от €1k/мес, комфортный коридор — €3–10k/мес",
+  "Хотят прозрачную отчётность с цифрами",
+  "Понимают, что результаты — функция качества продукта, креатива и бюджета, а не только агентства",
 ];
 
 const fitNo = [
-  'Ищут гарантии ROAS или количества лидов',
-  'Бюджет на рекламу меньше €1k/мес',
-  'Нужен ежедневный созвон и доступ в WhatsApp 24/7',
-  'Хотят, чтобы агентство «придумало стратегию» вместо понимания собственного бизнеса',
-  'Местный сервисный бизнес без онлайн-продаж (мы — про ecommerce)',
+  "Ищут гарантии ROAS или количества лидов",
+  "Бюджет на рекламу меньше €1k/мес",
+  "Нужен ежедневный созвон и доступ в WhatsApp 24/7",
 ];
 
 const founders = [
   {
-    initial: 'Н',
-    name: 'Никита',
-    role: 'Meta / Delivery',
-    img: '/founders/nikita.jpg',
-    body: '4 года ведения Meta Ads для ecommerce-брендов в EU. Отвечает за рекламную стратегию, исполнение, QA. До SNC — senior performance marketer в агентстве.',
+    initial: "Н",
+    name: "Никита",
+    role: "Meta / Delivery",
+    img: "/founders/nikita.jpg",
+    body: "4 года ведения Meta Ads для ecommerce-брендов в EU. Отвечает за рекламную стратегию, исполнение, QA. До SNC — senior performance marketer в агентстве.",
   },
   {
-    initial: 'Д',
-    name: 'Дмитрий',
-    role: 'CCO / финансовая дисциплина',
-    img: '/founders/dmitrijs.jpg',
-    body: '5+ лет фрактального CFO для SMB и стартапов. Отвечает за коммерческую сторону, клиентские отношения, ценообразование, юнит-экономику.',
+    initial: "Д",
+    name: "Дмитрий",
+    role: "CCO / финансовая дисциплина",
+    img: "/founders/dmitrijs.jpg",
+    body: "5+ лет фрактального CFO для SMB и стартапов. Отвечает за коммерческую сторону, клиентские отношения, ценообразование, юнит-экономику.",
   },
 ];
 ---
@@ -87,14 +100,18 @@ const founders = [
     </div>
 
     <div class="hero-center">
-      <h1 class="hero-h1">Найдём,<br />где утекает<br />рекламный<br />бюджет.</h1>
+      <h1 class="hero-h1">
+        Найдём,<br />где утекает<br />рекламный<br />бюджет.
+      </h1>
       <p class="hero-sub">
         Meta-реклама для брендов, которые выросли из самостоятельного запуска,
         но не готовы платить агентствам по €5k/мес за дашборды и созвоны.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-on-green" href={url('/contact')}>Получить аудит</a>
-        <a class="hero-link tlink" href="#razbor">Посмотреть разбор аккаунта &rarr;</a>
+        <a class="btn btn-on-green" href={url("/contact")}>Получить аудит</a>
+        <a class="hero-link tlink" href="#razbor"
+          >Посмотреть разбор аккаунта &rarr;</a
+        >
       </div>
       <p class="hero-cta-note">
         Письменный разбор вашего аккаунта. Сначала пара вопросов — поймём,
@@ -104,30 +121,36 @@ const founders = [
 
     <div class="hero-bottom">
       <span>Senior-исполнение &middot; без агентского балласта</span>
-      <span class="hero-bottom-right">Meta Ads &middot; ecommerce &amp; lead-gen</span>
+      <span class="hero-bottom-right"
+        >Meta Ads &middot; ecommerce &amp; lead-gen</span
+      >
     </div>
   </section>
 
   <!-- ══ 02 · PRINCIPLES ════════════════════════════════ -->
   <section class="principles">
-    {principles.map((p) => (
-      <div class="principle">
-        <div class="principle-k">{p.k}</div>
-        <div class="principle-v">{p.v}</div>
-      </div>
-    ))}
+    {
+      principles.map((p) => (
+        <div class="principle">
+          <div class="principle-k">{p.k}</div>
+          <div class="principle-v">{p.v}</div>
+        </div>
+      ))
+    }
   </section>
 
   <!-- ══ 03 · POSITIONING ═══════════════════════════════ -->
   <section class="section pos">
     <div class="sec-label on-dark">01 — Позиция</div>
-    <h2 class="pos-statement">Senior-исполнение<br />без агентского балласта.</h2>
+    <h2 class="pos-statement">
+      Senior-исполнение<br />без агентского балласта.
+    </h2>
     <p class="pos-body">
-      Большинство SMB-брендов платят агентствам не за работу, а за инфраструктуру:
-      аккаунт-менеджмент, созвоны, презентации, «стратегические сессии». Мы убрали
-      всё, что не двигает цифру. Остался senior-уровень исполнения, прозрачные
-      дашборды и письменный формат коммуникации. Это позволяет нам стоить меньше
-      при том же качестве работы.
+      Большинство SMB-брендов платят агентствам не за работу, а за
+      инфраструктуру: аккаунт-менеджмент, созвоны, презентации, «стратегические
+      сессии». Мы убрали всё, что не двигает цифру. Остался senior-уровень
+      исполнения, прозрачные дашборды и письменный формат коммуникации. Это
+      позволяет нам стоить меньше при том же качестве работы.
     </p>
   </section>
 
@@ -135,71 +158,96 @@ const founders = [
   <section class="section services">
     <div class="sec-label">02 — Что мы делаем</div>
     <div class="services-grid">
-      {services.map((s) => (
-        <div class="service">
-          <h3 class="service-name">{s.name}</h3>
-          <p class="service-body">{s.body}</p>
-        </div>
-      ))}
+      {
+        services.map((s) => (
+          <div class="service">
+            <h3 class="service-name">{s.name}</h3>
+            <p class="service-body">{s.body}</p>
+          </div>
+        ))
+      }
     </div>
     <p class="services-note">
-      Google Ads, TikTok, SEO, Amazon, инфлюенсеры — пока не делаем.
-      Один канал, который знаем глубоко.
+      Google Ads, TikTok, SEO, Amazon, инфлюенсеры — пока не делаем. Один канал,
+      который знаем глубоко.
     </p>
-    <a class="services-cta tlink" href={url('/services')}>Подробнее об услугах &rarr;</a>
+    <a class="services-cta tlink" href={url("/services")}
+      >Подробнее об услугах &rarr;</a
+    >
   </section>
 
   <!-- ══ 05 · HOW WE WORK ═══════════════════════════════ -->
   <section class="section how">
     <div class="sec-label">03 — Как мы работаем</div>
     <div class="how-grid">
-      {steps.map((s) => (
-        <div class="step">
-          <div class="step-n">{s.n}</div>
-          <h3 class="step-t">{s.t}</h3>
-          <p class="step-d">{s.d}</p>
-        </div>
-      ))}
+      {
+        steps.map((s) => (
+          <div class="step">
+            <div class="step-n">{s.n}</div>
+            <h3 class="step-t">{s.t}</h3>
+            <p class="step-d">{s.d}</p>
+          </div>
+        ))
+      }
     </div>
-    <a class="how-cta tlink" href={url('/approach')}>Подробнее о подходе &rarr;</a>
+    <a class="how-cta tlink" href={url("/approach")}
+      >Подробнее о подходе &rarr;</a
+    >
   </section>
 
   <!-- ══ 06 · FIT ═══════════════════════════════════════ -->
   <section class="section fit">
     <div class="fit-col">
       <div class="fit-head fit-head-yes">Подходим</div>
-      {fitYes.map((row) => (
-        <div class="fit-row"><span class="fit-mark fit-mark-yes">&rarr;</span><span>{row}</span></div>
-      ))}
+      {
+        fitYes.map((row) => (
+          <div class="fit-row">
+            <>
+              <span class="fit-mark fit-mark-yes">&rarr;</span>
+              <span>{row}</span>
+            </>
+          </div>
+        ))
+      }
     </div>
     <div class="fit-col">
       <div class="fit-head fit-head-no">Не подходим</div>
-      {fitNo.map((row) => (
-        <div class="fit-row fit-row-no"><span class="fit-mark fit-mark-no">&times;</span><span>{row}</span></div>
-      ))}
+      {
+        fitNo.map((row) => (
+          <div class="fit-row fit-row-no">
+            <>
+              <span class="fit-mark fit-mark-no">&times;</span>
+              <span>{row}</span>
+            </>
+          </div>
+        ))
+      }
     </div>
   </section>
 
   <!-- ══ 07 · РАЗБОР АККАУНТА (React island with Framer Motion) ══ -->
-  <AuditTeardown contactHref={url('/contact')} client:visible />
-
+  <AuditTeardown contactHref={url("/contact")} client:visible />
 
   <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
   <section class="section founders">
     <div class="sec-label">05 — Кто мы</div>
     <div class="founders-grid">
-      {founders.map((f) => (
-        <div class="founder">
-          <div class="founder-photo" style={`--img:url('${f.img}')`}>
-            <span class="founder-photo-fallback" aria-hidden="true">{f.initial}</span>
+      {
+        founders.map((f) => (
+          <div class="founder">
+            <div class="founder-photo" style={`--img:url('${f.img}')`}>
+              <span class="founder-photo-fallback" aria-hidden="true">
+                {f.initial}
+              </span>
+            </div>
+            <div class="founder-head">
+              <span class="founder-name">{f.name}</span>
+              <span class="founder-role">{f.role}</span>
+            </div>
+            <p class="founder-body">{f.body}</p>
           </div>
-          <div class="founder-head">
-            <span class="founder-name">{f.name}</span>
-            <span class="founder-role">{f.role}</span>
-          </div>
-          <p class="founder-body">{f.body}</p>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
@@ -211,7 +259,7 @@ const founders = [
       друг другу. Если да — разберём текущий аккаунт и покажем, что оставляет
       деньги на столе. Если нет — честно скажем сразу.
     </p>
-    <a class="btn btn-on-green" href={url('/contact')}>Получить аудит</a>
+    <a class="btn btn-on-green" href={url("/contact")}>Получить аудит</a>
   </section>
 </Base>
 
@@ -228,10 +276,12 @@ const founders = [
     overflow: hidden;
   }
   .hero::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: -70px; right: -70px;
-    width: 420px; height: 420px;
+    top: -70px;
+    right: -70px;
+    width: 420px;
+    height: 420px;
     border: 1px solid rgba(255, 255, 255, 0.06);
     pointer-events: none;
   }
@@ -240,63 +290,115 @@ const founders = [
     justify-content: space-between;
     padding-bottom: 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    position: relative; z-index: 1;
+    position: relative;
+    z-index: 1;
   }
   .hero-label {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.25em;
-    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
   }
   .hero-eyebrow {
-    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: rgba(255, 255, 255, 0.75);
   }
-  .hero-center { position: relative; z-index: 1; padding: 48px 0; }
+  .hero-center {
+    position: relative;
+    z-index: 1;
+    padding: 48px 0;
+  }
   .hero-h1 {
     font-size: clamp(40px, 8.5vw, 116px);
-    font-weight: 600; letter-spacing: 0.02em; line-height: 0.98;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 0.98;
   }
 
   /* Hero load-in — runs on page load (above the fold, no scroll trigger).
      Starting opacity only inside the no-preference query, so reduced-motion
      and any animation failure leave content fully visible. */
   @media (prefers-reduced-motion: no-preference) {
-    .hero-label, .hero-eyebrow,
-    .hero-h1, .hero-sub, .hero-cta,
+    .hero-label,
+    .hero-eyebrow,
+    .hero-h1,
+    .hero-sub,
+    .hero-cta,
     .hero-bottom > * {
       opacity: 0;
       animation: heroIn 0.7s cubic-bezier(0.2, 0.65, 0.3, 0.95) forwards;
     }
-    .hero-label   { animation-delay: 0.05s; }
-    .hero-eyebrow { animation-delay: 0.1s; }
-    .hero-h1      { animation-delay: 0.15s; }
-    .hero-sub     { animation-delay: 0.35s; }
-    .hero-cta     { animation-delay: 0.5s; }
-    .hero-bottom > * { animation-delay: 0.65s; }
+    .hero-label {
+      animation-delay: 0.05s;
+    }
+    .hero-eyebrow {
+      animation-delay: 0.1s;
+    }
+    .hero-h1 {
+      animation-delay: 0.15s;
+    }
+    .hero-sub {
+      animation-delay: 0.35s;
+    }
+    .hero-cta {
+      animation-delay: 0.5s;
+    }
+    .hero-bottom > * {
+      animation-delay: 0.65s;
+    }
   }
   @keyframes heroIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: none; }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
   .hero-sub {
-    margin-top: 32px; max-width: 560px;
-    font-size: clamp(13px, 1.4vw, 16px); font-weight: 400;
-    line-height: 1.75; color: rgba(255, 255, 255, 0.7);
+    margin-top: 32px;
+    max-width: 560px;
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.7);
   }
   .hero-cta {
-    margin-top: 40px; display: flex; align-items: center;
-    gap: 28px; flex-wrap: wrap;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
   }
-  .hero-link { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
-  .hero-link:hover { color: var(--white); }
+  .hero-link {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .hero-link:hover {
+    color: var(--white);
+  }
   .hero-cta-note {
-    margin-top: 18px; max-width: 400px;
-    font-size: 11px; line-height: 1.65; color: rgba(255, 255, 255, 0.5);
+    margin-top: 18px;
+    max-width: 400px;
+    font-size: 11px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
   }
   .hero-bottom {
-    display: flex; justify-content: space-between;
-    padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);
-    position: relative; z-index: 1;
-    font-size: 9px; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 1;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   /* ── 02 PRINCIPLES ────────────────────────── */
@@ -306,96 +408,197 @@ const founders = [
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid var(--dim);
   }
-  .principle { padding: 36px var(--pad-x); border-right: 1px solid var(--dim); }
-  .principle:last-child { border-right: 0; }
-  .principle-k { font-size: 22px; font-weight: 600; color: var(--sage); line-height: 1.1; }
+  .principle {
+    padding: 36px var(--pad-x);
+    border-right: 1px solid var(--dim);
+  }
+  .principle:last-child {
+    border-right: 0;
+  }
+  .principle-k {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--sage);
+    line-height: 1.1;
+  }
   .principle-v {
-    margin-top: 12px; font-size: 13px; line-height: 1.6;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.72);
   }
 
   /* ── 03 POSITIONING ───────────────────────── */
-  .pos { background: var(--nearblack); border-top: 1px solid var(--dim); }
+  .pos {
+    background: var(--nearblack);
+    border-top: 1px solid var(--dim);
+  }
   .pos-statement {
     margin-top: 28px;
-    font-size: clamp(28px, 4vw, 44px); font-weight: 600;
-    line-height: 1.15; letter-spacing: 0.01em;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
   }
   .pos-body {
-    margin-top: 24px; max-width: 640px;
-    font-size: 15px; line-height: 1.85; color: rgba(255, 255, 255, 0.78);
+    margin-top: 24px;
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.78);
   }
 
   /* ── 04 SERVICES ──────────────────────────── */
-  .services { background: var(--offwhite); color: var(--nearblack); }
+  .services {
+    background: var(--offwhite);
+    color: var(--nearblack);
+  }
   .services-grid {
     margin-top: 28px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
     background: var(--dim-light);
     border: 1px solid var(--dim-light);
   }
-  .service { background: var(--offwhite); padding: 28px 24px; }
-  .service-name { font-size: 15px; font-weight: 600; color: var(--green); }
+  .service {
+    background: var(--offwhite);
+    padding: 28px 24px;
+  }
+  .service-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green);
+  }
   .service-body {
-    margin-top: 12px; font-size: 14px; line-height: 1.7; color: #4a4a4a;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4a4a4a;
   }
   .services-note {
-    margin-top: 20px; font-size: 12px; font-style: italic; color: var(--graphite);
+    margin-top: 20px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--graphite);
   }
   .services-cta {
-    display: inline-block; margin-top: 18px;
-    font-size: 11px; font-weight: 600; color: var(--green);
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green);
   }
 
   /* ── 05 HOW ───────────────────────────────── */
-  .how { background: var(--white); color: var(--nearblack); }
+  .how {
+    background: var(--white);
+    color: var(--nearblack);
+  }
   .how-grid {
     margin-top: 28px;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
   }
-  .step { border-top: 2px solid var(--green); padding-top: 16px; }
-  .step-n { font-size: 11px; font-weight: 600; color: var(--bronze); letter-spacing: 0.1em; }
-  .step-t { margin-top: 8px; font-size: 15px; font-weight: 600; color: var(--green); }
-  .step-d { margin-top: 10px; font-size: 14px; line-height: 1.7; color: #4a4a4a; }
+  .step {
+    border-top: 2px solid var(--green);
+    padding-top: 16px;
+  }
+  .step-n {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bronze);
+    letter-spacing: 0.1em;
+  }
+  .step-t {
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .step-d {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4a4a4a;
+  }
   .how-cta {
-    display: inline-block; margin-top: 24px;
-    font-size: 11px; font-weight: 600; color: var(--green);
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green);
   }
 
   /* ── 06 FIT ───────────────────────────────── */
   .fit {
     background: var(--forest);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
   }
-  .fit-col { padding: 8px 36px; }
-  .fit-col:first-child { border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  .fit-col {
+    padding: 8px 36px;
+  }
+  .fit-col:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
   .fit-head {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
-    text-transform: uppercase; margin-bottom: 20px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
   }
-  .fit-head-yes { color: var(--sage); }
-  .fit-head-no  { color: var(--bronze); }
+  .fit-head-yes {
+    color: var(--sage);
+  }
+  .fit-head-no {
+    color: var(--bronze);
+  }
   .fit-row {
-    display: flex; gap: 12px; align-items: flex-start;
-    font-size: 14px; line-height: 1.7; margin-bottom: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 14px;
   }
-  .fit-row-no { color: rgba(255, 255, 255, 0.72); }
-  .fit-mark { flex-shrink: 0; }
-  .fit-mark-yes { color: var(--sage); }
-  .fit-mark-no  { color: var(--bronze); }
+  .fit-row-no {
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .fit-mark {
+    flex-shrink: 0;
+  }
+  .fit-mark-yes {
+    color: var(--sage);
+  }
+  .fit-mark-no {
+    color: var(--bronze);
+  }
 
   /* ── 08 FOUNDERS ──────────────────────────── */
-  .founders { background: var(--white); color: var(--nearblack); }
+  .founders {
+    background: var(--white);
+    color: var(--nearblack);
+  }
   .founders-grid {
     margin-top: 28px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
     background: var(--dim-light);
     border: 1px solid var(--dim-light);
   }
-  .founder { background: var(--white); padding: 28px 24px; }
+  .founder {
+    background: var(--white);
+    padding: 28px 24px;
+  }
   .founder-photo {
     position: relative;
-    width: 168px; aspect-ratio: 4 / 5;
+    width: 168px;
+    aspect-ratio: 4 / 5;
     margin-bottom: 20px;
     background: var(--offwhite);
     border: 1px solid var(--dim-light);
@@ -404,55 +607,113 @@ const founders = [
   /* B&W treatment applied at render — drop a colour photo, it shows greyscale.
      If the image is missing, ::after paints nothing and the monogram shows. */
   .founder-photo::after {
-    content: ''; position: absolute; inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
     background-image: var(--img);
-    background-size: cover; background-position: center 20%;
+    background-size: cover;
+    background-position: center 20%;
     filter: grayscale(100%) contrast(1.04);
   }
   .founder-photo-fallback {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 40px; font-weight: 600; color: var(--green);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--green);
   }
-  .founder-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .founder-name { font-size: 16px; font-weight: 600; color: var(--green); }
+  .founder-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .founder-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--green);
+  }
   .founder-role {
-    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--gray);
   }
   .founder-body {
-    margin-top: 12px; font-size: 14px; line-height: 1.7; color: #4a4a4a;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4a4a4a;
   }
 
   /* ── 09 CLOSING ───────────────────────────── */
-  .closing { background: var(--green); }
+  .closing {
+    background: var(--green);
+  }
   .closing-statement {
-    font-size: clamp(32px, 5vw, 56px); font-weight: 600; line-height: 1.1;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 600;
+    line-height: 1.1;
   }
   .closing-body {
-    margin-top: 24px; max-width: 520px;
-    font-size: 14px; line-height: 1.75; color: rgba(255, 255, 255, 0.78);
+    margin-top: 24px;
+    max-width: 520px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.78);
   }
-  .closing .btn { margin-top: 32px; }
+  .closing .btn {
+    margin-top: 32px;
+  }
 
   /* ── responsive ───────────────────────────── */
   @media (max-width: 860px) {
-    .principles { grid-template-columns: repeat(2, 1fr); }
-    .principle:nth-child(2) { border-right: 0; }
-    .principle:nth-child(-n+2) { border-bottom: 1px solid var(--dim); }
-    .services-grid { grid-template-columns: 1fr; }
-    .how-grid { grid-template-columns: repeat(2, 1fr); }
-    .fit { grid-template-columns: 1fr; }
-    .fit-col:first-child {
-      border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .principles {
+      grid-template-columns: repeat(2, 1fr);
     }
-    .founders-grid { grid-template-columns: 1fr; }
+    .principle:nth-child(2) {
+      border-right: 0;
+    }
+    .principle:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--dim);
+    }
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    .how-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .fit {
+      grid-template-columns: 1fr;
+    }
+    .fit-col:first-child {
+      border-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .founders-grid {
+      grid-template-columns: 1fr;
+    }
   }
   @media (max-width: 640px) {
-    .hero { min-height: auto; padding: 32px var(--pad-x) 28px; }
-    .hero-h1 { font-size: 40px; line-height: 1.05; }
-    .hero-center { padding: 36px 0; }
-    .hero-bottom-right { display: none; }
-    .how-grid { grid-template-columns: 1fr; }
+    .hero {
+      min-height: auto;
+      padding: 32px var(--pad-x) 28px;
+    }
+    .hero-h1 {
+      font-size: 40px;
+      line-height: 1.05;
+    }
+    .hero-center {
+      padding: 36px 0;
+    }
+    .hero-bottom-right {
+      display: none;
+    }
+    .how-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
