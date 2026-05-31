@@ -8,7 +8,7 @@ import Base from "../../layouts/Base.astro";
 import { localizedUrl } from "../../lib/links";
 import AuditTeardown from "../../components/AuditTeardown.tsx";
 import MagneticButton from "../../components/MagneticButton.tsx";
-import HeroBudgetLine from "../../components/HeroBudgetLine.tsx";
+import HeroTerminal from "../../components/HeroTerminal.tsx";
 import HeroField from "../../components/HeroField.tsx";
 
 const u = (p: string) => localizedUrl(p, "en");
@@ -98,7 +98,7 @@ const founders = [
   <!-- ══ 01 · HERO ══════════════════════════════════════ -->
   <section class="hero">
     <HeroField client:load />
-    <HeroBudgetLine client:load />
+    <HeroTerminal client:load locale="en" />
     <div class="hero-top">
       <span class="hero-label">SNC Advertising &middot; Performance</span>
       <span class="hero-eyebrow">Riga / EU &middot; Since 2026</span>

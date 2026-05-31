@@ -249,32 +249,90 @@ textarea:focus-visible {
   transition: opacity 0.6s ease;
 }
 
-/* ── Hero set-piece — budget-leak→growth line (Tier 2, concept C). Rendered
-   by the HeroBudgetLine React island, so it must live in GLOBAL css (Astro
-   scoped styles never reach island DOM). Sits in the lower band of .hero,
-   behind the H1, so it never competes for the LCP. ── */
-.hero-line {
+/* ── Hero set-piece — terminal "account scan" (Tier 2). Rendered by the
+   HeroTerminal React island → must live in GLOBAL css (Astro scoped styles
+   never reach island DOM). An austere dark console panel anchored in the
+   hero's right zone; demonstrates the deliverable instead of decorating. ── */
+.hero-term {
   position: absolute;
   top: 50%;
   right: var(--pad-x);
-  width: 44%;
-  height: 54%;
   transform: translateY(-50%);
-  z-index: 0;
+  width: clamp(330px, 40%, 500px);
+  z-index: 1;
+  padding: 22px 24px 18px;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  line-height: 1.7;
   pointer-events: none;
 }
-/* Tablet/mobile: H1 shrinks and reflows, so the chart moves to a full-width
-   band along the bottom of the hero, behind the content, at lower contrast. */
+.hero-term-tag {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+.ht-line {
+  white-space: pre;
+  min-height: 1.7em;
+}
+.ht-cmd .ht-label {
+  color: rgba(255, 255, 255, 0.92);
+}
+.ht-info .ht-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+.ht-leak .ht-label {
+  color: rgba(255, 255, 255, 0.82);
+}
+.ht-leak .ht-amt {
+  color: var(--sage);
+}
+.ht-total {
+  margin-top: 4px;
+}
+.ht-total .ht-label {
+  color: rgba(255, 255, 255, 0.92);
+}
+.ht-total .ht-amt {
+  color: var(--bronze);
+  font-weight: 600;
+}
+.ht-note {
+  white-space: normal;
+  margin-top: 12px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.38);
+}
+.hero-term-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--bronze);
+  animation: htblink 1.05s step-end infinite;
+}
+@keyframes htblink {
+  50% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-term-cursor {
+    animation: none;
+  }
+}
+/* Desktop flourish — hide on tablet/mobile; the same content lives in the
+   AuditTeardown island below the fold. */
 @media (max-width: 860px) {
-  .hero-line {
-    top: auto;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: auto;
-    height: 42%;
-    transform: none;
-    opacity: 0.65;
+  .hero-term {
+    display: none;
   }
 }
 
