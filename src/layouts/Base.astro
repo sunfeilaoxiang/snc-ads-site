@@ -145,6 +145,52 @@ const consent = (ui[locale] ?? ui.ru).consent;
         });
       })();
     </script>
+
+    {/* ── Universal scroll-reveal ──────────────────────────────
+        Adds a subtle fade-up to section blocks as they enter the
+        viewport. Zero dependencies, ~60fps (transform+opacity only).
+        No-JS and reduced-motion users see everything immediately —
+        the hidden state only applies once this script tags elements. */}
+    <script is:inline>
+      (function () {
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return; // leave all content visible, no motion
+
+        // Curated set of block-level elements worth revealing. Cards get a
+        // per-sibling stagger; standalone blocks just fade up.
+        var SEL = [
+          '.principle', '.service', '.step', '.fit-col', '.founder',
+          '.sec-label', '.pos-statement', '.pos-body',
+          '.services-note', '.services-cta', '.how-cta', '.cases-cta',
+          '.closing-statement', '.closing-body', '.closing-cta',
+          '.page-hero-label', '.page-hero-h1', '.page-hero-lede',
+          '.statement', '.lede'
+        ].join(',');
+
+        var nodes = Array.prototype.slice.call(document.querySelectorAll(SEL));
+        if (!nodes.length || !('IntersectionObserver' in window)) return;
+
+        // Tag + assign per-parent stagger index.
+        var lastParent = null, idx = 0;
+        nodes.forEach(function (n) {
+          var p = n.parentElement;
+          if (p !== lastParent) { lastParent = p; idx = 0; } else { idx++; }
+          n.style.setProperty('--reveal-i', String(idx));
+          n.classList.add('reveal');
+        });
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+        nodes.forEach(function (n) { io.observe(n); });
+      })();
+    </script>
   </body>
 </html>
 

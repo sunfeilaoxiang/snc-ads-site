@@ -247,6 +247,28 @@ const founders = [
     font-size: clamp(40px, 8.5vw, 116px);
     font-weight: 600; letter-spacing: 0.02em; line-height: 0.98;
   }
+
+  /* Hero load-in — runs on page load (above the fold, no scroll trigger).
+     Starting opacity only inside the no-preference query, so reduced-motion
+     and any animation failure leave content fully visible. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-label, .hero-eyebrow,
+    .hero-h1, .hero-sub, .hero-cta,
+    .hero-bottom > * {
+      opacity: 0;
+      animation: heroIn 0.7s cubic-bezier(0.2, 0.65, 0.3, 0.95) forwards;
+    }
+    .hero-label   { animation-delay: 0.05s; }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero-h1      { animation-delay: 0.15s; }
+    .hero-sub     { animation-delay: 0.35s; }
+    .hero-cta     { animation-delay: 0.5s; }
+    .hero-bottom > * { animation-delay: 0.65s; }
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
   .hero-sub {
     margin-top: 32px; max-width: 560px;
     font-size: clamp(13px, 1.4vw, 16px); font-weight: 400;

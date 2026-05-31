@@ -207,6 +207,37 @@ textarea:focus-visible {
 .muted-dark  { color: rgba(255, 255, 255, 0.78); }
 .muted-light { color: #4a4a4a; }
 
+/* ── Universal scroll-reveal ──────────────────────────────────
+   The .reveal class is added by JS only (Base.astro), so no-JS and
+   reduced-motion users never see the hidden state. Stagger via the
+   --reveal-i custom property set per sibling index. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s cubic-bezier(0.2, 0.65, 0.3, 0.95),
+                transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 0.95);
+    transition-delay: calc(var(--reveal-i, 0) * 70ms);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Card hover polish ────────────────────────────────────────
+   Subtle lift on the card-style blocks. Transform-only (no layout
+   shift), respects reduced-motion via the wrapping query. */
+@media (prefers-reduced-motion: no-preference) {
+  .service, .step, .principle, .founder {
+    transition: transform 0.2s ease-out, border-color 0.2s ease-out;
+  }
+  .service:hover, .step:hover {
+    transform: translateY(-3px);
+  }
+}
+
 @theme inline {
   /* Override shadcn defaults to keep SNC's single-typeface discipline. */
   --font-heading:  'IBM Plex Mono', 'Courier New', monospace;
