@@ -24,15 +24,40 @@ evaluated and dropped: its API is read-only, you cannot deploy code to it.)
 
 ## Stack
 
+> **Stack migrated 2026-05-31** (branch `feat/react-stack`): added Tailwind v4 +
+> React 19 islands + Framer Motion + shadcn/ui. The site is still
+> **static-HTML-first** — client JS ships only via explicit React islands. The
+> original plain-CSS design system is untouched and still drives every `.astro`
+> page. This was a *targeted* addition for the animated teardown, not a full
+> React rewrite.
+
 - **Astro 5** with `output: 'static'`. All pages pre-render at build time; one
   serverless function (`/api/meta-capi`) ships via `@astrojs/vercel` adapter by
-  exporting `prerender = false`. Zero client JS shipped by default.
-- **Plain CSS** — no Tailwind. Design system in `src/styles/global.css` mirrors the
-  brand book directly.
+  exporting `prerender = false`.
+- **Tailwind v4** — CSS-first (`@import "tailwindcss"` at the top of
+  `global.css`, no `tailwind.config.js`). SNC brand tokens are mapped into the
+  `@theme` block so React-island utilities (`bg-green`, `text-sage`,
+  `font-mono`, `border-dim`) pull from the same palette as the Astro/CSS
+  components.
+- **React 19 islands + Framer Motion 12** — interactive sections are React
+  components hydrated with `client:visible`. **One island today:**
+  `src/components/AuditTeardown.tsx` (the animated Meta-account teardown on both
+  homepages, fully bilingual via a `locale` prop). Everything else is static
+  Astro. Motion respects `prefers-reduced-motion` (Framer `useReducedMotion` in
+  the island; a `@media (prefers-reduced-motion: no-preference)` guard on the
+  global scroll-reveal + hero load-in in `Base.astro`/`global.css`).
+- **shadcn/ui** — Base UI primitives (NOT Radix). Only `ui/button.tsx` is
+  installed so far. The `@theme inline` block in `global.css` overrides shadcn's
+  default font to keep the single-typeface discipline (no Geist).
+- **Plain CSS** — the design system in `src/styles/global.css` mirrors the brand
+  book directly and remains the source of truth for all `.astro` page styling.
+  Section-specific styles stay scoped in each `.astro` component.
 - **IBM Plex Mono** — the only typeface, loaded from Google Fonts in `Base.astro`.
 - **Astro i18n** — RU at `/`, EN at `/en/` (`prefixDefaultLocale: false`).
 - **Vercel** — hosting at `sncads.com` (root, no base path). Env vars
   `META_PIXEL_ID` and `META_CAPI_TOKEN` configured in project settings.
+  Vercel auto-deploys `main` → production; any other branch → a password-gated
+  preview URL.
 
 ## Structure
 
@@ -46,9 +71,12 @@ src/
     Header.astro         locale-aware nav + hamburger mobile menu + language switcher
     Footer.astro         locale-aware Deep Forest footer
     CtaClosing.astro     reusable closing CTA band, locale-aware
+    AuditTeardown.tsx    React island — animated Meta-account teardown (RU/EN), Framer Motion
+    ui/button.tsx        shadcn/ui Button primitive (Base UI)
   pages/
     index.astro services.astro approach.astro cases.astro contact.astro   — RU
     en/index.astro en/services.astro en/approach.astro en/cases.astro en/contact.astro — EN
+    404.astro en/404.astro                       — not-found pages (RU is the Vercel default)
     thank-you.astro en/thank-you.astro          — post-form-submit; fires Lead pixel + CAPI
     api/meta-capi.ts                            — server-side CAPI mirror (Vercel function)
 public/favicon.svg  og-default.png
@@ -139,6 +167,15 @@ registered email). On a successful submit the user redirects to `/thank-you/`,
 which fires `fbq('track', 'Lead', {}, {eventID})` and `gtag('event',
 'generate_lead')`, then POSTs to `/api/meta-capi` with the same `event_id` for
 server-side mirroring. Meta dedupes within a few minutes via the shared id.
+
+**Attribution capture (added 2026-05-31).** A small `is:inline` script in
+`Base.astro` stores `utm_*` / `fbclid` / `gclid` + landing page + referrer in
+`sessionStorage` on the **first** page seen (first-touch wins). Both contact
+forms carry matching hidden fields and populate them on load from
+`sessionStorage` (falling back to current-URL params for a direct landing on
+`/contact?utm=…`). So a lead that arrives from a Meta ad, browses, then submits
+still carries its source into the Web3Forms email. No consent gate — these are
+the visitor's own URL params, not tracking cookies.
 
 ## Funnel infrastructure already wired
 

@@ -1,0 +1,81 @@
+---
+/**
+ * 404 — Page not found (English).
+ * Astro builds this to /en/404.html. Keep structure + styles in sync with
+ * src/pages/404.astro. Vercel serves the root /404.html for unmatched routes
+ * by default; this page is the EN equivalent for /en/* and is ready if a
+ * locale-aware 404 fallback route is added later.
+ */
+import Base from '../../layouts/Base.astro';
+import { localizedUrl } from '../../lib/links';
+
+const u = (p: string) => localizedUrl(p, 'en');
+---
+
+<Base
+  title="404 — page not found | SNC Advertising"
+  description="That page doesn't exist. The link may be out of date."
+>
+  <section class="nf">
+    <div class="nf-inner">
+      <div class="nf-label">404</div>
+      <h1 class="nf-h1">Page<br />not found.</h1>
+      <p class="nf-lede">
+        The link may be out of date, or the address was mistyped. Home and the
+        audit are below. If you think this is our mistake — message us on
+        Telegram and we'll fix it.
+      </p>
+      <div class="nf-cta">
+        <a class="btn btn-on-green" href={u('/')}>Home</a>
+        <a class="nf-link tlink" href={u('/contact')}>Get an audit &rarr;</a>
+      </div>
+      <div class="nf-other">
+        <a class="nf-other-link tlink" href={u('/services')}>Services</a>
+        <a class="nf-other-link tlink" href={u('/approach')}>Approach</a>
+        <a class="nf-other-link tlink" href={u('/cases')}>Cases</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    background: var(--green);
+    min-height: calc(100vh - 56px);
+    display: flex; align-items: center;
+    padding: 64px var(--pad-x);
+  }
+  .nf-inner { max-width: 680px; }
+  .nf-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .nf-h1 {
+    margin-top: 18px;
+    font-size: clamp(36px, 6vw, 72px); font-weight: 600;
+    line-height: 1.05; letter-spacing: 0.01em;
+  }
+  .nf-lede {
+    margin-top: 24px; max-width: 540px;
+    font-size: 15px; line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .nf-cta {
+    margin-top: 36px;
+    display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+  }
+  .nf-link { font-size: 12px; color: rgba(255, 255, 255, 0.85); }
+  .nf-link:hover { color: var(--white); }
+  .nf-other {
+    margin-top: 48px;
+    display: flex; gap: 22px; flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .nf-other-link {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .nf-other-link:hover { color: var(--white); }
+</style>

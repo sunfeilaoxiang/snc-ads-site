@@ -146,6 +146,30 @@ const consent = (ui[locale] ?? ui.ru).consent;
       })();
     </script>
 
+    {/* ── First-touch attribution capture ──────────────────────
+        Stores UTM / click-id params + landing page + referrer in
+        sessionStorage on the FIRST page seen, so the contact form can
+        attach them even if the visitor navigates internally before
+        submitting. First-touch wins (only set if not already stored).
+        The contact form reads this back into hidden fields. */}
+    <script is:inline>
+      (function () {
+        try {
+          var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'];
+          var qs = new URLSearchParams(window.location.search);
+          var store = JSON.parse(sessionStorage.getItem('snc-attribution') || '{}');
+          var changed = false;
+          KEYS.forEach(function (k) {
+            var v = qs.get(k);
+            if (v && !store[k]) { store[k] = v; changed = true; }
+          });
+          if (!store.landing_page) { store.landing_page = window.location.pathname; changed = true; }
+          if (!store.referrer && document.referrer) { store.referrer = document.referrer; changed = true; }
+          if (changed) sessionStorage.setItem('snc-attribution', JSON.stringify(store));
+        } catch (e) {}
+      })();
+    </script>
+
     {/* ── Universal scroll-reveal ──────────────────────────────
         Adds a subtle fade-up to section blocks as they enter the
         viewport. Zero dependencies, ~60fps (transform+opacity only).
@@ -161,10 +185,13 @@ const consent = (ui[locale] ?? ui.ru).consent;
         var SEL = [
           '.principle', '.service', '.step', '.fit-col', '.founder',
           '.sec-label', '.pos-statement', '.pos-body',
-          '.services-note', '.services-cta', '.how-cta', '.cases-cta',
+          '.services-note', '.services-cta', '.how-cta',
           '.closing-statement', '.closing-body', '.closing-cta',
           '.page-hero-label', '.page-hero-h1', '.page-hero-lede',
-          '.statement', '.lede'
+          '.statement', '.lede',
+          // interior-page content blocks (services / approach / cases)
+          '.incl', '.line', '.creative', '.promise-col',
+          '.ask', '.asks-note', '.measure', '.struct-row'
         ].join(',');
 
         var nodes = Array.prototype.slice.call(document.querySelectorAll(SEL));

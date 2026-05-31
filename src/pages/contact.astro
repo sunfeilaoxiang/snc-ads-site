@@ -49,6 +49,16 @@ const steps = [
       <input type="hidden" name="redirect" value={thankYouUrl} />
       <input type="hidden" name="subject" value="Новая заявка на аудит — SNC Advertising" />
       <input type="hidden" name="from_name" value="SNC Advertising — сайт" />
+      <!-- Attribution — populated client-side from sessionStorage (first-touch) -->
+      <input type="hidden" name="utm_source" />
+      <input type="hidden" name="utm_medium" />
+      <input type="hidden" name="utm_campaign" />
+      <input type="hidden" name="utm_term" />
+      <input type="hidden" name="utm_content" />
+      <input type="hidden" name="fbclid" />
+      <input type="hidden" name="gclid" />
+      <input type="hidden" name="landing_page" />
+      <input type="hidden" name="referrer" />
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
 
       <div class="field">
@@ -232,6 +242,24 @@ const steps = [
   const form = document.getElementById('audit-form') as HTMLFormElement | null;
   const status = document.getElementById('form-status');
   const submit = form?.querySelector('.form-submit') as HTMLButtonElement | null;
+
+  // Populate attribution hidden fields: first-touch values from sessionStorage,
+  // plus any params on the current URL (direct landing on /contact?utm=...).
+  if (form) {
+    try {
+      const store = JSON.parse(sessionStorage.getItem('snc-attribution') || '{}');
+      const qs = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'].forEach((k) => {
+        const v = qs.get(k) || store[k];
+        const el = form.elements.namedItem(k) as HTMLInputElement | null;
+        if (el && v) el.value = v;
+      });
+      const lp = form.elements.namedItem('landing_page') as HTMLInputElement | null;
+      if (lp) lp.value = store.landing_page || window.location.pathname;
+      const rf = form.elements.namedItem('referrer') as HTMLInputElement | null;
+      if (rf) rf.value = store.referrer || document.referrer || '';
+    } catch (e) {}
+  }
 
   if (form && status && submit) {
     form.addEventListener('submit', async (e) => {
