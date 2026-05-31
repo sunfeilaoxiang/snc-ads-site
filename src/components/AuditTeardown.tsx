@@ -106,7 +106,7 @@ const STRINGS = {
     disclaimer: 'Имя бренда и продуктов скрыто с разрешения клиента. Числа округлены минимально, чтобы сохранить структурную точность. Период: январь — май 2026.',
     ctaText: 'Хотите такой же разбор для вашего аккаунта?',
     ctaBtn: 'Получить аудит →',
-    inlineCta: 'Получить такой разбор →',
+    inlineCta: 'Разобрать мой аккаунт →',
   },
   en: {
     label: '04 — Teardown',
@@ -186,7 +186,7 @@ const STRINGS = {
     disclaimer: "Brand and product names hidden with the client's permission. Numbers rounded minimally to preserve structural accuracy. Period: January — May 2026.",
     ctaText: 'Want the same teardown for your account?',
     ctaBtn: 'Get an audit →',
-    inlineCta: 'Get this teardown →',
+    inlineCta: 'Audit my account →',
   },
 } satisfies Record<Locale, unknown>;
 
