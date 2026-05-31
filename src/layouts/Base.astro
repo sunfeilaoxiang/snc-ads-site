@@ -11,6 +11,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Schema from "../components/Schema.astro";
 import ScrollProgress from "../components/ScrollProgress.tsx";
+import CustomCursor from "../components/CustomCursor.tsx";
+import { ClientRouter } from "astro:transitions";
 import { url } from "../lib/links";
 import { ui, type Locale } from "../i18n/ui";
 
@@ -63,6 +65,14 @@ const consent = (ui[locale] ?? ui.ru).consent;
       /* Organization JSON-LD — entity recognition for AI search + rich results */
     }
     <Schema locale={locale} />
+
+    {
+      /* View Transitions (Tier 2) — removes the white reload flash between
+        pages; outgoing/incoming content crossfades. Motion + consent init is
+        re-run on `astro:page-load` (fires on first load AND each navigation)
+        because inline/module scripts do not re-execute on a VT swap. */
+    }
+    <ClientRouter />
 
     <!-- Fonts — IBM Plex Mono, the only typeface -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -151,6 +161,7 @@ const consent = (ui[locale] ?? ui.ru).consent;
     {/* ── ANALYTICS BODY (noscript) SLOT ─────────────────────── */}
 
     <ScrollProgress client:load />
+    <CustomCursor client:load />
 
     {!bareHeader && <Header />}
     <main>
@@ -175,7 +186,10 @@ const consent = (ui[locale] ?? ui.ru).consent;
       </div>
     </div>
     <script is:inline>
-      (function () {
+      // Re-run on every page-load (incl. the first) so the banner's buttons are
+      // wired after a View-Transition swap replaces the DOM. Idempotent — bails
+      // once a choice is stored.
+      function sncConsentInit() {
         var el = document.getElementById("consent");
         if (!el || !window.sncConsent) return;
         if (window.sncConsent.state()) return; // already accepted or declined
@@ -192,7 +206,8 @@ const consent = (ui[locale] ?? ui.ru).consent;
             window.sncConsent.decline();
             el.hidden = true;
           });
-      })();
+      }
+      document.addEventListener("astro:page-load", sncConsentInit);
     </script>
 
     {
@@ -249,7 +264,7 @@ const consent = (ui[locale] ?? ui.ru).consent;
         the hidden state only applies once this script tags elements. */
     }
     <script is:inline>
-      (function () {
+      function sncRevealInit() {
         var reduce =
           window.matchMedia &&
           window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -321,7 +336,8 @@ const consent = (ui[locale] ?? ui.ru).consent;
         nodes.forEach(function (n) {
           io.observe(n);
         });
-      })();
+      }
+      document.addEventListener("astro:page-load", sncRevealInit);
     </script>
 
     {

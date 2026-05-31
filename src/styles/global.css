@@ -235,6 +235,101 @@ textarea:focus-visible {
   pointer-events: none;
 }
 
+/* ── Hero set-piece — budget-leak→growth line (Tier 2, concept C). Rendered
+   by the HeroBudgetLine React island, so it must live in GLOBAL css (Astro
+   scoped styles never reach island DOM). Sits in the lower band of .hero,
+   behind the H1, so it never competes for the LCP. ── */
+.hero-line {
+  position: absolute;
+  top: 50%;
+  right: var(--pad-x);
+  width: 44%;
+  height: 54%;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+/* Tablet/mobile: H1 shrinks and reflows, so the chart moves to a full-width
+   band along the bottom of the hero, behind the content, at lower contrast. */
+@media (max-width: 860px) {
+  .hero-line {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: auto;
+    height: 42%;
+    transform: none;
+    opacity: 0.65;
+  }
+}
+
+/* ── Custom cursor (Tier 2) — sage dot + square ring, bronze "→" on .btn.
+   The native cursor is only hidden once the island adds .snc-cursor-on to
+   <html>, so JS-off / reduced-motion / touch all keep the OS cursor. Form
+   fields keep the native caret for usability. ── */
+html.snc-cursor-on,
+html.snc-cursor-on * {
+  cursor: none;
+}
+html.snc-cursor-on input,
+html.snc-cursor-on textarea,
+html.snc-cursor-on select {
+  cursor: auto;
+}
+.snc-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--sage);
+  pointer-events: none;
+}
+.snc-cursor-ring-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  pointer-events: none;
+}
+.snc-cursor-ring {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border: 1.5px solid rgba(127, 168, 152, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.18s cubic-bezier(0.25, 0.1, 0.25, 1),
+    border-color 0.18s,
+    background-color 0.18s;
+}
+.snc-cursor-ring.is-hover {
+  transform: scale(1.6);
+  background: rgba(127, 168, 152, 0.1);
+}
+.snc-cursor-ring.is-arrow {
+  transform: scale(1.7);
+  border-color: var(--bronze);
+}
+.snc-cursor-ring.is-down {
+  transform: scale(0.8);
+}
+.snc-cursor-arrow {
+  font-size: 11px;
+  line-height: 1;
+  color: var(--bronze);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.snc-cursor-ring.is-arrow .snc-cursor-arrow {
+  opacity: 1;
+}
+
 /* Section wrapper padding */
 .section {
   padding: 64px var(--pad-x);
