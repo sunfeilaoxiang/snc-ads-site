@@ -106,6 +106,7 @@ const STRINGS = {
     disclaimer: 'Имя бренда и продуктов скрыто с разрешения клиента. Числа округлены минимально, чтобы сохранить структурную точность. Период: январь — май 2026.',
     ctaText: 'Хотите такой же разбор для вашего аккаунта?',
     ctaBtn: 'Получить аудит →',
+    inlineCta: 'Получить такой разбор →',
   },
   en: {
     label: '04 — Teardown',
@@ -185,6 +186,7 @@ const STRINGS = {
     disclaimer: "Brand and product names hidden with the client's permission. Numbers rounded minimally to preserve structural accuracy. Period: January — May 2026.",
     ctaText: 'Want the same teardown for your account?',
     ctaBtn: 'Get an audit →',
+    inlineCta: 'Get this teardown →',
   },
 } satisfies Record<Locale, unknown>;
 
@@ -337,7 +339,7 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
   const s = STRINGS[locale];
 
   return (
-    <section className="bg-nearblack py-16 md:py-20 px-6 md:px-10" aria-labelledby="razbor-heading">
+    <section id="razbor" className="bg-nearblack py-16 md:py-20 px-6 md:px-10 scroll-mt-[56px]" aria-labelledby="razbor-heading">
       <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-sage">{s.label}</div>
 
       <h2 id="razbor-heading" className="mt-7 max-w-[720px] text-[clamp(20px,2.6vw,28px)] font-semibold leading-[1.35] text-white tracking-[0.005em]">
@@ -356,15 +358,23 @@ export default function AuditTeardown({ contactHref, locale = 'ru' }: { contactH
         {s.stats.map((st, i) => <StatCard key={i} n={st.n} t={st.t} d={st.d} delay={i * 0.08} />)}
       </div>
 
-      <button
-        type="button"
-        className="mt-9 inline-flex items-center gap-3.5 min-h-[56px] px-7 py-4.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-white bg-transparent border border-sage cursor-pointer transition-colors hover:bg-sage hover:text-nearblack focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-[3px] active:scale-[0.98]"
-        aria-expanded={expanded} aria-controls="razbor-content"
-        onClick={() => setExpanded((x) => !x)}
-      >
-        <span>{expanded ? s.collapse : s.expand}</span>
-        <motion.span aria-hidden="true" animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2, ease: 'easeOut' }} className="inline-block">↓</motion.span>
-      </button>
+      <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+        <button
+          type="button"
+          className="inline-flex items-center gap-3.5 min-h-[56px] px-7 py-4.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-white bg-transparent border border-sage cursor-pointer transition-colors hover:bg-sage hover:text-nearblack focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-[3px] active:scale-[0.98]"
+          aria-expanded={expanded} aria-controls="razbor-content"
+          onClick={() => setExpanded((x) => !x)}
+        >
+          <span>{expanded ? s.collapse : s.expand}</span>
+          <motion.span aria-hidden="true" animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2, ease: 'easeOut' }} className="inline-block">↓</motion.span>
+        </button>
+        <a
+          href={contactHref}
+          className="text-[12px] font-semibold uppercase tracking-[0.1em] text-sage border-b border-transparent hover:border-sage transition-colors focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-[3px]"
+        >
+          {s.inlineCta}
+        </a>
+      </div>
 
       <AnimatePresence initial={false}>
         {expanded && (

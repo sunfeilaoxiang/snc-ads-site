@@ -94,6 +94,10 @@ const founders = [
         <a class="btn btn-on-green" href={u('/contact')}>Get an audit</a>
         <a class="hero-link tlink" href={u('/approach')}>How we work &rarr;</a>
       </div>
+      <p class="hero-cta-note">
+        A written teardown of your account. A few questions first — to see if
+        we're a fit.
+      </p>
     </div>
 
     <div class="hero-bottom">
@@ -246,6 +250,10 @@ const founders = [
   .hero-cta { margin-top: 40px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
   .hero-link { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
   .hero-link:hover { color: var(--white); }
+  .hero-cta-note {
+    margin-top: 18px; max-width: 400px;
+    font-size: 11px; line-height: 1.65; color: rgba(255, 255, 255, 0.5);
+  }
   .hero-bottom {
     display: flex; justify-content: space-between;
     padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);
