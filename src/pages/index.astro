@@ -6,6 +6,7 @@
  */
 import Base from '../layouts/Base.astro';
 import { url } from '../lib/links';
+import AuditTeardown from '../components/AuditTeardown.tsx';
 
 /* A "what you get" strip — deliberate differentiators, not vanity metrics.
    Replaces the old stats strip, which quietly signalled "small and new". */
@@ -173,16 +174,9 @@ const founders = [
     </div>
   </section>
 
-  <!-- ══ 07 · CASES ═════════════════════════════════════ -->
-  <section class="section cases">
-    <div class="sec-label on-dark">04 — Кейсы</div>
-    <p class="cases-statement">
-      Кейсы — в работе. Анонимизированные результаты появятся здесь по мере
-      выхода клиентов из NDA.
-    </p>
-    <p class="cases-sub">Можем поделиться кейсами лично на аудите — присылайте запрос.</p>
-    <a class="cases-cta tlink" href={url('/contact')}>Запросить кейсы &rarr;</a>
-  </section>
+  <!-- ══ 07 · РАЗБОР АККАУНТА (React island with Framer Motion) ══ -->
+  <AuditTeardown contactHref={url('/contact')} client:visible />
+
 
   <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
   <section class="section founders">
