@@ -80,6 +80,7 @@ const steps = [
       <div class="field">
         <label for="company">Сайт или бренд</label>
         <input id="company" name="company" type="text" required placeholder="example.com" />
+        <p style="margin-top:6px;font-size:11px;color:var(--text-dim)">Чтобы посмотреть ваш аккаунт перед разбором.</p>
       </div>
 
       <div class="field">
@@ -93,6 +94,7 @@ const steps = [
 
       <div class="field">
         <label class="field-label">Бюджет на рекламу в месяц</label>
+        <p style="margin:2px 0 10px;font-size:11px;color:var(--text-dim)">Помогает понять, сможем ли быть полезны.</p>
         <div class="chips" role="radiogroup" aria-label="Бюджет на рекламу в месяц">
           <label class="chip"><input type="radio" name="ad_budget" value="До €1 000" required /><span>До €1 000</span></label>
           <label class="chip"><input type="radio" name="ad_budget" value="€1 000 – 3 000" /><span>€1 000 – 3 000</span></label>
@@ -106,8 +108,9 @@ const steps = [
         <textarea id="message" name="message" rows="4" placeholder="Что сейчас не так с рекламой, чего хотите достичь."></textarea>
       </div>
 
-      <button type="submit" class="btn btn-on-white form-submit">Отправить заявку</button>
+      <button type="submit" class="btn btn-on-white form-submit">Запросить разбор</button>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      <p style="margin-top:12px;font-size:12px;color:var(--text-dim)">Бесплатно · отвечаем в тот же день · без спама.</p>
     </form>
   </section>
 
@@ -300,7 +303,7 @@ const steps = [
           'Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram.';
         status.className = 'form-status err';
         submit.disabled = false;
-        submit.textContent = 'Отправить заявку';
+        submit.textContent = 'Запросить разбор';
       }
     });
   }
