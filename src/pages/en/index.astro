@@ -6,6 +6,7 @@
  */
 import Base from '../../layouts/Base.astro';
 import { localizedUrl } from '../../lib/links';
+import AuditTeardown from '../../components/AuditTeardown.tsx';
 
 const u = (p: string) => localizedUrl(p, 'en');
 
@@ -173,16 +174,8 @@ const founders = [
     </div>
   </section>
 
-  <!-- ══ 07 · CASES ═════════════════════════════════════ -->
-  <section class="section cases">
-    <div class="sec-label on-dark">04 — Cases</div>
-    <p class="cases-statement">
-      Case studies are in progress. Anonymized results land here as clients
-      clear NDA.
-    </p>
-    <p class="cases-sub">Happy to walk through results on the audit call — just ask.</p>
-    <a class="cases-cta tlink" href={u('/contact')}>Ask for cases &rarr;</a>
-  </section>
+  <!-- ══ 07 · TEARDOWN (React island with Framer Motion) ══ -->
+  <AuditTeardown contactHref={u('/contact')} locale="en" client:visible />
 
   <!-- ══ 08 · FOUNDERS ══════════════════════════════════ -->
   <section class="section founders">
