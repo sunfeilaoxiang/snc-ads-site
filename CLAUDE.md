@@ -52,6 +52,14 @@ src/
     thank-you.astro en/thank-you.astro          — post-form-submit; fires Lead pixel + CAPI
     api/meta-capi.ts                            — server-side CAPI mirror (Vercel function)
 public/favicon.svg  og-default.png
+.claude/                     Claude Code structure (project-bootstrap retrofit 2026-05-26)
+  settings.json              project-scoped settings + hook examples (commented out)
+  commands/                  project-scoped slash commands (README + example.md)
+  skills/example-skill/      project-scoped skill — auto-registered as `example-skill`
+  agents/                    subagent YAML definitions (README + example.yml)
+.mcp.json                    project-scoped MCP config (empty mcpServers by default)
+.env.example                 env-var inventory placeholder
+README.md                    public-facing readme (TODO sections — needs editorial pass)
 pages/                       OLD Tilda build specs — kept ONLY as copy reference
 brand.md  sitemap.md          brand context + page plan
 WEBSITE_VERDICT.md / .html    senior UX verdict (2026-05-18)

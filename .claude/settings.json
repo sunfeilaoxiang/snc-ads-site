@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+
+  "_comment_permissions": "Allow/deny lists for Bash and other tools. Add specific commands you trust to skip the permission prompt. See https://docs.claude.com/en/docs/claude-code/settings",
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+
+  "_comment_hooks": "Lifecycle hooks. ALL EXAMPLES BELOW ARE COMMENTED-OUT-EQUIVALENT (the 'hooks' object is empty). To enable, move an entry from '_examples' into 'hooks' AND verify the command works in your environment.",
+  "hooks": {},
+
+  "_examples": {
+    "PreToolUse": [
+      {
+        "_doc": "Block dangerous commands before execution. matcher selects which tools to hook into.",
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "./scripts/check-safety.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "_doc": "Auto-lint after any file write. WARNING — requires a working `npm run lint` in this project. Verify before enabling.",
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "npm run lint --silent" }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "_doc": "Print project context summary at session start.",
+        "hooks": [
+          { "type": "command", "command": "cat .claude/session-banner.txt 2>/dev/null || true" }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "_doc": "Save a session summary to a log file on session end.",
+        "hooks": [
+          { "type": "command", "command": "./scripts/log-session.sh" }
+        ]
+      }
+    ],
+    "PreCommit": [
+      {
+        "_doc": "Scan staged changes for secrets before commit.",
+        "hooks": [
+          { "type": "command", "command": "./scripts/secret-scan.sh" }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "_doc": "Forward Claude notifications to Slack / Telegram / etc.",
+        "hooks": [
+          { "type": "command", "command": "./scripts/notify.sh" }
+        ]
+      }
+    ]
+  },
+
+  "_comment_env": "Environment variables that affect Claude Code's runtime behavior.",
+  "env": {}
+}

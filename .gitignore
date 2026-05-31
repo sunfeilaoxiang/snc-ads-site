@@ -19,3 +19,39 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .vscode/
+
+# --- Added by project-bootstrap ---
+
+# Claude Code — user-local settings (machine-specific overrides; never commit)
+.claude/settings.local.json
+
+# Environment
+.env.*.local
+
+# Build outputs (uncomment what applies to your stack)
+build/
+.next/
+.nuxt/
+out/
+target/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Dependencies
+.pnp/
+.pnp.js
+
+# IDE / OS
+.idea/
+*.swp
+
+# Logs / coverage
+yarn-debug.log*
+coverage/
+.nyc_output/

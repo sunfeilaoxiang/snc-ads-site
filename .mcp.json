@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/mcp.json",
+
+  "_comment": "Per-project MCP server config. Empty by default — most MCPs are user-level (configured in Cowork/Claude Desktop) and don't need to be repeated here. Use this file only for MCPs that are project-specific (e.g. a database connection that's only relevant to THIS repo).",
+
+  "mcpServers": {},
+
+  "_examples": {
+    "github": {
+      "_doc": "GitHub MCP — PRs, issues, repos. Token must be set in env, never hardcoded.",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "postgres": {
+      "_doc": "Postgres MCP — direct queries against a database. URL must be set in env.",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      }
+    },
+    "filesystem": {
+      "_doc": "Filesystem MCP — scoped file access. Adjust the path to your project root.",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${PWD}"]
+    },
+    "playwright": {
+      "_doc": "Playwright MCP — browser automation for tests / scraping.",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-playwright"]
+    }
+  }
+}
