@@ -22,7 +22,7 @@ const steps = [
 
 <Base
   title="Contact — SNC Advertising | Get an audit"
-  description="Request an audit of your ad account. A short qualifying step, then a written review — if we're a fit."
+  description="Request a free review of your Meta ad account. A short qualifying call, then a detailed written review — if we're a fit for your Shopify ecommerce brand."
 >
   <section class="page-hero">
     <div class="page-hero-label">Contact</div>
@@ -73,6 +73,7 @@ const steps = [
       <div class="field">
         <label for="company">Website or brand</label>
         <input id="company" name="company" type="text" required placeholder="example.com" />
+        <p style="margin-top:6px;font-size:11px;color:var(--text-dim)">So we can look at your account before the call.</p>
       </div>
 
       <div class="field">
@@ -86,6 +87,7 @@ const steps = [
 
       <div class="field">
         <label class="field-label">Monthly ad budget</label>
+        <p style="margin:2px 0 10px;font-size:11px;color:var(--text-dim)">Helps us see whether we can actually help.</p>
         <div class="chips" role="radiogroup" aria-label="Monthly ad budget">
           <label class="chip"><input type="radio" name="ad_budget" value="Under €1,000" required /><span>Under €1,000</span></label>
           <label class="chip"><input type="radio" name="ad_budget" value="€1,000–3,000" /><span>€1,000–3,000</span></label>
@@ -99,8 +101,9 @@ const steps = [
         <textarea id="message" name="message" rows="4" placeholder="What's wrong with your ads right now, and what you want to hit."></textarea>
       </div>
 
-      <button type="submit" class="btn btn-on-white form-submit">Send request</button>
+      <button type="submit" class="btn btn-on-white form-submit">Request a review</button>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      <p style="margin-top:12px;font-size:12px;color:var(--text-dim)">Free · same-day reply · no spam.</p>
     </form>
   </section>
 
@@ -292,7 +295,7 @@ const steps = [
           "Couldn't send — try again, or message us on Telegram.";
         status.className = 'form-status err';
         submit.disabled = false;
-        submit.textContent = 'Send request';
+        submit.textContent = 'Request a review';
       }
     });
   }
