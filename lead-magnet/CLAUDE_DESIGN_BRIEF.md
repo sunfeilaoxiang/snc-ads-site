@@ -1,9 +1,9 @@
 # Claude Design brief — The Meta Self-Audit (lead-magnet PDF)
 
-*Paste this whole document into Claude Design to produce a more polished
+_Paste this whole document into Claude Design to produce a more polished
 visual of the lead magnet. Source content lives next to this file:
 `meta-self-audit-en.md` (content) and `meta-self-audit-en.html` (basic
-designed version — use it as a baseline, redo if you can do better).*
+designed version — use it as a baseline, redo if you can do better)._
 
 ---
 
@@ -18,7 +18,7 @@ demonstrates expertise and naturally upsells the agency's audit service.
 **Sub:** "12 checks. 15 minutes. The list we run before quoting an audit."
 **Audience:** ecommerce founders spending €1k+/month on Meta ads, ~28-45 years
 old, numerate, allergic to marketing fluff, runs their own brand.
-**Goal of the PDF:** be the kind of document the reader *keeps* and refers
+**Goal of the PDF:** be the kind of document the reader _keeps_ and refers
 back to, and that makes them think "these people know their stuff."
 
 ---
@@ -26,6 +26,7 @@ back to, and that makes them think "these people know their stuff."
 ## Brand system (must hold)
 
 ### Voice / tone
+
 - Ascetic. Confident. **Numbers over adjectives.**
 - Short sentences. Sentence fragments are fine.
 - No marketing jargon. Banned words: synergy, passionate, innovative,
@@ -35,12 +36,14 @@ back to, and that makes them think "these people know their stuff."
 - Tone: a senior practitioner telling a peer how it actually works.
 
 ### Typography
+
 - **Single typeface: IBM Plex Mono.** Weights 300, 400, 600. No other font.
 - Letter-spacing: tight on body, generous on tracked labels (`0.18–0.25em` on
   all-caps eyebrow/section labels).
 - Body 10.5–11pt. Headlines 16–36pt depending on hierarchy.
 
 ### Colour palette
+
 ```
 Money Green   #1E4D3A   primary, brand, headings on light, full-bleed covers
 Engine Bronze #BF9340   accent (used sparingly — item numbers, "bad" signals)
@@ -57,6 +60,7 @@ Bronze is the accent — use only on item numbers (01, 02 …) and on "Bad:"
 signals. Never on body text.
 
 ### Visual system
+
 - Hard left-align everywhere. Generous whitespace.
 - Thin hairline rules (`1px` / `0.25mm`) as dividers, never thick boxes.
 - Square corners (0 radius). No drop shadows. No gradients.
@@ -68,9 +72,10 @@ signals. Never on body text.
   funnel) is acceptable. No clip-art. No infographics.
 
 ### Reference
+
 The visual identity is documented in the brand book at
-`outputs_design/snc-brand-book.html` and the logo system at
-`outputs_design/snc-logo-book.html`. If conflicts arise, the website at
+`brand-design/snc-brand-book.html` and the logo system at
+`brand-design/snc-logo-book.html`. If conflicts arise, the website at
 `https://sncads.com/` is the canonical
 implementation — match its discipline.
 
@@ -97,6 +102,7 @@ implementation — match its discipline.
 ## Content (final, do not rewrite the substance — only redesign the visual)
 
 ### Logo / brand bar
+
 - Logo lockup: a 34×34px square frame containing the letter **"S"** in white
   (on green) or green (on off-white) → followed by `SNC` in bold tracked mono
   with `Advertising` as a tracked small sub-word.
@@ -105,9 +111,11 @@ implementation — match its discipline.
 ### Cover
 
 **Title (largest text on page):**
+
 > The Meta Self-Audit.
 
 **Subtitle (~13pt):**
+
 > 12 checks. 15 minutes. The list we run before quoting an audit on a new
 > ecommerce account.
 
@@ -122,10 +130,12 @@ white at 55% opacity, separated from the title by a hairline.
 Section number: `00 — HOW TO USE THIS`
 
 Headline:
+
 > If you spend €1k+/month on Meta, you should walk through this list and not
 > flinch.
 
 Body (two short paragraphs):
+
 > It's the exact sequence we run before we quote an audit on a new ecommerce
 > account. Twelve checks. Five layers. About fifteen minutes if you know
 > Ads Manager.
@@ -154,27 +164,30 @@ they don't compete with it.
 
 ### Sections (5)
 
-| § | Title | Subtitle | Items |
-|---|-------|----------|-------|
-| 1 | Tracking & attribution | *If you can't see it, you can't optimize it.* | 01, 02 |
-| 2 | Account structure | *Let the system learn before you judge it.* | 03, 04, 05 |
-| 3 | Creative & placement | *This is the #1 lever in 2026. Not targeting. Creative.* | 06, 07, 08 |
-| 4 | Audience | *Where money is quietly wasted.* | 09, 10 |
-| 5 | Numbers | *The honest part.* | 11, 12 |
+| §   | Title                  | Subtitle                                                 | Items      |
+| --- | ---------------------- | -------------------------------------------------------- | ---------- |
+| 1   | Tracking & attribution | _If you can't see it, you can't optimize it._            | 01, 02     |
+| 2   | Account structure      | _Let the system learn before you judge it._              | 03, 04, 05 |
+| 3   | Creative & placement   | _This is the #1 lever in 2026. Not targeting. Creative._ | 06, 07, 08 |
+| 4   | Audience               | _Where money is quietly wasted._                         | 09, 10     |
+| 5   | Numbers                | _The honest part._                                       | 11, 12     |
 
 ### Closing (last page, below item 12)
 
 Section number: `IF 4 OR MORE ARE RED FLAGS…`
 
 Headline:
+
 > You're not paying for media. You're paying for inefficiency.
 
 Body:
+
 > The fix isn't more spend — it's the layer underneath. Want a second pair of
 > eyes? We'll run this same audit on your account, in writing, and tell you
 > straight what we'd change.
 
 CTA:
+
 > **[Request an audit →]** (green button, white text, no radius)
 > `sncads.com/contact`
 
@@ -191,6 +204,7 @@ CTA:
 ## What to produce
 
 A standalone HTML file that:
+
 1. Renders A4 print-ready (use `@page` and `mm` units).
 2. Prints to a clean 5–6 page PDF via Chrome's "Save as PDF" with no headers,
    no footers, margins set to None.
@@ -204,6 +218,7 @@ A standalone HTML file that:
 
 The baseline `meta-self-audit-en.html` covers the structure correctly but
 the design can be more refined. Push these:
+
 - **Cover composition** — the baseline cover is functional but could be
   bolder. The hero typography can be larger and more compositionally daring.
   Consider negative space, a thin geometric mark, a vertical rule.
@@ -218,6 +233,7 @@ the design can be more refined. Push these:
   signature than a footer.
 
 Do not add:
+
 - Imagery, photography, icons, gradients, drop shadows, rounded corners,
   serif type, sans-serif type.
 - Anything that says "marketing agency PDF template."

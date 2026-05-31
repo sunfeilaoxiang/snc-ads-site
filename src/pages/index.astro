@@ -7,6 +7,7 @@
 import Base from "../layouts/Base.astro";
 import { url } from "../lib/links";
 import AuditTeardown from "../components/AuditTeardown.tsx";
+import MagneticButton from "../components/MagneticButton.tsx";
 
 /* A "what you get" strip — deliberate differentiators, not vanity metrics.
    Replaces the old stats strip, which quietly signalled "small and new". */
@@ -108,7 +109,11 @@ const founders = [
         но не готовы платить агентствам по €5k/мес за дашборды и созвоны.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-on-green" href={url("/contact")}>Получить аудит</a>
+        <MagneticButton
+          client:load
+          href={url("/contact")}
+          className="btn btn-on-green">Получить аудит</MagneticButton
+        >
         <a class="hero-link tlink" href="#razbor"
           >Посмотреть разбор аккаунта &rarr;</a
         >
@@ -259,7 +264,11 @@ const founders = [
       друг другу. Если да — разберём текущий аккаунт и покажем, что оставляет
       деньги на столе. Если нет — честно скажем сразу.
     </p>
-    <a class="btn btn-on-green" href={url("/contact")}>Получить аудит</a>
+    <MagneticButton
+      client:visible
+      href={url("/contact")}
+      className="btn btn-on-green">Получить аудит</MagneticButton
+    >
   </section>
 </Base>
 

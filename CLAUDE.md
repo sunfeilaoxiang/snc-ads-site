@@ -28,7 +28,7 @@ evaluated and dropped: its API is read-only, you cannot deploy code to it.)
 > React 19 islands + Framer Motion + shadcn/ui. The site is still
 > **static-HTML-first** — client JS ships only via explicit React islands. The
 > original plain-CSS design system is untouched and still drives every `.astro`
-> page. This was a *targeted* addition for the animated teardown, not a full
+> page. This was a _targeted_ addition for the animated teardown, not a full
 > React rewrite.
 
 - **Astro 5** with `output: 'static'`. All pages pre-render at build time; one
@@ -102,7 +102,7 @@ lead-magnet/
   not contradict it.
 - **Brand voice & visuals:** `brand.md` in this folder.
 - **Copy reference:** `pages/01-home.md` holds the original Russian home copy
-  block by block. It's a Tilda-era artifact — the *format* is dead, the *copy* is
+  block by block. It's a Tilda-era artifact — the _format_ is dead, the _copy_ is
   still the reference. The live page is `src/pages/index.astro`.
 
 ## How to work on it
@@ -115,7 +115,7 @@ lead-magnet/
 
 ## Defaults
 
-- **Language:** Bilingual. RU is canonical (`src/pages/`); EN is an *adaptation*
+- **Language:** Bilingual. RU is canonical (`src/pages/`); EN is an _adaptation_
   (`src/pages/en/`) — native English, not a literal translation. Keep both in sync.
 - **Vertical:** lead with ecommerce; lead-gen is the secondary service line.
 - **Pricing:** never shown on the public site — qualified in conversation.
@@ -127,6 +127,7 @@ lead-magnet/
 ## Status (2026-05-26)
 
 **Infrastructure — done:**
+
 - ✅ Rebrand SNC Media → SNC Advertising (47 files, 129 replacements in the May 20 pass).
 - ✅ Web3Forms contact form (key `acd1f7f4-6610-45b3-a0fb-4bf078dd6ef7`, both locales).
 - ✅ Calendly inline widget on both contact pages — `calendly.com/dmitrijs-sncads/30min`.
@@ -142,6 +143,7 @@ lead-magnet/
 - ✅ `sncads.com` added to Meta Events Manager traffic allow list.
 
 **Still open (non-infrastructure):**
+
 1. **Lead magnet — publish step.** Content done. Still to do: Nikita signs off
    on the 12 items; PDF saved to `public/downloads/`; build `/audit-checklist`
    landing page with email-capture form (uses Web3Forms); add homepage CTA strip;
@@ -176,6 +178,10 @@ forms carry matching hidden fields and populate them on load from
 `/contact?utm=…`). So a lead that arrives from a Meta ad, browses, then submits
 still carries its source into the Web3Forms email. No consent gate — these are
 the visitor's own URL params, not tracking cookies.
+
+- **CAPI invariant:** keep the `/thank-you` Lead block gated on **consent** (`sncConsent.state()==='accepted'`), NOT on `window.fbq`. The `/api/meta-capi` fetch must fire INDEPENDENTLY -- nesting it in `if (window.fbq)` means a blocked Pixel (ad blocker/iOS) drops BOTH legs. A `sessionStorage` `snc_lead_fired` one-shot guard stops refresh double-fires. (G11, commit e5a66ee.)
+- **Verifying a deploy:** Vercel static edge can serve a STALE per-path copy for minutes (homepage fresh while /contact stale), and `?cb=` query-strings do NOT bust Vercel's static cache. Confirm via `git show origin/main:<file>` + the user's own browser View-Source -- don't conclude "broken" from a single Firecrawl/WebFetch scrape.
+- **Concurrent experiment branches:** this repo often has parallel uncommitted WIP (e.g. `feat/react-stack`, `feat/21st-dev-trial`) and `origin/main` is a moving target. To ship ONLY specific files to prod without dragging WIP, deploy via an isolated `git worktree add -b tmp <dir> origin/main` -> copy file(s) in -> `push tmp:main` -> `worktree remove`. Never commit-all from the dirty tree.
 
 ## Funnel infrastructure already wired
 

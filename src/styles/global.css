@@ -17,82 +17,90 @@
    Use as: bg-green / text-sage / border-dim / font-mono / etc.
 */
 @theme {
-  --color-green:     #1E4D3A;
-  --color-bronze:    #BF9340;
-  --color-forest:    #0F2A20;
-  --color-sage:      #7FA898;
-  --color-offwhite:  #F5F3EF;
-  --color-nearblack: #0C0C0C;
-  --color-graphite:  #3C3C3C;
-  --color-dim:       #1A1A1A;
-  --color-dim-light: #E5E5E5;
-  --color-text-dim:  #444444;
+  --color-green: #1e4d3a;
+  --color-bronze: #bf9340;
+  --color-forest: #0f2a20;
+  --color-sage: #7fa898;
+  --color-offwhite: #f5f3ef;
+  --color-nearblack: #0c0c0c;
+  --color-graphite: #3c3c3c;
+  --color-dim: #1a1a1a;
+  --color-dim-light: #e5e5e5;
+  --color-text-dim: #444444;
 
-  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
-  --font-sans: 'IBM Plex Mono', 'Courier New', monospace;
-  --font-serif: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  --font-sans: "IBM Plex Mono", "Courier New", monospace;
+  --font-serif: "IBM Plex Mono", "Courier New", monospace;
 }
 
 :root {
   /* ── Brand colors ─────────────────────────── */
-  --green:      #1E4D3A;   /* Money Green — primary */
-  --bronze:     #BF9340;   /* Engine Bronze — accent (max ~10% of a page) */
-  --forest:     #0F2A20;   /* Deep Forest — dark panels, footer */
-  --sage:       #7FA898;   /* Sage Lift — muted tint, labels on dark */
-  --offwhite:   #F5F3EF;   /* Off White — warm light background */
-  --nearblack:  #0C0C0C;   /* Near Black — dark canvas */
-  --graphite:   #3C3C3C;   /* Graphite — body text on dark */
-  --white:      #FFFFFF;
-  --gray:       #808080;
+  --green: #1e4d3a; /* Money Green — primary */
+  --bronze: #bf9340; /* Engine Bronze — accent (max ~10% of a page) */
+  --forest: #0f2a20; /* Deep Forest — dark panels, footer */
+  --sage: #7fa898; /* Sage Lift — muted tint, labels on dark */
+  --offwhite: #f5f3ef; /* Off White — warm light background */
+  --nearblack: #0c0c0c; /* Near Black — dark canvas */
+  --graphite: #3c3c3c; /* Graphite — body text on dark */
+  --white: #ffffff;
+  --gray: #808080;
 
   /* ── UI chrome ────────────────────────────── */
-  --dim:        #1A1A1A;   /* hairline divider on dark */
-  --dim-light:  #E5E5E5;   /* hairline divider on light */
-  --text-dim:   #444444;
+  --dim: #1a1a1a; /* hairline divider on dark */
+  --dim-light: #e5e5e5; /* hairline divider on light */
+  --text-dim: #444444;
 
   /* ── Type ─────────────────────────────────── */
-  --font: 'IBM Plex Mono', 'Courier New', monospace;
+  --font: "IBM Plex Mono", "Courier New", monospace;
 
   /* ── Layout ───────────────────────────────── */
   --pad-x: 40px;
   --maxw: 1280px;
-  --background:     oklch(1 0 0);
-  --foreground:     oklch(0.145 0 0);
-  --card:     oklch(1 0 0);
-  --card-foreground:     oklch(0.145 0 0);
-  --popover:     oklch(1 0 0);
-  --popover-foreground:     oklch(0.145 0 0);
-  --primary:     oklch(0.205 0 0);
-  --primary-foreground:     oklch(0.985 0 0);
-  --secondary:     oklch(0.97 0 0);
-  --secondary-foreground:     oklch(0.205 0 0);
-  --muted:     oklch(0.97 0 0);
-  --muted-foreground:     oklch(0.556 0 0);
-  --accent:     oklch(0.97 0 0);
-  --accent-foreground:     oklch(0.205 0 0);
-  --destructive:     oklch(0.577 0.245 27.325);
-  --border:     oklch(0.922 0 0);
-  --input:     oklch(0.922 0 0);
-  --ring:     oklch(0.708 0 0);
-  --chart-1:     oklch(0.87 0 0);
-  --chart-2:     oklch(0.556 0 0);
-  --chart-3:     oklch(0.439 0 0);
-  --chart-4:     oklch(0.371 0 0);
-  --chart-5:     oklch(0.269 0 0);
-  --radius:     0.625rem;
-  --sidebar:     oklch(0.985 0 0);
-  --sidebar-foreground:     oklch(0.145 0 0);
-  --sidebar-primary:     oklch(0.205 0 0);
-  --sidebar-primary-foreground:     oklch(0.985 0 0);
-  --sidebar-accent:     oklch(0.97 0 0);
-  --sidebar-accent-foreground:     oklch(0.205 0 0);
-  --sidebar-border:     oklch(0.922 0 0);
-  --sidebar-ring:     oklch(0.708 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: var(--font);
@@ -104,9 +112,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img, svg { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
 
 /* Visible keyboard focus — required for accessibility */
 a:focus-visible,
@@ -128,11 +145,19 @@ textarea:focus-visible {
   text-transform: uppercase;
   color: var(--green);
 }
-.sec-label.on-dark { color: var(--sage); }
+.sec-label.on-dark {
+  color: var(--sage);
+}
 
 /* Hairline divider */
-.rule { height: 1px; background: var(--dim); border: 0; }
-.rule.on-light { background: var(--dim-light); }
+.rule {
+  height: 1px;
+  background: var(--dim);
+  border: 0;
+}
+.rule.on-light {
+  background: var(--dim-light);
+}
 
 /* Buttons — square, no radius, mono */
 .btn {
@@ -146,66 +171,159 @@ textarea:focus-visible {
   border: 1px solid currentColor;
   border-radius: 0;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
-.btn-on-green   { background: var(--white); color: var(--green); border-color: var(--white); }
-.btn-on-green:hover   { background: transparent; color: var(--white); }
-.btn-on-white   { background: var(--green); color: var(--white); border-color: var(--green); }
-.btn-on-white:hover   { background: transparent; color: var(--green); }
+.btn-on-green {
+  background: var(--white);
+  color: var(--green);
+  border-color: var(--white);
+}
+.btn-on-green:hover {
+  background: transparent;
+  color: var(--white);
+}
+.btn-on-white {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+}
+.btn-on-white:hover {
+  background: transparent;
+  color: var(--green);
+}
 
-/* Inline text link with underline-on-hover */
+/* Inline text link with wipe underline-on-hover (Tier 1 micro-interaction) */
 .tlink {
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  position: relative;
+  transition: color 0.15s;
 }
-.tlink:hover { border-bottom-color: currentColor; }
+.tlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.tlink:hover::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tlink::after {
+    transition: none;
+  }
+}
+
+/* ── Scroll-progress rail (Tier 1 motion) — thin bronze bar that fills with
+   scroll. Sits above everything; transform-driven so it's cheap. ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 300;
+  pointer-events: none;
+}
 
 /* Section wrapper padding */
-.section { padding: 64px var(--pad-x); }
+.section {
+  padding: 64px var(--pad-x);
+}
 
 @media (max-width: 640px) {
-  :root { --pad-x: 24px; }
-  .section { padding: 48px var(--pad-x); }
+  :root {
+    --pad-x: 24px;
+  }
+  .section {
+    padding: 48px var(--pad-x);
+  }
 }
 
 /* ── Interior page primitives ─────────────────
    Shared across /services, /approach, /cases, /contact. */
 
 /* Section background modifiers */
-.section-dark   { background: var(--nearblack); color: var(--white); }
-.section-light  { background: var(--white);     color: var(--nearblack); }
-.section-warm   { background: var(--offwhite);  color: var(--nearblack); }
-.section-green  { background: var(--green);     color: var(--white); }
-.section-forest { background: var(--forest);    color: var(--white); }
-.section-dark + .section-dark { border-top: 1px solid var(--dim); }
+.section-dark {
+  background: var(--nearblack);
+  color: var(--white);
+}
+.section-light {
+  background: var(--white);
+  color: var(--nearblack);
+}
+.section-warm {
+  background: var(--offwhite);
+  color: var(--nearblack);
+}
+.section-green {
+  background: var(--green);
+  color: var(--white);
+}
+.section-forest {
+  background: var(--forest);
+  color: var(--white);
+}
+.section-dark + .section-dark {
+  border-top: 1px solid var(--dim);
+}
 
 /* Compact interior-page hero */
-.page-hero { background: var(--green); padding: 80px var(--pad-x) 64px; }
+.page-hero {
+  background: var(--green);
+  padding: 80px var(--pad-x) 64px;
+}
 .page-hero-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase; color: rgba(255, 255, 255, 0.65);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
 }
 .page-hero-h1 {
   margin-top: 24px;
   font-size: clamp(36px, 6vw, 76px);
-  font-weight: 600; letter-spacing: 0.02em; line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.04;
 }
 .page-hero-lede {
-  margin-top: 24px; max-width: 600px;
-  font-size: clamp(13px, 1.4vw, 16px); line-height: 1.75;
+  margin-top: 24px;
+  max-width: 600px;
+  font-size: clamp(13px, 1.4vw, 16px);
+  line-height: 1.75;
   color: rgba(255, 255, 255, 0.7);
 }
 
 /* Big section statement heading */
 .statement {
   font-size: clamp(24px, 3.6vw, 40px);
-  font-weight: 600; line-height: 1.2; letter-spacing: 0.01em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
 }
 
 /* Body copy helpers */
-.lede { font-size: 15px; line-height: 1.8; max-width: 640px; }
-.muted-dark  { color: rgba(255, 255, 255, 0.78); }
-.muted-light { color: #4a4a4a; }
+.lede {
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 640px;
+}
+.muted-dark {
+  color: rgba(255, 255, 255, 0.78);
+}
+.muted-light {
+  color: #4a4a4a;
+}
 
 /* ── Universal scroll-reveal ──────────────────────────────────
    The .reveal class is added by JS only (Base.astro), so no-JS and
@@ -215,8 +333,9 @@ textarea:focus-visible {
   .reveal {
     opacity: 0;
     transform: translateY(22px);
-    transition: opacity 0.6s cubic-bezier(0.2, 0.65, 0.3, 0.95),
-                transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 0.95);
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.65, 0.3, 0.95),
+      transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 0.95);
     transition-delay: calc(var(--reveal-i, 0) * 70ms);
     will-change: opacity, transform;
   }
@@ -230,90 +349,96 @@ textarea:focus-visible {
    Subtle lift on the card-style blocks. Transform-only (no layout
    shift), respects reduced-motion via the wrapping query. */
 @media (prefers-reduced-motion: no-preference) {
-  .service, .step, .principle, .founder {
-    transition: transform 0.2s ease-out, border-color 0.2s ease-out;
+  .service,
+  .step,
+  .principle,
+  .founder {
+    transition:
+      transform 0.2s ease-out,
+      border-color 0.2s ease-out;
   }
-  .service:hover, .step:hover {
+  .service:hover,
+  .step:hover {
     transform: translateY(-3px);
   }
 }
 
 @theme inline {
   /* Override shadcn defaults to keep SNC's single-typeface discipline. */
-  --font-heading:  'IBM Plex Mono', 'Courier New', monospace;
-  --font-sans:     'IBM Plex Mono', 'Courier New', monospace;
-  --color-sidebar-ring:     var(--sidebar-ring);
-  --color-sidebar-border:     var(--sidebar-border);
-  --color-sidebar-accent-foreground:     var(--sidebar-accent-foreground);
-  --color-sidebar-accent:     var(--sidebar-accent);
-  --color-sidebar-primary-foreground:     var(--sidebar-primary-foreground);
-  --color-sidebar-primary:     var(--sidebar-primary);
-  --color-sidebar-foreground:     var(--sidebar-foreground);
-  --color-sidebar:     var(--sidebar);
-  --color-chart-5:     var(--chart-5);
-  --color-chart-4:     var(--chart-4);
-  --color-chart-3:     var(--chart-3);
-  --color-chart-2:     var(--chart-2);
-  --color-chart-1:     var(--chart-1);
-  --color-ring:     var(--ring);
-  --color-input:     var(--input);
-  --color-border:     var(--border);
-  --color-destructive:     var(--destructive);
-  --color-accent-foreground:     var(--accent-foreground);
-  --color-accent:     var(--accent);
-  --color-muted-foreground:     var(--muted-foreground);
-  --color-muted:     var(--muted);
-  --color-secondary-foreground:     var(--secondary-foreground);
-  --color-secondary:     var(--secondary);
-  --color-primary-foreground:     var(--primary-foreground);
-  --color-primary:     var(--primary);
-  --color-popover-foreground:     var(--popover-foreground);
-  --color-popover:     var(--popover);
-  --color-card-foreground:     var(--card-foreground);
-  --color-card:     var(--card);
-  --color-foreground:     var(--foreground);
-  --color-background:     var(--background);
-  --radius-sm:     calc(var(--radius) * 0.6);
-  --radius-md:     calc(var(--radius) * 0.8);
-  --radius-lg:     var(--radius);
-  --radius-xl:     calc(var(--radius) * 1.4);
-  --radius-2xl:     calc(var(--radius) * 1.8);
-  --radius-3xl:     calc(var(--radius) * 2.2);
-  --radius-4xl:     calc(var(--radius) * 2.6);
+  --font-heading: "IBM Plex Mono", "Courier New", monospace;
+  --font-sans: "IBM Plex Mono", "Courier New", monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 .dark {
-  --background:     oklch(0.145 0 0);
-  --foreground:     oklch(0.985 0 0);
-  --card:     oklch(0.205 0 0);
-  --card-foreground:     oklch(0.985 0 0);
-  --popover:     oklch(0.205 0 0);
-  --popover-foreground:     oklch(0.985 0 0);
-  --primary:     oklch(0.922 0 0);
-  --primary-foreground:     oklch(0.205 0 0);
-  --secondary:     oklch(0.269 0 0);
-  --secondary-foreground:     oklch(0.985 0 0);
-  --muted:     oklch(0.269 0 0);
-  --muted-foreground:     oklch(0.708 0 0);
-  --accent:     oklch(0.269 0 0);
-  --accent-foreground:     oklch(0.985 0 0);
-  --destructive:     oklch(0.704 0.191 22.216);
-  --border:     oklch(1 0 0 / 10%);
-  --input:     oklch(1 0 0 / 15%);
-  --ring:     oklch(0.556 0 0);
-  --chart-1:     oklch(0.87 0 0);
-  --chart-2:     oklch(0.556 0 0);
-  --chart-3:     oklch(0.439 0 0);
-  --chart-4:     oklch(0.371 0 0);
-  --chart-5:     oklch(0.269 0 0);
-  --sidebar:     oklch(0.205 0 0);
-  --sidebar-foreground:     oklch(0.985 0 0);
-  --sidebar-primary:     oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground:     oklch(0.985 0 0);
-  --sidebar-accent:     oklch(0.269 0 0);
-  --sidebar-accent-foreground:     oklch(0.985 0 0);
-  --sidebar-border:     oklch(1 0 0 / 10%);
-  --sidebar-ring:     oklch(0.556 0 0);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {

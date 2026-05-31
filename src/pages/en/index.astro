@@ -7,6 +7,7 @@
 import Base from "../../layouts/Base.astro";
 import { localizedUrl } from "../../lib/links";
 import AuditTeardown from "../../components/AuditTeardown.tsx";
+import MagneticButton from "../../components/MagneticButton.tsx";
 
 const u = (p: string) => localizedUrl(p, "en");
 
@@ -108,7 +109,11 @@ const founders = [
         pay an agency €5k a month for dashboards and status calls.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-on-green" href={u("/contact")}>Get an audit</a>
+        <MagneticButton
+          client:load
+          href={u("/contact")}
+          className="btn btn-on-green">Get an audit</MagneticButton
+        >
         <a class="hero-link tlink" href="#razbor"
           >See the account teardown &rarr;</a
         >
@@ -253,7 +258,11 @@ const founders = [
       are, we'll audit your account and show you what's leaving money on the
       table. If not, we'll say so — no pitch.
     </p>
-    <a class="btn btn-on-green" href={u("/contact")}>Get an audit</a>
+    <MagneticButton
+      client:visible
+      href={u("/contact")}
+      className="btn btn-on-green">Get an audit</MagneticButton
+    >
   </section>
 </Base>
 

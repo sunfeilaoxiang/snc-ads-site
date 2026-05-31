@@ -6,12 +6,13 @@
  * into the marked slots below. They are intentionally empty until the real
  * pixel IDs exist. See snc-media-site/CLAUDE.md.
  */
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Schema from '../components/Schema.astro';
-import { url } from '../lib/links';
-import { ui, type Locale } from '../i18n/ui';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Schema from "../components/Schema.astro";
+import ScrollProgress from "../components/ScrollProgress.tsx";
+import { url } from "../lib/links";
+import { ui, type Locale } from "../i18n/ui";
 
 interface Props {
   title: string;
@@ -28,14 +29,14 @@ const {
   description,
   ogTitle,
   ogDescription,
-  ogImage = '/og-default.png',
+  ogImage = "/og-default.png",
   bareHeader = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const faviconHref = url('/favicon.svg');
+const faviconHref = url("/favicon.svg");
 const ogImageUrl = new URL(url(ogImage), Astro.site);
-const locale = (Astro.currentLocale ?? 'ru') as Locale;
+const locale = (Astro.currentLocale ?? "ru") as Locale;
 const consent = (ui[locale] ?? ui.ru).consent;
 ---
 
@@ -58,7 +59,9 @@ const consent = (ui[locale] ?? ui.ru).consent;
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    {/* Organization JSON-LD — entity recognition for AI search + rich results */}
+    {
+      /* Organization JSON-LD — entity recognition for AI search + rich results */
+    }
     <Schema locale={locale} />
 
     <!-- Fonts — IBM Plex Mono, the only typeface -->
@@ -69,57 +72,85 @@ const consent = (ui[locale] ?? ui.ru).consent;
       rel="stylesheet"
     />
 
-    {/* ── ANALYTICS — consent-gated. Nothing fires until the visitor
+    {
+      /* ── ANALYTICS — consent-gated. Nothing fires until the visitor
         clicks Accept on the banner. GA4 G-C480L71EX6 + Meta Pixel
-        1857063391638735. CAPI is a later (server-side) step. ── */}
+        1857063391638735. CAPI is a later (server-side) step. ── */
+    }
     <script is:inline>
       (function () {
-        var GA4_ID = 'G-C480L71EX6';
-        var PIXEL_ID = '1857063391638735';
+        var GA4_ID = "G-C480L71EX6";
+        var PIXEL_ID = "1857063391638735";
         window.sncConsent = {
           load: function () {
             if (window.sncAnalyticsLoaded) return;
             window.sncAnalyticsLoaded = true;
             // GA4
-            var ga = document.createElement('script');
+            var ga = document.createElement("script");
             ga.async = true;
-            ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+            ga.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
             document.head.appendChild(ga);
             window.dataLayer = window.dataLayer || [];
-            window.gtag = function () { window.dataLayer.push(arguments); };
-            window.gtag('js', new Date());
-            window.gtag('config', GA4_ID);
+            window.gtag = function () {
+              window.dataLayer.push(arguments);
+            };
+            window.gtag("js", new Date());
+            window.gtag("config", GA4_ID);
             // Meta Pixel
-            !function (f, b, e, v, n, t, s) {
+            !(function (f, b, e, v, n, t, s) {
               if (f.fbq) return;
               n = f.fbq = function () {
-                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                n.callMethod
+                  ? n.callMethod.apply(n, arguments)
+                  : n.queue.push(arguments);
               };
-              if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-              n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
-              s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-            window.fbq('init', PIXEL_ID);
-            window.fbq('track', 'PageView');
+              if (!f._fbq) f._fbq = n;
+              n.push = n;
+              n.loaded = !0;
+              n.version = "2.0";
+              n.queue = [];
+              t = b.createElement(e);
+              t.async = !0;
+              t.src = v;
+              s = b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t, s);
+            })(
+              window,
+              document,
+              "script",
+              "https://connect.facebook.net/en_US/fbevents.js",
+            );
+            window.fbq("init", PIXEL_ID);
+            window.fbq("track", "PageView");
           },
           accept: function () {
-            try { localStorage.setItem('snc-consent', 'accepted'); } catch (e) {}
+            try {
+              localStorage.setItem("snc-consent", "accepted");
+            } catch (e) {}
             this.load();
           },
           decline: function () {
-            try { localStorage.setItem('snc-consent', 'declined'); } catch (e) {}
+            try {
+              localStorage.setItem("snc-consent", "declined");
+            } catch (e) {}
           },
           state: function () {
-            try { return localStorage.getItem('snc-consent'); } catch (e) { return null; }
-          }
+            try {
+              return localStorage.getItem("snc-consent");
+            } catch (e) {
+              return null;
+            }
+          },
         };
-        if (window.sncConsent.state() === 'accepted') window.sncConsent.load();
+        if (window.sncConsent.state() === "accepted") window.sncConsent.load();
       })();
     </script>
   </head>
 
   <body>
     {/* ── ANALYTICS BODY (noscript) SLOT ─────────────────────── */}
+
+    <ScrollProgress client:load />
 
     {!bareHeader && <Header />}
     <main>
@@ -131,123 +162,232 @@ const consent = (ui[locale] ?? ui.ru).consent;
     <div id="consent" class="consent" role="dialog" aria-label="Cookies" hidden>
       <p class="consent-text">{consent.text}</p>
       <div class="consent-actions">
-        <button type="button" class="consent-btn consent-accept" id="consent-accept">{consent.accept}</button>
-        <button type="button" class="consent-btn consent-decline" id="consent-decline">{consent.decline}</button>
+        <button
+          type="button"
+          class="consent-btn consent-accept"
+          id="consent-accept">{consent.accept}</button
+        >
+        <button
+          type="button"
+          class="consent-btn consent-decline"
+          id="consent-decline">{consent.decline}</button
+        >
       </div>
     </div>
     <script is:inline>
       (function () {
-        var el = document.getElementById('consent');
+        var el = document.getElementById("consent");
         if (!el || !window.sncConsent) return;
         if (window.sncConsent.state()) return; // already accepted or declined
         el.hidden = false;
-        document.getElementById('consent-accept').addEventListener('click', function () {
-          window.sncConsent.accept(); el.hidden = true;
-        });
-        document.getElementById('consent-decline').addEventListener('click', function () {
-          window.sncConsent.decline(); el.hidden = true;
-        });
+        document
+          .getElementById("consent-accept")
+          .addEventListener("click", function () {
+            window.sncConsent.accept();
+            el.hidden = true;
+          });
+        document
+          .getElementById("consent-decline")
+          .addEventListener("click", function () {
+            window.sncConsent.decline();
+            el.hidden = true;
+          });
       })();
     </script>
 
-    {/* ── First-touch attribution capture ──────────────────────
+    {
+      /* ── First-touch attribution capture ──────────────────────
         Stores UTM / click-id params + landing page + referrer in
         sessionStorage on the FIRST page seen, so the contact form can
         attach them even if the visitor navigates internally before
         submitting. First-touch wins (only set if not already stored).
-        The contact form reads this back into hidden fields. */}
+        The contact form reads this back into hidden fields. */
+    }
     <script is:inline>
       (function () {
         try {
-          var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'];
+          var KEYS = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_term",
+            "utm_content",
+            "fbclid",
+            "gclid",
+          ];
           var qs = new URLSearchParams(window.location.search);
-          var store = JSON.parse(sessionStorage.getItem('snc-attribution') || '{}');
+          var store = JSON.parse(
+            sessionStorage.getItem("snc-attribution") || "{}",
+          );
           var changed = false;
           KEYS.forEach(function (k) {
             var v = qs.get(k);
-            if (v && !store[k]) { store[k] = v; changed = true; }
+            if (v && !store[k]) {
+              store[k] = v;
+              changed = true;
+            }
           });
-          if (!store.landing_page) { store.landing_page = window.location.pathname; changed = true; }
-          if (!store.referrer && document.referrer) { store.referrer = document.referrer; changed = true; }
-          if (changed) sessionStorage.setItem('snc-attribution', JSON.stringify(store));
+          if (!store.landing_page) {
+            store.landing_page = window.location.pathname;
+            changed = true;
+          }
+          if (!store.referrer && document.referrer) {
+            store.referrer = document.referrer;
+            changed = true;
+          }
+          if (changed)
+            sessionStorage.setItem("snc-attribution", JSON.stringify(store));
         } catch (e) {}
       })();
     </script>
 
-    {/* ── Universal scroll-reveal ──────────────────────────────
+    {
+      /* ── Universal scroll-reveal ──────────────────────────────
         Adds a subtle fade-up to section blocks as they enter the
         viewport. Zero dependencies, ~60fps (transform+opacity only).
         No-JS and reduced-motion users see everything immediately —
-        the hidden state only applies once this script tags elements. */}
+        the hidden state only applies once this script tags elements. */
+    }
     <script is:inline>
       (function () {
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (reduce) return; // leave all content visible, no motion
 
         // Curated set of block-level elements worth revealing. Cards get a
         // per-sibling stagger; standalone blocks just fade up.
         var SEL = [
-          '.principle', '.service', '.step', '.fit-col', '.founder',
-          '.sec-label', '.pos-statement', '.pos-body',
-          '.services-note', '.services-cta', '.how-cta',
-          '.closing-statement', '.closing-body', '.closing-cta',
-          '.page-hero-label', '.page-hero-h1', '.page-hero-lede',
-          '.statement', '.lede',
+          ".principle",
+          ".service",
+          ".step",
+          ".fit-col",
+          ".founder",
+          ".sec-label",
+          ".pos-statement",
+          ".pos-body",
+          ".services-note",
+          ".services-cta",
+          ".how-cta",
+          ".closing-statement",
+          ".closing-body",
+          ".closing-cta",
+          ".page-hero-label",
+          ".page-hero-h1",
+          ".page-hero-lede",
+          ".statement",
+          ".lede",
           // interior-page content blocks (services / approach / cases)
-          '.incl', '.line', '.creative', '.promise-col',
-          '.ask', '.asks-note', '.measure', '.struct-row'
-        ].join(',');
+          ".incl",
+          ".line",
+          ".creative",
+          ".promise-col",
+          ".ask",
+          ".asks-note",
+          ".measure",
+          ".struct-row",
+        ].join(",");
 
         var nodes = Array.prototype.slice.call(document.querySelectorAll(SEL));
-        if (!nodes.length || !('IntersectionObserver' in window)) return;
+        if (!nodes.length || !("IntersectionObserver" in window)) return;
 
         // Tag + assign per-parent stagger index.
-        var lastParent = null, idx = 0;
+        var lastParent = null,
+          idx = 0;
         nodes.forEach(function (n) {
           var p = n.parentElement;
-          if (p !== lastParent) { lastParent = p; idx = 0; } else { idx++; }
-          n.style.setProperty('--reveal-i', String(idx));
-          n.classList.add('reveal');
+          if (p !== lastParent) {
+            lastParent = p;
+            idx = 0;
+          } else {
+            idx++;
+          }
+          n.style.setProperty("--reveal-i", String(idx));
+          n.classList.add("reveal");
         });
 
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add('is-visible');
-              io.unobserve(e.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+        );
 
-        nodes.forEach(function (n) { io.observe(n); });
+        nodes.forEach(function (n) {
+          io.observe(n);
+        });
       })();
+    </script>
+
+    {
+      /* ── Lenis smooth-scroll (Tier 1 motion) — desktop + fine-pointer
+        only, disabled under reduced-motion. Bundled module script. ── */
+    }
+    <script>
+      import "../scripts/smooth-scroll.ts";
     </script>
   </body>
 </html>
 
 <style>
   .consent {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px 28px; flex-wrap: wrap;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 28px;
+    flex-wrap: wrap;
     background: var(--nearblack);
     border-top: 1px solid var(--dim);
     padding: 16px clamp(20px, 5vw, 64px);
   }
-  .consent[hidden] { display: none; }
+  .consent[hidden] {
+    display: none;
+  }
   .consent-text {
-    margin: 0; max-width: 760px;
-    font-size: 12px; line-height: 1.6; color: rgba(255, 255, 255, 0.72);
+    margin: 0;
+    max-width: 760px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
   }
-  .consent-actions { display: flex; gap: 10px; flex-shrink: 0; }
+  .consent-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
   .consent-btn {
-    font-family: var(--font); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 10px 18px; cursor: pointer;
-    border: 1px solid var(--dim); background: transparent;
-    color: rgba(255, 255, 255, 0.8); transition: all 0.15s;
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    cursor: pointer;
+    border: 1px solid var(--dim);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.15s;
   }
-  .consent-accept { background: var(--green); border-color: var(--green); color: #fff; }
-  .consent-accept:hover { background: #245a45; }
-  .consent-decline:hover { border-color: var(--sage); color: #fff; }
+  .consent-accept {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+  }
+  .consent-accept:hover {
+    background: #245a45;
+  }
+  .consent-decline:hover {
+    border-color: var(--sage);
+    color: #fff;
+  }
 </style>

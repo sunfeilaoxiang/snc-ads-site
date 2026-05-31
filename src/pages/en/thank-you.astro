@@ -4,8 +4,8 @@
  * Keep structure + styles in sync with src/pages/thank-you.astro.
  * The Lead conversion event fires here (only if analytics loaded / consent given).
  */
-import Base from '../../layouts/Base.astro';
-import { localizedUrl } from '../../lib/links';
+import Base from "../../layouts/Base.astro";
+import { localizedUrl } from "../../lib/links";
 ---
 
 <Base
@@ -22,8 +22,12 @@ import { localizedUrl } from '../../lib/links';
         folder included.
       </p>
       <div class="ty-cta">
-        <a class="btn btn-on-green" href={localizedUrl('/', 'en')}>Back to home</a>
-        <a class="ty-link tlink" href={localizedUrl('/approach', 'en')}>How we work &rarr;</a>
+        <a class="btn btn-on-green" href={localizedUrl("/", "en")}
+          >Back to home</a
+        >
+        <a class="ty-link tlink" href={localizedUrl("/approach", "en")}
+          >How we work &rarr;</a
+        >
       </div>
     </div>
   </section>
@@ -37,30 +41,53 @@ import { localizedUrl } from '../../lib/links';
    * doesn't degrade the user experience. */
   (function () {
     function uuid() {
-      if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (Math.random() * 16) | 0;
-        var v = c === 'x' ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-      });
+      if (window.crypto && window.crypto.randomUUID)
+        return window.crypto.randomUUID();
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+          var r = (Math.random() * 16) | 0;
+          var v = c === "x" ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        },
+      );
     }
 
-    if (window.gtag) window.gtag('event', 'generate_lead');
+    // Fire once per submission — a refresh / back-nav to /thank-you must not
+    // re-fire Lead (a new event_id each time would not dedupe -> inflated count).
+    try {
+      if (sessionStorage.getItem("snc_lead_fired")) return;
+    } catch (e) {}
 
-    if (window.fbq) {
-      var eventId = uuid();
-      window.fbq('track', 'Lead', {}, { eventID: eventId });
-      // Mirror via CAPI (server-side); deduped against the browser event by event_id.
-      fetch('/api/meta-capi', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          event_id: eventId,
-          event_source_url: window.location.href,
-        }),
-        keepalive: true,
-      }).catch(function () { /* fire and forget */ });
-    }
+    // GDPR gate: only fire if the visitor accepted analytics consent. CAPI sends
+    // IP + user-agent, so it must not run for someone who declined.
+    var consented =
+      window.sncConsent && window.sncConsent.state() === "accepted";
+    if (!consented) return;
+
+    try {
+      sessionStorage.setItem("snc_lead_fired", "1");
+    } catch (e) {}
+
+    var eventId = uuid();
+    if (window.gtag) window.gtag("event", "generate_lead");
+    if (window.fbq) window.fbq("track", "Lead", {}, { eventID: eventId });
+
+    // Server-side mirror — fires even when the browser Pixel is blocked
+    // (ad blocker / iOS / content-blocking DNS). That coverage is the whole
+    // point of CAPI. Deduped against the browser event by event_id when both
+    // reach Meta.
+    fetch("/api/meta-capi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_id: eventId,
+        event_source_url: window.location.href,
+      }),
+      keepalive: true,
+    }).catch(function () {
+      /* fire and forget */
+    });
   })();
 </script>
 
@@ -68,27 +95,46 @@ import { localizedUrl } from '../../lib/links';
   .ty {
     background: var(--green);
     min-height: calc(100vh - 56px);
-    display: flex; align-items: center;
+    display: flex;
+    align-items: center;
     padding: 64px var(--pad-x);
   }
-  .ty-inner { max-width: 680px; }
+  .ty-inner {
+    max-width: 680px;
+  }
   .ty-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
-    text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
   }
   .ty-h1 {
     margin-top: 18px;
-    font-size: clamp(36px, 6vw, 72px); font-weight: 600;
-    line-height: 1.05; letter-spacing: 0.01em;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
   }
   .ty-lede {
-    margin-top: 24px; max-width: 520px;
-    font-size: 15px; line-height: 1.8; color: rgba(255, 255, 255, 0.78);
+    margin-top: 24px;
+    max-width: 520px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.78);
   }
   .ty-cta {
-    margin-top: 36px; display: flex; align-items: center;
-    gap: 28px; flex-wrap: wrap;
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
   }
-  .ty-link { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
-  .ty-link:hover { color: var(--white); }
+  .ty-link {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .ty-link:hover {
+    color: var(--white);
+  }
 </style>
